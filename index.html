@@ -263,9 +263,11 @@
     .plist{display:flex;flex-direction:column;gap:1px;background:var(--border);margin-top:8px}
     .pi{
       background:var(--bg);display:flex;align-items:center;gap:14px;
-      padding:16px 18px;border-left:3px solid var(--orange);transition:background .2s;
+      padding:16px 18px;border-left:3px solid var(--orange);transition:background .2s, border-color .2s;
+      text-decoration:none;color:inherit;
     }
-    .pi:hover{background:var(--green-pale)}
+    .pi:hover{background:var(--green-pale);border-left-color:var(--green)}
+    .pi:hover .pn{color:var(--green)}
     .pico{font-size:18px;flex-shrink:0}
     .pn{font-size:14px;font-weight:700;color:var(--text)}
     .pd{font-size:11px;color:var(--light);margin-top:1px}
@@ -484,9 +486,9 @@
         <p class="rb" data-k="r_b1">Avanzati processi di ossidazione avevano prodotto perdite materiche e fessurazioni che mettevano in pericolo sia la superficie decorata sia la struttura metallica, rischiando di comprometterne la leggibilità.</p>
         <p class="rb" data-k="r_b2">Grazie a un cospicuo contributo ottenuto attraverso la <strong>XII edizione dei "Luoghi del Cuore"</strong> e a una raccolta fondi con la partecipazione del Comune, di aziende e privati cittadini, il restauro è oggi realtà.</p>
         <div class="plist">
-          <div class="pi"><div class="pico">🌿</div><div><div class="pn">FAI — Fondo Ambiente Italiano</div><div class="pd" data-k="pr1">XII Edizione · Luoghi del Cuore</div></div></div>
-          <div class="pi"><div class="pico">🏦</div><div><div class="pn">Intesa Sanpaolo</div><div class="pd" data-k="pr2">Contributo principale</div></div></div>
-          <div class="pi"><div class="pico">🏛️</div><div><div class="pn" data-k="pr3n">Comune di Troia</div><div class="pd" data-k="pr3r">Raccolta fondi e patrocinio</div></div></div>
+          <a class="pi" href="https://fondoambiente.it/il-fai/grandi-campagne/i-luoghi-del-cuore/" target="_blank" rel="noopener noreferrer"><div><div class="pn">FAI — Fondo Ambiente Italiano</div><div class="pd" data-k="pr1">XII Edizione · Luoghi del Cuore</div></div></a>
+          <a class="pi" href="https://group.intesasanpaolo.com/it/sezione-editoriale/eventi-progetti/tutti-i-progetti/cultura/luoghi-del-cuore-fai#" target="_blank" rel="noopener noreferrer"><div><div class="pn">Intesa Sanpaolo</div><div class="pd" data-k="pr2">Contributo principale</div></div></a>
+          <a class="pi" href="https://www.comune.troia.fg.it/it" target="_blank" rel="noopener noreferrer"><div><div class="pn" data-k="pr3n">Comune di Troia</div><div class="pd" data-k="pr3r">Raccolta fondi e patrocinio</div></div></a>
         </div>
       </div>
       <div class="rest-img fu">

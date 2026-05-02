@@ -27,110 +27,65 @@
     body{font-family:'Source Sans 3',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
 
     /* ── LANG BAR ── */
-    .lang-bar{
-      background:var(--green-dark);
-      display:flex;align-items:center;justify-content:flex-end;
-      padding:0 40px;height:32px;gap:2px;
-    }
-    .lb{
-      font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;
-      letter-spacing:0.14em;text-transform:uppercase;
-      background:transparent;border:none;color:rgba(255,255,255,0.4);
-      padding:0 10px;height:32px;cursor:pointer;
-      border-bottom:2px solid transparent;transition:color .2s,border-color .2s;
-    }
-    .lb:hover{color:rgba(255,255,255,.75)}
-    .lb.active{color:#fff;border-bottom-color:rgba(255,255,255,.55)}
+    /* ── LANG BUTTONS ── */
+    .lb{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;background:transparent;border:none;color:rgba(255,255,255,.55);padding:0 9px;height:36px;cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+    .lb:hover{color:#fff}
+    .lb.active{color:#fff;border-bottom-color:rgba(255,255,255,.7)}
 
-    /* ── NAV ── */
+    /* ── NAV OVERLAY ── */
     nav{
-      position:sticky;top:0;z-index:200;
-      background:var(--white);
-      border-bottom:1px solid var(--border);
+      position:fixed;top:0;left:0;right:0;z-index:200;
       display:flex;align-items:center;justify-content:space-between;
-      padding:0 40px;height:72px;
+      padding:0 48px;height:68px;
+      background:linear-gradient(to bottom,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0) 100%);
+      transition:background .4s;
     }
-    .nav-logo img{height:52px;width:auto;display:block}
+    nav.scrolled{background:var(--green-dark);box-shadow:0 2px 12px rgba(0,0,0,.3)}
+    .nav-langs{display:flex;align-items:center}
     .nav-links{display:flex;list-style:none;gap:0}
     .nav-links a{
-      font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
-      color:var(--muted);text-decoration:none;padding:0 16px;height:72px;
-      display:flex;align-items:center;border-bottom:3px solid transparent;
-      transition:color .2s,border-color .2s;
+      font-size:11px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;
+      color:#fff;text-decoration:none;
+      padding:0 16px;height:68px;
+      display:flex;align-items:center;
+      border-bottom:2px solid transparent;
+      transition:border-color .2s;
+      text-shadow:0 1px 6px rgba(0,0,0,.5);
     }
-    .nav-links a:hover{color:var(--green);border-bottom-color:var(--orange)}
+    nav.scrolled .nav-links a{text-shadow:none}
+    .nav-links a:hover{border-bottom-color:var(--orange)}
 
-    /* ── HERO ── */
-    .hero{
-      display:grid;grid-template-columns:55% 45%;
-      min-height:86vh;background:var(--white);
-    }
-    .hero-img{position:relative;overflow:hidden;background:#0a1a0d}
-    .hero-img img{
-      width:100%;height:100%;object-fit:cover;object-position:center top;
-      display:block;opacity:.9;transition:opacity .4s;
-    }
-    .hero-img:hover img{opacity:.95}
-    .hero-img-credit{
-      position:absolute;bottom:16px;left:20px;
-      font-size:9px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;
-      color:rgba(255,255,255,.45);
-    }
-
-    .hero-text{
-      display:flex;flex-direction:column;justify-content:center;
-      padding:64px 52px 64px 48px;
-      background:var(--white);
-      border-left:1px solid var(--border);
-    }
-    .eyebrow{
-      font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;
-      color:var(--orange);margin-bottom:16px;
-      display:flex;align-items:center;gap:10px;
-    }
+    /* ── HERO FULLSCREEN ── */
+    .hero-full{position:relative;width:100%;height:100vh;min-height:580px;overflow:hidden}
+    .hero-full>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(170deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.4) 55%,rgba(0,0,0,.18) 100%)}
+    .hero-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:0 64px 72px}
+    .eyebrow{font-size:10px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--orange);margin-bottom:12px;display:flex;align-items:center;gap:10px}
     .eyebrow::before{content:'';display:block;width:24px;height:2px;background:var(--orange)}
-    .hero-title{
-      font-family:'Playfair Display',serif;
-      font-size:clamp(34px,3.8vw,56px);font-weight:700;line-height:1.06;
-      color:var(--text);margin-bottom:8px;
-    }
-    .hero-title em{font-style:italic;color:var(--green);font-weight:400}
-    .hero-loc{
-      font-family:'Playfair Display',serif;font-size:16px;font-style:italic;
-      color:var(--light);margin-bottom:28px;padding-bottom:28px;
-      border-bottom:1px solid var(--border);
-    }
-    .hero-body{font-size:15px;line-height:1.8;color:var(--muted);margin-bottom:32px}
-    .hero-data{
-      display:grid;grid-template-columns:1fr 1fr;gap:16px 28px;margin-bottom:36px;
-      background:var(--bg);padding:20px;
-    }
-    .dl{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--light);margin-bottom:3px}
-    .dv{font-family:'Playfair Display',serif;font-size:16px;color:var(--text)}
-    .btn{
-      display:inline-flex;align-items:center;gap:8px;
-      background:var(--orange);color:#fff;text-decoration:none;
-      font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
-      padding:13px 26px;transition:background .25s;width:fit-content;
-    }
-    .btn:hover{background:var(--orange-dk)}
+    .hero-title{font-family:'Playfair Display',serif;font-size:clamp(38px,5.5vw,76px);font-weight:700;line-height:1.03;color:#fff;margin-bottom:8px;text-shadow:0 2px 24px rgba(0,0,0,.5)}
+    .hero-title em{font-style:italic;font-weight:400;color:rgba(255,255,255,.85)}
+    .hero-loc{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:rgba(255,255,255,.6);margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.18)}
+    .hero-data{display:grid;grid-template-columns:repeat(4,auto);gap:0 40px;margin-bottom:24px}
+    .dl{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:3px}
+    .dv{font-family:'Playfair Display',serif;font-size:16px;color:#fff}
+    .hero-body{font-size:15px;line-height:1.8;color:rgba(255,255,255,.68);margin-bottom:28px;max-width:540px}
+    .btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.45);color:#fff;text-decoration:none;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:13px 28px;transition:all .25s;width:fit-content;backdrop-filter:blur(4px)}
+    .btn:hover{background:var(--orange);border-color:var(--orange)}
     .btn svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.5}
+    .hero-credit{position:absolute;bottom:16px;right:20px;font-size:9px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+    .hero-arrow{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.4);text-decoration:none;animation:bounce 2s infinite}
+    .hero-arrow svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2}
+    @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
 
     /* ── SECTION UTIL ── */
     .wrap{max-width:1200px;margin:0 auto;padding:0 40px}
     .wrap-sm{max-width:840px;margin:0 auto;padding:0 40px}
-    .slabel{
-      font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;
-      color:var(--orange);margin-bottom:8px;
-    }
-    .sh2{
-      font-family:'Playfair Display',serif;
-      font-size:clamp(24px,2.6vw,38px);font-weight:700;line-height:1.1;color:var(--text);
-    }
+    .slabel{font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+    .sh2{font-family:'Playfair Display',serif;font-size:clamp(24px,2.6vw,38px);font-weight:700;line-height:1.1;color:var(--text)}
     .sh2 em{font-style:italic;color:var(--green);font-weight:400}
     .srule{width:40px;height:3px;background:var(--orange);margin:16px 0 0}
 
-    /* ── GALLERY STRIP ── */
+/* ── GALLERY STRIP ── */
     .gallery-strip{
       display:grid;grid-template-columns:2fr 1fr 1fr;
       height:400px;gap:2px;background:var(--text);
@@ -317,12 +272,11 @@
     /* ── RESPONSIVE ── */
     @media(max-width:960px){
       .wrap,.wrap-sm{padding:0 20px}
-      .hero{grid-template-columns:1fr}
-      .hero-img{min-height:260px}
-      .hero-text{padding:36px 20px;border-left:none}
       nav{padding:0 20px}
       .nav-links{display:none}
-      .lang-bar{padding:0 20px}
+      .hero-full{height:100svh}
+      .hero-content{padding:0 24px 64px}
+      .hero-data{grid-template-columns:1fr 1fr;gap:14px 24px}
       .cards{grid-template-columns:1fr}
       .gallery-strip{grid-template-columns:1fr;height:auto}
       .gallery-sub{grid-template-columns:1fr 1fr}
@@ -340,50 +294,47 @@
 </head>
 <body>
 
-<!-- LANG BAR -->
-<div class="lang-bar">
-  <button class="lb active" onclick="setLang('it')">IT</button>
-  <button class="lb" onclick="setLang('en')">EN</button>
-  <button class="lb" onclick="setLang('fr')">FR</button>
-  <button class="lb" onclick="setLang('de')">DE</button>
-  <button class="lb" onclick="setLang('es')">ES</button>
-</div>
-
 <!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#">
-    <img src="img/logo.jpg" loading="lazy" alt="FAI — Fondo per l'Ambiente Italiano"/>
-  </a>
+<nav id="main-nav">
   <ul class="nav-links">
     <li><a href="#opera" data-k="nav_op">L'Opera</a></li>
     <li><a href="#iscrizione" data-k="nav_is">Iscrizione</a></li>
     <li><a href="#vescovi" data-k="nav_ve">Vescovi</a></li>
     <li><a href="#restauro" data-k="nav_re">Restauro</a></li>
   </ul>
+  <div class="nav-langs">
+    <button class="lb active" onclick="setLang('it')">IT</button>
+    <button class="lb" onclick="setLang('en')">EN</button>
+    <button class="lb" onclick="setLang('fr')">FR</button>
+    <button class="lb" onclick="setLang('de')">DE</button>
+    <button class="lb" onclick="setLang('es')">ES</button>
+  </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-img">
-    <img src="img/hero.jpg" loading="eager" alt="Porta della Libertà — vista completa"/>
-    <div class="hero-img-credit" data-k="hero_credit">Porta della Libertà · Cattedrale di Troia · 1127</div>
-  </div>
-  <div class="hero-text">
+<!-- HERO FULLSCREEN -->
+<section class="hero-full">
+  <img src="img/hero.jpg" loading="eager" alt="Porta della Libertà — vista completa"/>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
     <div class="eyebrow" data-k="hero_ey">Patrimonio Medievale · Puglia</div>
     <h1 class="hero-title" data-k="hero_h1">Porta della <em>Libertà</em></h1>
     <p class="hero-loc" data-k="hero_loc">Cattedrale di Troia · Portale Bronzeo Minore</p>
-    <p class="hero-body" data-k="hero_body">Una gloriosa pagina di storia incisa nel bronzo, per tramandare ai posteri l'epopea di un popolo che combatte per la sua libertà. Opera di Oderisio da Benevento, risalente al 1127.</p>
     <div class="hero-data">
       <div><div class="dl" data-k="d_an">Anno</div><div class="dv">1127 d.C.</div></div>
       <div><div class="dl" data-k="d_au">Autore</div><div class="dv">Oderisio da Benevento</div></div>
       <div><div class="dl" data-k="d_pa">Pannelli</div><div class="dv" data-k="d_pa_v">24 · sei registri</div></div>
       <div><div class="dl" data-k="d_ma">Materiale</div><div class="dv" data-k="d_ma_v">Bronzo ageminato</div></div>
     </div>
+    <p class="hero-body" data-k="hero_body">Una gloriosa pagina di storia incisa nel bronzo, per tramandare ai posteri l'epopea di un popolo che combatte per la sua libertà. Opera di Oderisio da Benevento, risalente al 1127.</p>
     <a href="#opera" class="btn" data-k="hero_cta">
       Scopri l'Opera
       <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
   </div>
+  <div class="hero-credit" data-k="hero_credit">Porta della Libertà · Cattedrale di Troia · 1127</div>
+  <a href="#opera" class="hero-arrow">
+    <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+  </a>
 </section>
 
 <!-- GALLERY STRIP -->
@@ -741,6 +692,11 @@ function setLang(l){
   });
   document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase()===l));
 }
+
+// Nav scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 60);
+});
 
 const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
   if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}

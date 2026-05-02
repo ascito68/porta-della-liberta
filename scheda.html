@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scheda Informativa — Porta della Libertà</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --green:#1E4D2B;--green-dark:#163820;
+      --orange:#D94F1E;
+      --white:#FFFFFF;--border:#E0E0DC;
+      --text:#1A1A18;--muted:#666660;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Source Sans 3',sans-serif;color:var(--text);overflow-x:hidden;line-height:1.6;margin:0}
+
+    /* NAV */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:200;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 48px;height:68px;
+      background:linear-gradient(to bottom,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0) 100%);
+      transition:background .4s;
+    }
+    nav.scrolled{background:var(--green-dark)}
+    .nav-back{
+      font-size:11px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;
+      color:#fff;text-decoration:none;
+      display:flex;align-items:center;gap:8px;
+      text-shadow:0 1px 6px rgba(0,0,0,.5);
+    }
+    .nav-back svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+    .nav-langs{display:flex;align-items:center}
+    .lb{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;background:transparent;border:none;color:rgba(255,255,255,.55);padding:0 9px;height:36px;cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+    .lb:hover{color:#fff}
+    .lb.active{color:#fff;border-bottom-color:rgba(255,255,255,.7)}
+
+    /* HERO HEADER */
+    .page-hero{
+      position:relative;
+      width:100%;
+      height:380px;
+      overflow:hidden;
+    }
+    .page-hero img{
+      position:absolute;inset:0;
+      width:100%;height:100%;
+      object-fit:cover;object-position:center center;
+      filter:brightness(0.35) blur(2px);
+      transform:scale(1.05);
+    }
+    .page-hero-content{
+      position:absolute;inset:0;
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      text-align:center;
+      padding:0 40px;
+    }
+    .page-hero-label{
+      font-size:10px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;
+      color:var(--orange);margin-bottom:12px;
+      text-shadow:0 1px 8px rgba(0,0,0,1);
+    }
+    .page-hero-title{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(32px,5vw,64px);
+      font-weight:700;color:#fff;line-height:1.05;
+      text-shadow:0 2px 20px rgba(0,0,0,.8);
+    }
+    .page-hero-title em{font-style:italic;font-weight:400}
+    .page-hero-sub{
+      font-family:'Playfair Display',serif;
+      font-size:18px;font-style:italic;
+      color:rgba(255,255,255,.7);margin-top:12px;
+      text-shadow:0 1px 8px rgba(0,0,0,.8);
+    }
+
+    /* CONTENT */
+    .content{
+      max-width:800px;margin:0 auto;
+      padding:64px 40px 80px;
+    }
+    .section-block{margin-bottom:48px}
+    .section-block h2{
+      font-family:'Playfair Display',serif;
+      font-size:24px;font-weight:700;
+      color:var(--green);
+      margin-bottom:20px;
+      padding-bottom:12px;
+      border-bottom:2px solid var(--orange);
+    }
+    .section-block p{
+      font-size:16px;line-height:1.85;
+      color:var(--muted);
+      margin-bottom:16px;
+    }
+    .section-block p:last-child{margin-bottom:0}
+
+    /* Latin quote */
+    .latin-quote{
+      background:#f8f8f6;
+      border-left:3px solid var(--orange);
+      padding:24px 32px;
+      margin:24px 0;
+      font-family:'Playfair Display',serif;
+      font-size:15px;font-style:italic;
+      line-height:2;color:var(--text);
+    }
+    .latin-quote .latin-line{
+      font-size:16px;
+      color:var(--green);
+      display:block;margin-bottom:4px;
+    }
+    .latin-quote .translation{
+      font-size:14px;
+      color:var(--muted);
+      font-style:normal;
+      display:block;
+      margin-top:16px;
+      padding-top:16px;
+      border-top:1px solid var(--border);
+      line-height:1.8;
+    }
+
+    /* Footer mini */
+    .page-footer{
+      background:var(--green-dark);
+      padding:24px 40px;
+      text-align:center;
+    }
+    .page-footer a{
+      font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+      color:rgba(255,255,255,.6);text-decoration:none;
+      transition:color .2s;
+    }
+    .page-footer a:hover{color:#fff}
+
+    @media(max-width:768px){
+      nav{padding:0 20px}
+      .content{padding:48px 20px 60px}
+      .latin-quote{padding:18px 20px}
+      .page-hero{height:280px}
+    }
+  
+    .scheda-img{
+      width:100%;
+      height:auto;
+      display:block;
+      margin:28px 0;
+      border-radius:2px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="snav">
+  <a class="nav-back" href="index.html">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    <span data-k="back">Torna al sito</span>
+  </a>
+  <div class="nav-langs">
+    <button class="lb active" onclick="setLang('it')">IT</button>
+    <button class="lb" onclick="setLang('en')">EN</button>
+    <button class="lb" onclick="setLang('fr')">FR</button>
+    <button class="lb" onclick="setLang('de')">DE</button>
+    <button class="lb" onclick="setLang('es')">ES</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <img src="img/hero.jpg" alt="Porta della Libertà"/>
+  <div class="page-hero-content">
+    <div class="page-hero-label" data-k="label">Scheda Informativa</div>
+    <h1 class="page-hero-title">Porta della <em>Libertà</em></h1>
+    <p class="page-hero-sub" data-k="sub">Cattedrale di Troia · Portale Bronzeo Minore · 1127</p>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- INTRO -->
+  <div class="section-block">
+    <p data-k="intro1">Il pannello fotografico riproduce il portale bronzeo minore di questa Cattedrale, attualmente non fruibile perché sottoposto ad un intervento di restauro richiesto dallo stato di degrado in cui versava da anni.</p>
+    <p data-k="intro2">Il restauro è stato reso possibile grazie ad un cospicuo contributo del FAI e di Intesa Sanpaolo, ottenuto attraverso la partecipazione alla XII edizione dei "Luoghi del Cuore", e ad una raccolta fondi a cui hanno generosamente aderito il Comune, aziende e privati cittadini di Troia.</p>
+  </div>
+
+  <!-- LA PORTA -->
+  <div class="section-block">
+    <h2 data-k="h_porta">La Porta della Libertà</h2>
+    <p data-k="p1">La Porta si apre sulla fiancata destra prospiciente Piazza Episcopio, all'interno di uno degli archi ciechi che caratterizzano tutto il perimetro della Cattedrale. Le fa da cornice un austero portale in pietra sormontato da una lunetta che ne prolunga l'armonia decorativa.</p>
+    <p data-k="p2">Sull'archivolto falcato si sviluppa una serie di foglie finemente scolpite, mentre un addentellato in tarsie colorate crea un motivo estradossale molto movimentato.</p>
+    <img src="img/hero.jpg" alt="Porta della Libertà" class="scheda-img" loading="lazy"/>
+    <p data-k="p3">La Porta, datata 1127, è opera del maestro incisore Oderisio da Benevento, come si legge sulla terza cornice dal basso:</p>
+    <div class="latin-quote">
+      <span class="latin-line">FACTOR PORTARUM FUIT ODERISIUS HARUM BENEVENTANUS</span>
+      <span class="translation" data-k="lt1">(autore di queste porte fu Oderisio Beneventano)</span>
+    </div>
+    <p data-k="p4">Un'informazione estremamente interessante perché consente di attribuire con certezza ad Oderisio anche il Portale Maggiore dello stesso edificio. Fu eseguita su commissione del Vescovo Guglielmo II, a ricordo della dedizione della Città di Troia al Papa Onorio II e della resistenza contro Ruggero II di Sicilia.</p>
+    <img src="img/lions.jpg" alt="Protomi leonine" class="scheda-img" loading="lazy"/>
+  </div>
+
+  <!-- I PANNELLI -->
+  <div class="section-block">
+    <h2 data-k="h_pannelli">I 24 Pannelli</h2>
+    <p data-k="p5">L'episodio è in parte raffigurato e in parte narrato nei 24 pannelli che la compongono, suddivisi da robuste cornici bullonate in 6 registri orizzontali e 4 verticali. Possenti protomi leonine porta-anelli separano la sezione superiore prevalentemente figurativa da quella inferiore costituita da una lunga iscrizione.</p>
+    <img src="img/facade.jpg" alt="Cattedrale di Troia" class="scheda-img" loading="lazy"/>
+    <p data-k="p6">Nei primi quattro pannelli in alto, le agemine rappresentano il Vescovo che dona la «Civitas Troiana» a S. Pietro e a S. Paolo, come indica la scritta:</p>
+    <div class="latin-quote">
+      <span class="latin-line">Princeps Apostolorum Petre - Troiam suscipe donum -<br>Quam laetabundus - Guilielmus dono secundus</span>
+      <span class="translation" data-k="lt2">(O Principe degli Apostoli, Pietro, prendi in dono la Città di Troia che io, Guglielmo secondo, lietamente ti offro)</span>
+    </div>
+    <img src="img/g07.jpg" alt="Dettaglio porta — iscrizione" class="scheda-img" loading="lazy"/>
+    <p data-k="p7">I pannelli seguenti raffigurano gli 8 Vescovi predecessori di Guglielmo, disegnati con rapidi tratti essenziali in un dinamismo vivace ed armonioso, a conferma del suo gesto.</p>
+    <p data-k="p8">L'espressione "troiana civitas", incisa sulla 2ª formella, è entrata nell'uso comune per definire e riassumere la storia e il sistema di valori condivisi in cui ancora oggi la popolazione si riconosce, facendo di questa porta un bene dal valore fortemente identitario.</p>
+    <img src="img/troiana.jpg" alt="Pannello Troiana Civitas" class="scheda-img" loading="lazy"/>
+  </div>
+
+  <!-- L'ISCRIZIONE -->
+  <div class="section-block">
+    <h2 data-k="h_iscr">L'Iscrizione</h2>
+    <p data-k="p9">Nei quattro pannelli della sezione inferiore si celebra, in un testo carico di pathos, la strenua lotta sostenuta dalla popolazione a difesa delle proprie libertà contro le pretese egemoniche di Ruggero II:</p>
+    <div class="latin-quote">
+      <span class="latin-line">
+        Aequitatis moderator liberator patriae Domnus Guilielmus secundus<br>
+        Dei gratia venerabilis huius sedis Troianae Episcopus nonus has etiam<br>
+        Portas Aeneas de proprio aerario largus dispensator fieri jussit anno<br>
+        Incarnationis Domini MCXXVII et civitatis huius condictione centesimo<br>
+        atque octavo Pontificatus vero Honorii Papae secundi tertio item<br>
+        Pontificatus Domni Guilielmi Episcopi secundi XXI Indictione V anno<br>
+        quo Guilielmus tertius Normandorum Dux Salernis obit morte communi.<br>
+        Tunc Troianus Populus pro libertate tuenda Arcem subvertit et Urbem<br>
+        vallo murisque munivit.
+      </span>
+      <span class="translation" data-k="lt3">Il moderatore della giustizia, liberatore della patria, il Signor Guglielmo Secondo, per grazia di Dio nono Vescovo di questa venerabile Sede Troiana, fece costruire generosamente anche queste porte con il proprio denaro, nell'anno dell'Incarnazione del Signore 1127, anno centesimo ottavo dalla fondazione di questa Città, anno terzo del pontificato del Signor Papa Onorio II, XXI anno di Episcopato di Guglielmo Secondo, indizione V, anno in cui Guglielmo Terzo Duca dei Normanni morì a Salerno di morte naturale, allora il Popolo Troiano, per difendere la propria libertà, abbatté il Castello e fortificò la Città con mura di cinta e fossato.</span>
+    </div>
+    <p data-k="p10">Un'iscrizione che fa di questa Porta non solo un'opera d'arte, ma una pagina di storia incisa nel bronzo dal forte valore identitario. Per fornire informazioni non altrimenti reperibili sulla data di fondazione della città e sulla cronotassi episcopale dei suoi primi 108 anni di vita.</p>
+    <p data-k="p11">L'espressione <em>"Pro libertate tuenda"</em> che ne riassume il senso è anche il motivo per cui la Porta è stata ribattezzata <strong>"della Libertà"</strong>.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <a href="index.html" data-k="back">← Torna al sito</a>
+</div>
+
+<script>
+const T = {
+  it:{
+    back:"← Torna al sito", label:"Scheda Informativa",
+    sub:"Cattedrale di Troia · Portale Bronzeo Minore · 1127",
+    intro1:"Il pannello fotografico riproduce il portale bronzeo minore di questa Cattedrale, attualmente non fruibile perché sottoposto ad un intervento di restauro richiesto dallo stato di degrado in cui versava da anni.",
+    intro2:"Il restauro è stato reso possibile grazie ad un cospicuo contributo del FAI e di Intesa Sanpaolo, ottenuto attraverso la partecipazione alla XII edizione dei Luoghi del Cuore, e ad una raccolta fondi a cui hanno generosamente aderito il Comune, aziende e privati cittadini di Troia.",
+    h_porta:"La Porta della Libertà",
+    p1:"La Porta si apre sulla fiancata destra prospiciente Piazza Episcopio, all’interno di uno degli archi ciechi che caratterizzano tutto il perimetro della Cattedrale. Le fa da cornice un austero portale in pietra sormontato da una lunetta che ne prolunga l’armonia decorativa.",
+    p2:"Sull’archivolto falcato si sviluppa una serie di foglie finemente scolpite, mentre un addentellato in tarsie colorate crea un motivo estradossale molto movimentato.",
+    p3:"La Porta, datata 1127, è opera del maestro incisore Oderisio da Benevento, come si legge sulla terza cornice dal basso:",
+    lt1:"(autore di queste porte fu Oderisio Beneventano)",
+    p4:"Un’informazione estremamente interessante perché consente di attribuire con certezza ad Oderisio anche il Portale Maggiore dello stesso edificio. Fu eseguita su commissione del Vescovo Guglielmo II, a ricordo della dedizione della Città di Troia al Papa Onorio II e della resistenza contro Ruggero II di Sicilia.",
+    h_pannelli:"I 24 Pannelli",
+    p5:"L’episodio è in parte raffigurato e in parte narrato nei 24 pannelli che la compongono, suddivisi da robuste cornici bullonate in 6 registri orizzontali e 4 verticali. Possenti protomi leonine porta-anelli separano la sezione superiore figurativa da quella inferiore con la lunga iscrizione.",
+    p6:"Nei primi quattro pannelli in alto, le agemine rappresentano il Vescovo che dona la Civitas Troiana a S. Pietro e a S. Paolo, come indica la scritta:",
+    lt2:"(O Principe degli Apostoli, Pietro, prendi in dono la Città di Troia che io, Guglielmo secondo, lietamente ti offro)",
+    p7:"I pannelli seguenti raffigurano gli 8 Vescovi predecessori di Guglielmo, disegnati con rapidi tratti essenziali in un dinamismo vivace ed armonioso.",
+    p8:"L’espressione troiana civitas, incisa sulla 2ª formella, è entrata nell’uso comune per definire e riassumere la storia e il sistema di valori condivisi in cui ancora oggi la popolazione si riconosce.",
+    h_iscr:"L’Iscrizione",
+    p9:"Nei quattro pannelli della sezione inferiore si celebra, in un testo carico di pathos, la strenua lotta sostenuta dalla popolazione a difesa delle proprie libertà contro le pretese egemoniche di Ruggero II:",
+    lt3:"Il moderatore della giustizia, liberatore della patria, il Signor Guglielmo Secondo, per grazia di Dio nono Vescovo di questa venerabile Sede Troiana, fece costruire generosamente anche queste porte con il proprio denaro, nell’anno dell’Incarnazione del Signore 1127, anno centesimo ottavo dalla fondazione di questa Città, anno terzo del pontificato del Signor Papa Onorio II, XXI anno di Episcopato di Guglielmo Secondo, indizione V, anno in cui Guglielmo Terzo Duca dei Normanni morì a Salerno di morte naturale, allora il Popolo Troiano, per difendere la propria libertà, abbattè il Castello e fortificò la Città con mura di cinta e fossato.",
+    p10:"Un’iscrizione che fa di questa Porta non solo un’opera d’arte, ma una pagina di storia incisa nel bronzo dal forte valore identitario, fornendo informazioni non altrimenti reperibili sulla data di fondazione della città e sulla cronotassi episcopale dei suoi primi 108 anni di vita.",
+    p11:"L’espressione <em>Pro libertate tuenda</em> che ne riassume il senso è anche il motivo per cui la Porta è stata ribattezzata <strong>della Libertà</strong>.",
+  },
+  en:{
+    back:"← Back to site", label:"Information Sheet",
+    sub:"Cathedral of Troia · Minor Bronze Portal · 1127",
+    intro1:"The photographic panel reproduces the minor bronze portal of this Cathedral, currently inaccessible as it is undergoing restoration required by years of deterioration.",
+    intro2:"The restoration was made possible thanks to a substantial contribution from FAI and Intesa Sanpaolo, obtained through participation in the 12th edition of I Luoghi del Cuore, and a fundraising campaign generously supported by the Municipality, businesses and private citizens of Troia.",
+    h_porta:"The Gate of Freedom",
+    p1:"The Gate opens on the right flank facing Piazza Episcopio, within one of the blind arches that characterise the entire perimeter of the Cathedral. It is framed by an austere stone portal surmounted by a lunette that extends its decorative harmony.",
+    p2:"Along the curved archivolt runs a series of finely carved leaves, while an interlocking pattern of coloured inlays creates a very lively extradosal motif.",
+    p3:"The Gate, dated 1127, is the work of master engraver Oderisio da Benevento, as can be read on the third frame from the bottom:",
+    lt1:"(the maker of these doors was Oderisio of Benevento)",
+    p4:"An extremely interesting piece of information as it allows us to attribute with certainty to Oderisio also the Main Portal of the same building. It was commissioned by Bishop William II, in memory of the dedication of the City of Troia to Pope Honorius II and the resistance against Roger II of Sicily.",
+    h_pannelli:"The 24 Panels",
+    p5:"The episode is partly depicted and partly narrated in the 24 panels, divided by sturdy bolted frames into 6 horizontal and 4 vertical registers. Powerful lion-head ring-holders separate the upper figurative section from the lower section with the long inscription.",
+    p6:"In the first four panels at the top, the damascened inlays depict the Bishop donating the Civitas Troiana to St Peter and St Paul, as indicated by the inscription:",
+    lt2:"(O Prince of the Apostles, Peter, receive as a gift the City of Troia which I, William the Second, joyfully offer you)",
+    p7:"The following panels depict the 8 Bishops who preceded William, drawn with quick essential strokes in a lively and harmonious dynamism.",
+    p8:"The expression troiana civitas, engraved on the 2nd panel, has become commonly used to define and summarise the history and the system of shared values in which the population still recognises itself today.",
+    h_iscr:"The Inscription",
+    p9:"The four panels of the lower section celebrate, in a text full of pathos, the determined struggle sustained by the population in defence of their freedoms against the hegemonic ambitions of Roger II:",
+    lt3:"The moderator of justice, liberator of the homeland, Lord William the Second, by the grace of God ninth Bishop of this venerable See of Troia, generously had these doors built at his own expense, in the year of the Incarnation of the Lord 1127, the one hundred and eighth year since the founding of this City, the third year of the pontificate of Pope Honorius II, the twenty-first year of the episcopate of William the Second, indiction V, the year in which William the Third, Duke of the Normans, died a natural death in Salerno; then the People of Troia, to defend their freedom, demolished the Fortress and fortified the City with surrounding walls and a moat.",
+    p10:"An inscription that makes this Gate not only a work of art, but a page of history engraved in bronze with a strong identity value, providing otherwise unavailable information on the founding date of the city and the episcopal sequence of its first 108 years.",
+    p11:"The expression <em>Pro libertate tuenda</em> which summarises its meaning is also the reason why the Gate was renamed <strong>Gate of Freedom</strong>.",
+  },
+  fr:{
+    back:"← Retour au site", label:"Fiche Informative",
+    sub:"Cathédrale de Troie · Portail de Bronze Mineur · 1127",
+    intro1:"Le panneau photographique reproduit le portail de bronze mineur de cette Cathédrale, actuellement inaccessible car soumis à une intervention de restauration requise par l’état de dégradation dans lequel il se trouvait depuis des années.",
+    intro2:"La restauration a été rendue possible grâce à une contribution substantielle du FAI et d’Intesa Sanpaolo, obtenue par la participation à la XII édition des Luoghi del Cuore, et à une collecte de fonds à laquelle ont généreusement adhéré la Commune, des entreprises et des citoyens privés de Troie.",
+    h_porta:"La Porte de la Liberté",
+    p1:"La Porte s’ouvre sur le flanc droit donnant sur la Piazza Episcopio, à l’intérieur de l’un des arcs aveugles qui caractérisent tout le périmètre de la Cathédrale. Elle est encadrée par un austère portail en pierre surmonté d’une lunette qui prolonge son harmonie décorative.",
+    p2:"Sur l’arc en ogive se développe une série de feuilles finement sculptées, tandis qu’un appareillage en marqueteries colorées crée un motif extradossal très animé.",
+    p3:"La Porte, datée de 1127, est l’œuvre du maître graveur Oderisio da Benevento, comme on peut le lire sur le troisième cadre en partant du bas:",
+    lt1:"(l’auteur de ces portes fut Oderisio de Bénévent)",
+    p4:"Une information extrêmement intéressante car elle permet d’attribuer avec certitude à Oderisio également le Portail Principal du même édifice. Elle fut réalisée sur commande de l’Évêque Guillaume II, en souvenir de la dédicace de la Cité de Troie au Pape Honorius II et de la résistance contre Roger II de Sicile.",
+    h_pannelli:"Les 24 Panneaux",
+    p5:"L’épisode est en partie représenté et en partie narré dans les 24 panneaux divisés par de robustes cadres boullonnés en 6 registres horizontaux et 4 verticaux. De puissantes protômes de lions séparent la section supérieure figurative de la section inférieure constituée par une longue inscription.",
+    p6:"Dans les quatre premiers panneaux en haut, les damasquinures représentent l’Évêque qui offre la Civitas Troiana à Saint Pierre et à Saint Paul, comme l’indique l’inscription:",
+    lt2:"(O Prince des Apôtres, Pierre, reçois en cadeau la Cité de Troie que moi, Guillaume Second, je t’offre avec joie)",
+    p7:"Les panneaux suivants représentent les 8 Évêques prédécesseurs de Guillaume, dessinés avec des traits rapides et essentiels dans un dynamisme vif et harmonieux.",
+    p8:"L’expression troiana civitas, gravée sur le 2e panneau, est entrée dans l’usage courant pour définir et résumer l’histoire et le système de valeurs partagées dans lesquels la population se reconnaît encore aujourd’hui.",
+    h_iscr:"L’Inscription",
+    p9:"Les quatre panneaux de la section inférieure célèbrent, dans un texte chargé de pathos, la lutte acharnée soutenue par la population en défense de ses libertés contre les prétentions hégémoniques de Roger II:",
+    lt3:"Le modérateur de la justice, libérateur de la patrie, le Seigneur Guillaume Second, par la grâce de Dieu neuvième Évêque de ce vénérable Siège de Troie, fit construire généreusement ces portes à ses propres frais, en l’an de l’Incarnation du Seigneur 1127, cent-huitième année depuis la fondation de cette Cité, troisième année du pontificat du Pape Honorius II, vingt-et-unième année de l’épiscopat de Guillaume Second, indiction V, l’année où Guillaume Troisième, Duc des Normands, mourut à Salerne de mort naturelle; alors le Peuple de Troie, pour défendre sa liberté, abattit le Château et fortifia la Cité de murs d’enceinte et d’un fossé.",
+    p10:"Une inscription qui fait de cette Porte non seulement une œuvre d’art, mais une page d’histoire gravée dans le bronze à forte valeur identitaire, fournissant des informations non disponibles ailleurs sur la date de fondation de la ville.",
+    p11:"L’expression <em>Pro libertate tuenda</em> qui en résume le sens est aussi la raison pour laquelle la Porte a été rebaptisée <strong>Porte de la Liberté</strong>.",
+  },
+  de:{
+    back:"← Zurück zur Website", label:"Informationsblatt",
+    sub:"Kathedrale von Troia · Kleines Bronzeportal · 1127",
+    intro1:"Die Fototafel reproduziert das kleine Bronzeportal dieser Kathedrale, das derzeit nicht zugänglich ist, da es einer Restaurierung unterzogen wird, die durch den jahrelangen Verfall erforderlich wurde.",
+    intro2:"Die Restaurierung wurde dank eines beträchtlichen Beitrags von FAI und Intesa Sanpaolo ermöglicht, der durch die Teilnahme an der XII. Ausgabe der Luoghi del Cuore erzielt wurde.",
+    h_porta:"Das Tor der Freiheit",
+    p1:"Das Tor öffnet sich an der rechten Seite mit Blick auf die Piazza Episcopio, innerhalb eines der Blendبögen, die den gesamten Umfang der Kathedrale charakterisieren.",
+    p2:"Am geschwungenen Torbogen entwickelt sich eine Reihe feiner Schnitzblätter, während ein Muster aus farbigen Einlegearbeiten ein sehr lebhaftes Extradosmotiv schafft.",
+    p3:"Das Tor, datiert auf 1127, ist das Werk des Meistergraveurs Oderisio da Benevento, wie auf dem dritten Rahmen von unten zu lesen ist:",
+    lt1:"(der Schöpfer dieser Türen war Oderisio aus Benevent)",
+    p4:"Es wurde im Auftrag von Bischof Wilhelm II. angefertigt, zur Erinnerung an die Widmung der Stadt Troia an Papst Honorius II. und den Widerstand gegen Roger II. von Sizilien.",
+    h_pannelli:"Die 24 Felder",
+    p5:"Die Episode wird teils dargestellt, teils in den 24 Feldern erzählt, die durch robuste Schraubenrahmen in 6 horizontale und 4 vertikale Register unterteilt sind.",
+    p6:"In den ersten vier Feldern oben stellen die Tauschierungen den Bischof dar, der die Civitas Troiana dem heiligen Petrus und dem heiligen Paulus schenkt:",
+    lt2:"(O Fürst der Apostel, Petrus, nimm die Stadt Troia als Geschenk an, die ich, Wilhelm der Zweite, dir freudig anbiete)",
+    p7:"Die folgenden Felder zeigen die 8 Bischöfe, die Wilhelm vorgingen, mit schnellen, wesentlichen Strichen gezeichnet.",
+    p8:"Der Ausdruck troiana civitas, auf dem 2. Feld eingraviert, ist in den allgemeinen Sprachgebrauch eingegangen.",
+    h_iscr:"Die Inschrift",
+    p9:"Die vier Felder des unteren Abschnitts feiern in einem pathosgefüllten Text den entschlossenen Kampf der Bevölkerung zur Verteidigung ihrer Freiheiten gegen die hegemonialen Ansprüche Rogers II.:",
+    lt3:"Der Hüter der Gerechtigkeit, Befreier des Vaterlandes, Herr Wilhelm der Zweite, durch Gottes Gnade neunter Bischof dieses ehrwürdigen Stuhles von Troia, ließ großzügig diese Türen auf eigene Kosten errichten, im Jahr 1127, im hundertachten Jahr seit der Gründung dieser Stadt, im Jahr, in dem Wilhelm der Dritte in Salerno starb; damals warf das Volk von Troia die Burg nieder und befestigte die Stadt mit Ringmauern und einem Graben.",
+    p10:"Eine Inschrift, die dieses Tor zu einer in Bronze gemeißelten Seite der Geschichte mit starkem Identitätswert macht.",
+    p11:"Der Ausdruck <em>Pro libertate tuenda</em> ist der Grund, warum das Tor in <strong>Tor der Freiheit</strong> umbenannt wurde.",
+  },
+  es:{
+    back:"← Volver al sitio", label:"Ficha Informativa",
+    sub:"Catedral de Troia · Portal Menor de Bronce · 1127",
+    intro1:"El panel fotográfico reproduce el portal de bronce menor de esta Catedral, actualmente inaccesible porque está sometido a una intervención de restauración requerida por el estado de deterioro en que se encontraba desde hace años.",
+    intro2:"La restauración fue posible gracias a una cuantiosa contribución del FAI y de Intesa Sanpaolo, obtenida a través de la participación en la XII edición de los Luoghi del Cuore.",
+    h_porta:"La Puerta de la Libertad",
+    p1:"La Puerta se abre en el flanco derecho frente a la Piazza Episcopio, dentro de uno de los arcos ciegos que caracterizan todo el perímetro de la Catedral.",
+    p2:"En el arco en ojiva se desarrolla una serie de hojas finamente esculpidas, mientras que un patrón de taraceas de colores crea un motivo extradosal muy animado.",
+    p3:"La Puerta, fechada en 1127, es obra del maestro grabador Oderisio da Benevento, como se lee en el tercer marco desde abajo:",
+    lt1:"(el autor de estas puertas fue Oderisio de Benevento)",
+    p4:"Fue ejecutada por encargo del Obispo Guillermo II, en recuerdo de la dedicación de la Ciudad de Troia al Papa Honorio II y de la resistencia contra Rogelio II de Sicilia.",
+    h_pannelli:"Los 24 Paneles",
+    p5:"El episodio está en parte representado y en parte narrado en los 24 paneles divididos por robustos marcos atornillados en 6 registros horizontales y 4 verticales.",
+    p6:"En los primeros cuatro paneles superiores, los damasquinados representan al Obispo que dona la Civitas Troiana a San Pedro y a San Pablo:",
+    lt2:"(Oh Príncipe de los Apóstoles, Pedro, recibe como regalo la Ciudad de Troia que yo, Guillermo Segundo, te ofrezco con alegría)",
+    p7:"Los paneles siguientes representan a los 8 Obispos predecesores de Guillermo, dibujados con trazos rápidos y esenciales.",
+    p8:"La expresión troiana civitas, grabada en el 2.º panel, ha entrado en el uso común para definir la historia y los valores compartidos de la ciudad.",
+    h_iscr:"La Inscripción",
+    p9:"Los cuatro paneles de la sección inferior celebran la tenaz lucha sostenida por la población en defensa de sus libertades contra las pretensiones hegemónicas de Rogelio II:",
+    lt3:"El moderador de la justicia, libertador de la patria, el Señor Guillermo Segundo, por la gracia de Dios noveno Obispo de esta venerable Sede Troyana, mandó construir generosamente estas puertas con su propio dinero, en el año 1127, año cientésimo octavo desde la fundación de esta Ciudad, entonces el Pueblo Troyano, para defender su libertad, derribó el Castillo y fortificó la Ciudad con murallas y foso.",
+    p10:"Una inscripción que hace de esta Puerta una página de historia grabada en bronce con un fuerte valor identitario.",
+    p11:"La expresión <em>Pro libertate tuenda</em> es también el motivo por el que la Puerta fue rebautizada <strong>Puerta de la Libertad</strong>.",
+  }
+};
+
+function setLang(l){
+  var t=T[l]; if(!t) return;
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-k]').forEach(function(el){
+    var v=t[el.dataset.k]; if(v!==undefined) el.innerHTML=v;
+  });
+  document.querySelectorAll('.lb').forEach(function(b){
+    b.classList.toggle('active', b.textContent.toLowerCase()===l);
+  });
+}
+
+window.addEventListener('scroll',function(){
+  document.getElementById('snav').classList.toggle('scrolled', window.scrollY > 60);
+});
+</script>
+</body>
+</html>

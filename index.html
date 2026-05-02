@@ -57,18 +57,18 @@
 
     /* ── HERO FULLSCREEN ── */
     .hero-full{position:relative;width:100%;height:100vh;min-height:580px;overflow:hidden}
-    .hero-full>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(170deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.4) 55%,rgba(0,0,0,.18) 100%)}
+    .hero-full>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,.3) 100%)}
     .hero-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:0 64px 72px}
-    .eyebrow{font-size:10px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--orange);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+    .eyebrow{font-size:13px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;display:flex;align-items:center;gap:12px;text-shadow:0 1px 8px rgba(0,0,0,.6)}
     .eyebrow::before{content:'';display:block;width:24px;height:2px;background:var(--orange)}
     .hero-title{font-family:'Playfair Display',serif;font-size:clamp(38px,5.5vw,76px);font-weight:700;line-height:1.03;color:#fff;margin-bottom:8px;text-shadow:0 2px 24px rgba(0,0,0,.5)}
     .hero-title em{font-style:italic;font-weight:400;color:rgba(255,255,255,.85)}
-    .hero-loc{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:rgba(255,255,255,.6);margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.18)}
+    .hero-loc{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:rgba(255,255,255,.85);margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.25);text-shadow:0 1px 8px rgba(0,0,0,.5)}
     .hero-data{display:grid;grid-template-columns:repeat(4,auto);gap:0 40px;margin-bottom:24px}
-    .dl{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:3px}
-    .dv{font-family:'Playfair Display',serif;font-size:16px;color:#fff}
-    .hero-body{font-size:15px;line-height:1.8;color:rgba(255,255,255,.68);margin-bottom:28px;max-width:540px}
+    .dl{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:4px}
+    .dv{font-family:'Playfair Display',serif;font-size:17px;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.4)}
+    .hero-body{font-size:16px;line-height:1.8;color:rgba(255,255,255,.88);margin-bottom:28px;max-width:560px;text-shadow:0 1px 6px rgba(0,0,0,.4)}
     .btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.45);color:#fff;text-decoration:none;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:13px 28px;transition:all .25s;width:fit-content;backdrop-filter:blur(4px)}
     .btn:hover{background:var(--orange);border-color:var(--orange)}
     .btn svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.5}
@@ -316,7 +316,7 @@
   <img src="img/hero.jpg" loading="eager" alt="Porta della Libertà — vista completa"/>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="eyebrow" data-k="hero_ey">Patrimonio Medievale · Puglia</div>
+    <div class="eyebrow" data-k="hero_ey">Luoghi del Cuore FAI · 2026</div>
     <h1 class="hero-title" data-k="hero_h1">Porta della <em>Libertà</em></h1>
     <p class="hero-loc" data-k="hero_loc">Cattedrale di Troia · Portale Bronzeo Minore</p>
     <div class="hero-data">
@@ -476,7 +476,7 @@ const T = {
   it:{
     nav_op:"L'Opera",nav_is:"Iscrizione",nav_ve:"Vescovi",nav_re:"Restauro",
     hero_credit:"Porta della Libertà · Cattedrale di Troia · 1127",
-    hero_ey:"Patrimonio Medievale · Puglia",
+    hero_ey:"Luoghi del Cuore FAI · 2026",
     hero_h1:"Porta della <em>Libertà</em>",
     hero_loc:"Cattedrale di Troia · Portale Bronzeo Minore",
     hero_body:"Una gloriosa pagina di storia incisa nel bronzo, per tramandare ai posteri l'epopea di un popolo che combatte per la sua libertà. Opera di Oderisio da Benevento, risalente al 1127.",
@@ -514,7 +514,7 @@ const T = {
   en:{
     nav_op:"The Work",nav_is:"Inscription",nav_ve:"Bishops",nav_re:"Restoration",
     hero_credit:"Gate of Freedom · Cathedral of Troia · 1127",
-    hero_ey:"Medieval Heritage · Apulia, Italy",
+    hero_ey:"Luoghi del Cuore FAI · 2026",
     hero_h1:"The Gate of <em>Freedom</em>",
     hero_loc:"Cathedral of Troia · Minor Bronze Portal",
     hero_body:"A glorious page of history engraved in bronze, to pass on to posterity the epic of a people who fought for their freedom. Created by Oderisio da Benevento in 1127.",
@@ -552,7 +552,7 @@ const T = {
   fr:{
     nav_op:"L'Œuvre",nav_is:"Inscription",nav_ve:"Évêques",nav_re:"Restauration",
     hero_credit:"Porte de la Liberté · Cathédrale de Troie · 1127",
-    hero_ey:"Patrimoine Médiéval · Pouilles, Italie",
+    hero_ey:"Luoghi del Cuore FAI · 2026",
     hero_h1:"La Porte de la <em>Liberté</em>",
     hero_loc:"Cathédrale de Troie · Portail de Bronze Mineur",
     hero_body:"Une glorieuse page d'histoire gravée dans le bronze pour transmettre aux générations futures l'épopée d'un peuple qui lutte pour sa liberté. Œuvre d'Oderisio da Benevento, datant de 1127.",
@@ -590,7 +590,7 @@ const T = {
   de:{
     nav_op:"Das Werk",nav_is:"Inschrift",nav_ve:"Bischöfe",nav_re:"Restaurierung",
     hero_credit:"Tor der Freiheit · Kathedrale von Troia · 1127",
-    hero_ey:"Mittelalterliches Erbe · Apulien, Italien",
+    hero_ey:"Luoghi del Cuore FAI · 2026",
     hero_h1:"Das Tor der <em>Freiheit</em>",
     hero_loc:"Kathedrale von Troia · Kleines Bronzeportal",
     hero_body:"Eine ruhmreiche Seite der Geschichte, in Bronze gemeißelt. Das Werk von Oderisio da Benevento aus dem Jahr 1127 ist ein Dokument von unschätzbarem Wert.",
@@ -628,7 +628,7 @@ const T = {
   es:{
     nav_op:"La Obra",nav_is:"Inscripción",nav_ve:"Obispos",nav_re:"Restauración",
     hero_credit:"Puerta de la Libertad · Catedral de Troia · 1127",
-    hero_ey:"Patrimonio Medieval · Apulia, Italia",
+    hero_ey:"Luoghi del Cuore FAI · 2026",
     hero_h1:"La Puerta de la <em>Libertad</em>",
     hero_loc:"Catedral de Troia · Portal Menor de Bronce",
     hero_body:"Una gloriosa página de historia grabada en bronce para transmitir la epopeya de un pueblo que luchó por su libertad. Obra de Oderisio da Benevento, de 1127.",

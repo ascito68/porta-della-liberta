@@ -24,137 +24,238 @@
     }
 
     html{scroll-behavior:smooth}
-    body{font-family:'Source Sans 3',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;-webkit-overflow-scrolling:touch}
+    body{font-family:'Source Sans 3',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
 
-    /* LANG BUTTONS */
-    .lb{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;background:transparent;border:none;color:rgba(255,255,255,0.45);padding:0 8px;height:28px;cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
-    .lb:hover{color:rgba(255,255,255,.85)}
-    .lb.active{color:#fff;border-bottom-color:rgba(255,255,255,.6)}
-
-    /* NAV OVERLAY */
-    .nav-overlay{
-      position:fixed;top:0;left:0;right:0;z-index:200;
-      display:flex;align-items:center;justify-content:space-between;
-      padding:0 40px;height:64px;
-      background:linear-gradient(to bottom,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0) 100%);
-      transition:background .3s;
-    }
-    .nav-overlay.scrolled{
+    /* ── LANG BAR ── */
+    .lang-bar{
       background:var(--green-dark);
+      display:flex;align-items:center;justify-content:flex-end;
+      padding:0 40px;height:32px;gap:2px;
     }
+    .lb{
+      font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;
+      letter-spacing:0.14em;text-transform:uppercase;
+      background:transparent;border:none;color:rgba(255,255,255,0.4);
+      padding:0 10px;height:32px;cursor:pointer;
+      border-bottom:2px solid transparent;transition:color .2s,border-color .2s;
+    }
+    .lb:hover{color:rgba(255,255,255,.75)}
+    .lb.active{color:#fff;border-bottom-color:rgba(255,255,255,.55)}
+
+    /* ── NAV ── */
+    nav{
+      position:sticky;top:0;z-index:200;
+      background:var(--white);
+      border-bottom:1px solid var(--border);
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 40px;height:72px;
+    }
+    .nav-logo img{height:52px;width:auto;display:block}
     .nav-links{display:flex;list-style:none;gap:0}
-    .nav-links a{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,.85);text-decoration:none;padding:0 16px;height:64px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
-    .nav-links a:hover{color:#fff;border-bottom-color:var(--orange)}
-    .nav-langs{display:flex;align-items:center;gap:2px}
+    .nav-links a{
+      font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+      color:var(--muted);text-decoration:none;padding:0 16px;height:72px;
+      display:flex;align-items:center;border-bottom:3px solid transparent;
+      transition:color .2s,border-color .2s;
+    }
+    .nav-links a:hover{color:var(--green);border-bottom-color:var(--orange)}
 
-    /* HERO FULLSCREEN */
-    .hero-full{position:relative;width:100%;height:100vh;min-height:600px;overflow:hidden}
-    .hero-full-img{position:absolute;inset:0}
-    .hero-full-img img{width:100%;height:100%;object-fit:cover;object-position:center top}
-    .hero-full-overlay{
-      position:absolute;inset:0;
-      background:linear-gradient(
-        135deg,
-        rgba(0,0,0,0.65) 0%,
-        rgba(0,0,0,0.35) 50%,
-        rgba(0,0,0,0.2) 100%
-      );
+    /* ── HERO ── */
+    .hero{
+      display:grid;grid-template-columns:55% 45%;
+      min-height:86vh;background:var(--white);
     }
-    .hero-full-content{
-      position:absolute;bottom:0;left:0;right:0;
-      padding:0 64px 80px;
-      display:flex;flex-direction:column;align-items:flex-start;
+    .hero-img{position:relative;overflow:hidden;background:#0a1a0d}
+    .hero-img img{
+      width:100%;height:100%;object-fit:cover;object-position:center top;
+      display:block;opacity:.9;transition:opacity .4s;
     }
-    .eyebrow{font-size:10px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--orange);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+    .hero-img:hover img{opacity:.95}
+    .hero-img-credit{
+      position:absolute;bottom:16px;left:20px;
+      font-size:9px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;
+      color:rgba(255,255,255,.45);
+    }
+
+    .hero-text{
+      display:flex;flex-direction:column;justify-content:center;
+      padding:64px 52px 64px 48px;
+      background:var(--white);
+      border-left:1px solid var(--border);
+    }
+    .eyebrow{
+      font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;
+      color:var(--orange);margin-bottom:16px;
+      display:flex;align-items:center;gap:10px;
+    }
     .eyebrow::before{content:'';display:block;width:24px;height:2px;background:var(--orange)}
-    .hero-title{font-family:'Playfair Display',serif;font-size:clamp(40px,6vw,80px);font-weight:700;line-height:1.02;color:#fff;margin-bottom:8px;text-shadow:0 2px 20px rgba(0,0,0,.4)}
-    .hero-title em{font-style:italic;color:rgba(255,255,255,.85);font-weight:400}
-    .hero-loc{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:rgba(255,255,255,.65);margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.2)}
-    .hero-body-light{font-size:15px;line-height:1.8;color:rgba(255,255,255,.7);margin-bottom:32px;max-width:560px}
-    .hero-data{display:grid;grid-template-columns:repeat(4,auto);gap:0 40px;margin-bottom:32px}
-    .hero-data-light{background:transparent;padding:0}
-    .dl{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--light);margin-bottom:3px}
-    .dl-light{color:rgba(255,255,255,.45)}
-    .dv{font-family:'Playfair Display',serif;font-size:16px;color:var(--text)}
-    .dv-light{color:#fff}
-    .btn{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;text-decoration:none;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:13px 26px;transition:background .25s;width:fit-content}
-    .btn:hover{background:var(--orange-dk)}
-    .btn-light{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.4);backdrop-filter:blur(4px)}
-    .btn-light:hover{background:var(--orange);border-color:var(--orange)}
-    .btn svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.5}
-    .hero-full-credit{position:absolute;bottom:20px;right:24px;font-size:9px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,.3)}
-    .hero-scroll-hint{
-      position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
-      color:rgba(255,255,255,.4);animation:bounce 2s infinite;
-      text-decoration:none;
+    .hero-title{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(34px,3.8vw,56px);font-weight:700;line-height:1.06;
+      color:var(--text);margin-bottom:8px;
     }
-    .hero-scroll-hint svg{width:28px;height:28px}
-    @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+    .hero-title em{font-style:italic;color:var(--green);font-weight:400}
+    .hero-loc{
+      font-family:'Playfair Display',serif;font-size:16px;font-style:italic;
+      color:var(--light);margin-bottom:28px;padding-bottom:28px;
+      border-bottom:1px solid var(--border);
+    }
+    .hero-body{font-size:15px;line-height:1.8;color:var(--muted);margin-bottom:32px}
+    .hero-data{
+      display:grid;grid-template-columns:1fr 1fr;gap:16px 28px;margin-bottom:36px;
+      background:var(--bg);padding:20px;
+    }
+    .dl{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--light);margin-bottom:3px}
+    .dv{font-family:'Playfair Display',serif;font-size:16px;color:var(--text)}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      background:var(--orange);color:#fff;text-decoration:none;
+      font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+      padding:13px 26px;transition:background .25s;width:fit-content;
+    }
+    .btn:hover{background:var(--orange-dk)}
+    .btn svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.5}
 
-    /* SECTION UTIL */
+    /* ── SECTION UTIL ── */
     .wrap{max-width:1200px;margin:0 auto;padding:0 40px}
     .wrap-sm{max-width:840px;margin:0 auto;padding:0 40px}
-    .slabel{font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
-    .sh2{font-family:'Playfair Display',serif;font-size:clamp(24px,2.6vw,38px);font-weight:700;line-height:1.1;color:var(--text)}
+    .slabel{
+      font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;
+      color:var(--orange);margin-bottom:8px;
+    }
+    .sh2{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(24px,2.6vw,38px);font-weight:700;line-height:1.1;color:var(--text);
+    }
     .sh2 em{font-style:italic;color:var(--green);font-weight:400}
     .srule{width:40px;height:3px;background:var(--orange);margin:16px 0 0}
 
-    /* GALLERY */
-    .gallery-strip{display:grid;grid-template-columns:2fr 1fr 1fr;height:400px;gap:2px;background:var(--text)}
+    /* ── GALLERY STRIP ── */
+    .gallery-strip{
+      display:grid;grid-template-columns:2fr 1fr 1fr;
+      height:400px;gap:2px;background:var(--text);
+    }
     .gp{overflow:hidden;position:relative;background:#111;cursor:zoom-in}
     .gp img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease,opacity .4s}
     .gp:hover img{transform:scale(1.04);opacity:.9}
-    .gp-label{position:absolute;bottom:0;left:0;right:0;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#fff;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.80) 0%,rgba(0,0,0,.2) 60%,rgba(0,0,0,0) 100%);padding:48px 14px 12px}
-    .gp-main .gp-label{padding:100px 20px 18px;font-size:12px;background:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.65) 50%,rgba(0,0,0,0) 100%);text-shadow:0 1px 6px rgba(0,0,0,1),0 0 20px rgba(0,0,0,.8);letter-spacing:.18em}
+    /* Lightbox */
+    .lb-overlay{
+      display:none;position:fixed;inset:0;z-index:1000;
+      background:rgba(0,0,0,.92);
+      align-items:center;justify-content:center;
+      cursor:zoom-out;
+    }
+    .lb-overlay.open{display:flex}
+    .lb-overlay img{
+      max-width:92vw;max-height:92vh;
+      object-fit:contain;
+      box-shadow:0 8px 48px rgba(0,0,0,.6);
+      animation:lb-in .25s ease;
+    }
+    @keyframes lb-in{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+    .lb-caption{
+      position:absolute;bottom:24px;left:0;right:0;text-align:center;
+      font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;
+      color:rgba(255,255,255,.55);
+    }
+    .lb-close{
+      position:absolute;top:20px;right:24px;
+      font-size:28px;color:rgba(255,255,255,.6);cursor:pointer;
+      background:none;border:none;line-height:1;
+      transition:color .2s;
+    }
+    .lb-close:hover{color:#fff}
+    .gp-label{
+      position:absolute;bottom:0;left:0;right:0;
+      font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+      color:#fff;pointer-events:none;
+      background:linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%);
+      padding:48px 14px 12px;
+    }
+    .gp-main .gp-label{
+      padding:100px 20px 18px;
+      font-size:12px;
+      background:linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0) 100%);
+      text-shadow:0 1px 6px rgba(0,0,0,1), 0 0 20px rgba(0,0,0,0.8);
+      letter-spacing:0.18em;
+    }
     .gallery-sub{display:grid;grid-template-columns:1fr 1fr;gap:2px}
 
-    /* Lightbox */
-    .lb-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.92);align-items:center;justify-content:center;cursor:zoom-out}
-    .lb-overlay.open{display:flex}
-    .lb-overlay img{max-width:92vw;max-height:92vh;object-fit:contain;box-shadow:0 8px 48px rgba(0,0,0,.6);animation:lb-in .25s ease}
-    @keyframes lb-in{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
-    .lb-caption{position:absolute;bottom:24px;left:0;right:0;text-align:center;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,.55)}
-    .lb-close{position:absolute;top:20px;right:24px;font-size:28px;color:rgba(255,255,255,.6);cursor:pointer;background:none;border:none;line-height:1;transition:color .2s}
-    .lb-close:hover{color:#fff}
-
-    /* CARDS */
+    /* ── OPERA CARDS ── */
     .opera-sec{background:var(--bg);padding:72px 0;border-top:1px solid var(--border)}
     .opera-hd{margin-bottom:40px}
     .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
-    .card{background:var(--white);padding:36px 28px 40px;position:relative;transition:box-shadow .3s;overflow:hidden}
+    .card{
+      background:var(--white);padding:36px 28px 40px;
+      position:relative;transition:box-shadow .3s;overflow:hidden;
+    }
     .card:hover{box-shadow:0 4px 24px rgba(0,0,0,.08);z-index:1}
-    .card-bar{position:absolute;top:0;left:0;right:0;height:3px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+    .card-bar{
+      position:absolute;top:0;left:0;right:0;height:3px;
+      background:var(--orange);transform:scaleX(0);transform-origin:left;
+      transition:transform .35s ease;
+    }
     .card:hover .card-bar{transform:scaleX(1)}
-    .cn{font-family:'Playfair Display',serif;font-size:42px;font-style:italic;color:var(--border);line-height:1;margin-bottom:14px}
-    .ct{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text);margin-bottom:12px}
+    .cn{
+      font-family:'Playfair Display',serif;font-size:42px;font-style:italic;
+      color:var(--border);line-height:1;margin-bottom:14px;
+    }
+    .ct{
+      font-family:'Source Sans 3',sans-serif;
+      font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+      color:var(--text);margin-bottom:12px;
+    }
     .cb{font-size:14px;line-height:1.78;color:var(--muted)}
 
-    /* ISCRIZIONE */
+    /* ── ISCRIZIONE ── */
     .iscr-sec{background:var(--green-dark);padding:80px 0}
     .iscr-ey{font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px}
-    .iscr-h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.2vw,32px);font-style:italic;color:#fff;margin-bottom:40px;font-weight:400}
+    .iscr-h2{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(20px,2.2vw,32px);font-style:italic;color:#fff;margin-bottom:40px;font-weight:400;
+    }
     .iscr-inner{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
-    .latin-box{border-left:3px solid var(--orange);padding:28px 32px;background:rgba(255,255,255,.04)}
-    .latin{font-family:'Playfair Display',serif;font-size:clamp(14px,1.5vw,17px);font-style:italic;line-height:2.1;color:rgba(255,255,255,.82)}
+    .latin-box{
+      border-left:3px solid var(--orange);
+      padding:28px 32px;
+      background:rgba(255,255,255,.04);
+    }
+    .latin{
+      font-family:'Playfair Display',serif;font-size:clamp(14px,1.5vw,17px);
+      font-style:italic;line-height:2.1;color:rgba(255,255,255,.82);
+    }
     .latin em{font-style:normal;font-weight:700;color:#fff}
     .transl-box{padding-top:4px}
-    .transl-label{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.1)}
+    .transl-label{
+      font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
+      color:rgba(255,255,255,.35);margin-bottom:16px;padding-bottom:12px;
+      border-bottom:1px solid rgba(255,255,255,.1);
+    }
     .transl{font-size:14px;line-height:1.9;color:rgba(255,255,255,.6)}
     .transl strong{color:rgba(255,255,255,.9);font-weight:600}
 
-    /* IMG FEATURE */
+    /* ── IMG FEATURE ── */
     .img-feature{display:grid;grid-template-columns:1fr 1fr;background:var(--white)}
     .ifimg{overflow:hidden;height:480px;background:#111}
     .ifimg img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
     .ifimg:hover img{transform:scale(1.03)}
-    .iftext{display:flex;flex-direction:column;justify-content:center;padding:60px 52px;border:1px solid var(--border)}
+    .iftext{
+      display:flex;flex-direction:column;justify-content:center;
+      padding:60px 52px;border:1px solid var(--border);
+    }
     .iftext .sh2{margin-bottom:18px}
     .iftext p{font-size:15px;line-height:1.85;color:var(--muted)}
 
-    /* VESCOVI */
+    /* ── VESCOVI ── */
     .vesc-sec{padding:72px 0;background:var(--bg)}
-    .vgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:40px}
-    .vc{background:var(--white);padding:22px 14px;text-align:center;transition:background .2s}
+    .vgrid{
+      display:grid;grid-template-columns:repeat(4,1fr);
+      gap:1px;background:var(--border);margin-top:40px;
+    }
+    .vc{
+      background:var(--white);padding:22px 14px;text-align:center;
+      transition:background .2s;
+    }
     .vc:hover{background:var(--green-pale)}
     .vo{font-size:8px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
     .vn{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--text);line-height:1.3}
@@ -162,52 +263,74 @@
     .vc.hi{background:var(--green-pale);border:1px solid rgba(30,77,43,.2)}
     .vc.hi .vn{color:var(--green)}
 
-    /* RESTAURO */
+    /* ── RESTAURO ── */
     .rest-sec{background:var(--white);padding:72px 0;border-top:1px solid var(--border)}
     .rest-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
     .rb{font-size:15px;line-height:1.85;color:var(--muted);margin-bottom:20px}
     .plist{display:flex;flex-direction:column;gap:1px;background:var(--border);margin-top:8px}
-    .pi{background:var(--bg);display:flex;align-items:center;gap:14px;padding:16px 18px;border-left:3px solid var(--orange);transition:background .2s,border-color .2s;text-decoration:none;color:inherit}
+    .pi{
+      background:var(--bg);display:flex;align-items:center;gap:14px;
+      padding:16px 18px;border-left:3px solid var(--orange);transition:background .2s, border-color .2s;
+      text-decoration:none;color:inherit;
+    }
     .pi:hover{background:var(--green-pale);border-left-color:var(--green)}
     .pi:hover .pn{color:var(--green)}
+    .pico{font-size:18px;flex-shrink:0}
     .pn{font-size:14px;font-weight:700;color:var(--text)}
     .pd{font-size:11px;color:var(--light);margin-top:1px}
     .rest-img{overflow:hidden;height:440px;background:#111}
     .rest-img img{width:100%;height:100%;object-fit:cover;object-position:center 20%;transition:transform .6s}
     .rest-img:hover img{transform:scale(1.03)}
 
-    /* QUOTE */
-    .quote-sec{padding:88px 0;background:var(--green);border-top:1px solid var(--border);text-align:center}
-    .bq{font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,34px);font-weight:400;font-style:italic;line-height:1.5;color:#fff;max-width:760px;margin:0 auto 20px}
+    /* ── QUOTE ── */
+    .quote-sec{
+      padding:88px 0;background:var(--green);
+      border-top:1px solid var(--border);text-align:center;
+    }
+    .bq{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(20px,2.5vw,34px);font-weight:400;font-style:italic;
+      line-height:1.5;color:#fff;max-width:760px;margin:0 auto 20px;
+    }
     .bq strong{font-style:normal;font-weight:700;color:rgba(255,255,255,1)}
-    .qtag{font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,.45);display:flex;align-items:center;justify-content:center;gap:12px;max-width:320px;margin:20px auto 0}
+    .qtag{
+      font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;
+      color:rgba(255,255,255,.45);
+      display:flex;align-items:center;justify-content:center;gap:12px;
+      max-width:320px;margin:20px auto 0;
+    }
     .qtag::before,.qtag::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.2)}
 
-    /* FOOTER */
-    footer{background:var(--green-dark);padding:40px;display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center}
+    /* ── FOOTER ── */
+    footer{
+      background:var(--green-dark);padding:40px;
+      display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;
+    }
     .flogo img{height:40px;width:auto;opacity:.85}
     .fc{text-align:center;font-size:11px;color:rgba(255,255,255,.35);line-height:1.7}
     .fr{text-align:right;font-size:11px;line-height:1.7;color:rgba(255,255,255,.35)}
 
-    /* ANIMATIONS */
+    /* ── ANIM ── */
     .fu{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
     .fu.vis{opacity:1;transform:translateY(0)}
 
-    /* RESPONSIVE */
+    /* ── RESPONSIVE ── */
     @media(max-width:960px){
       .wrap,.wrap-sm{padding:0 20px}
-      .nav-overlay{padding:0 20px}
+      .hero{grid-template-columns:1fr}
+      .hero-img{min-height:260px}
+      .hero-text{padding:36px 20px;border-left:none}
+      nav{padding:0 20px}
       .nav-links{display:none}
-      .hero-full-content{padding:0 24px 60px}
-      .hero-data{grid-template-columns:1fr 1fr;gap:16px 24px}
+      .lang-bar{padding:0 20px}
       .cards{grid-template-columns:1fr}
       .gallery-strip{grid-template-columns:1fr;height:auto}
       .gallery-sub{grid-template-columns:1fr 1fr}
-      .gp{height:220px}
+      .gp{height:200px}
       .iscr-inner{grid-template-columns:1fr}
       .img-feature{grid-template-columns:1fr}
       .ifimg{height:260px}
-      .vgrid{grid-template-columns:repeat(2,1fr)}
+      .vgrid{grid-template-columns:repeat(3,1fr)}
       .rest-grid{grid-template-columns:1fr;gap:40px}
       footer{grid-template-columns:1fr;text-align:center}
       .fr{text-align:center}
@@ -217,71 +340,63 @@
 </head>
 <body>
 
-<!-- NAV sovrapposto -->
-<nav class="nav-overlay">
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <button class="lb active" onclick="setLang('it')">IT</button>
+  <button class="lb" onclick="setLang('en')">EN</button>
+  <button class="lb" onclick="setLang('fr')">FR</button>
+  <button class="lb" onclick="setLang('de')">DE</button>
+  <button class="lb" onclick="setLang('es')">ES</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="img/logo.jpg" loading="lazy" alt="FAI — Fondo per l'Ambiente Italiano"/>
+  </a>
   <ul class="nav-links">
     <li><a href="#opera" data-k="nav_op">L'Opera</a></li>
     <li><a href="#iscrizione" data-k="nav_is">Iscrizione</a></li>
     <li><a href="#vescovi" data-k="nav_ve">Vescovi</a></li>
     <li><a href="#restauro" data-k="nav_re">Restauro</a></li>
   </ul>
-  <div class="nav-langs">
-    <button class="lb active" onclick="setLang('it')">IT</button>
-    <button class="lb" onclick="setLang('en')">EN</button>
-    <button class="lb" onclick="setLang('fr')">FR</button>
-    <button class="lb" onclick="setLang('de')">DE</button>
-    <button class="lb" onclick="setLang('es')">ES</button>
-  </div>
 </nav>
 
-<!-- HERO FULLSCREEN -->
-<section class="hero-full">
-  <div class="hero-full-img">
-    <img src="img/hero.jpg" alt="Porta della Libertà — vista completa" loading="eager"/>
-    <div class="hero-full-overlay"></div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img">
+    <img src="img/hero.jpg" loading="eager" alt="Porta della Libertà — vista completa"/>
+    <div class="hero-img-credit" data-k="hero_credit">Porta della Libertà · Cattedrale di Troia · 1127</div>
   </div>
-  <div class="hero-full-content">
+  <div class="hero-text">
     <div class="eyebrow" data-k="hero_ey">Patrimonio Medievale · Puglia</div>
     <h1 class="hero-title" data-k="hero_h1">Porta della <em>Libertà</em></h1>
     <p class="hero-loc" data-k="hero_loc">Cattedrale di Troia · Portale Bronzeo Minore</p>
-    <div class="hero-data hero-data-light">
-      <div><div class="dl dl-light" data-k="d_an">Anno</div><div class="dv dv-light">1127 d.C.</div></div>
-      <div><div class="dl dl-light" data-k="d_au">Autore</div><div class="dv dv-light">Oderisio da Benevento</div></div>
-      <div><div class="dl dl-light" data-k="d_pa">Pannelli</div><div class="dv dv-light" data-k="d_pa_v">24 · sei registri</div></div>
-      <div><div class="dl dl-light" data-k="d_ma">Materiale</div><div class="dv dv-light" data-k="d_ma_v">Bronzo ageminato</div></div>
+    <p class="hero-body" data-k="hero_body">Una gloriosa pagina di storia incisa nel bronzo, per tramandare ai posteri l'epopea di un popolo che combatte per la sua libertà. Opera di Oderisio da Benevento, risalente al 1127.</p>
+    <div class="hero-data">
+      <div><div class="dl" data-k="d_an">Anno</div><div class="dv">1127 d.C.</div></div>
+      <div><div class="dl" data-k="d_au">Autore</div><div class="dv">Oderisio da Benevento</div></div>
+      <div><div class="dl" data-k="d_pa">Pannelli</div><div class="dv" data-k="d_pa_v">24 · sei registri</div></div>
+      <div><div class="dl" data-k="d_ma">Materiale</div><div class="dv" data-k="d_ma_v">Bronzo ageminato</div></div>
     </div>
-    <p class="hero-body hero-body-light" data-k="hero_body">Una gloriosa pagina di storia incisa nel bronzo, per tramandare ai posteri l'epopea di un popolo che combatte per la sua libertà. Opera di Oderisio da Benevento, risalente al 1127.</p>
-    <a href="#opera" class="btn btn-light" data-k="hero_cta">Scopri l'Opera <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    <a href="#opera" class="btn" data-k="hero_cta">
+      Scopri l'Opera
+      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
   </div>
-  <div class="hero-full-credit" data-k="hero_credit">Porta della Libertà · Cattedrale di Troia · 1127</div>
-  <a href="#opera" class="hero-scroll-hint">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-  </a>
 </section>
 
-<!-- GALLERY -->
+<!-- GALLERY STRIP -->
 <div class="gallery-strip">
-  <div class="gp gp-main" onclick="openLB('img/troiana.jpg', this.querySelector('.gp-label').textContent)">
-    <img src="img/troiana.jpg" alt="Pannello Troiana Civitas" loading="lazy"/>
+  <div class="gp gp-main" onclick="this.querySelector('img') && openLB(this.querySelector('img').src, this.querySelector('.gp-label') ? this.querySelector('.gp-label').textContent : '')">
+    <img src="img/troiana.jpg" loading="lazy" alt="Pannello Troiana Civitas"/>
     <span class="gp-label" data-k="g1">Guglielmo II · Troiana Civitas</span>
   </div>
   <div class="gallery-sub">
-    <div class="gp" onclick="openLB('img/lion1.jpg', this.querySelector('.gp-label').textContent)">
-      <img src="img/lion1.jpg" alt="Protome leonina" loading="lazy"/>
-      <span class="gp-label" data-k="g2">Protome leonina</span>
-    </div>
-    <div class="gp" onclick="openLB('img/facade.jpg', this.querySelector('.gp-label').textContent)">
-      <img src="img/facade.jpg" alt="Facciata Ovest" loading="lazy"/>
-      <span class="gp-label" data-k="g3">Facciata Ovest</span>
-    </div>
-    <div class="gp" onclick="openLB('img/lions.jpg', this.querySelector('.gp-label').textContent)">
-      <img src="img/lions.jpg" alt="Protomi leonine" loading="lazy"/>
-      <span class="gp-label" data-k="g4">III registro</span>
-    </div>
-    <div class="gp" onclick="openLB('img/insc1.jpg', this.querySelector('.gp-label').textContent)">
-      <img src="img/insc1.jpg" alt="Testo latino" loading="lazy"/>
-      <span class="gp-label" data-k="g5">Testo latino</span>
-    </div>
+    <div class="gp" onclick="this.querySelector('img') && openLB(this.querySelector('img').src, this.querySelector('.gp-label') ? this.querySelector('.gp-label').textContent : '')"><img src="img/lion1.jpg" loading="lazy" alt="Protome leonina"/><span class="gp-label" data-k="g2">Protome leonina</span></div>
+    <div class="gp" onclick="this.querySelector('img') && openLB(this.querySelector('img').src, this.querySelector('.gp-label') ? this.querySelector('.gp-label').textContent : '')"><img src="img/insc2.jpg" loading="lazy" alt="Iscrizione"/><span class="gp-label" data-k="g3">Facciata Ovest</span></div>
+    <div class="gp" onclick="this.querySelector('img') && openLB(this.querySelector('img').src, this.querySelector('.gp-label') ? this.querySelector('.gp-label').textContent : '')"><img src="img/lions.jpg" loading="lazy" alt="Protomi leonine"/><span class="gp-label" data-k="g4">III registro</span></div>
+    <div class="gp" onclick="this.querySelector('img') && openLB(this.querySelector('img').src, this.querySelector('.gp-label') ? this.querySelector('.gp-label').textContent : '')"><img src="img/insc1.jpg" loading="lazy" alt="Testo latino"/><span class="gp-label" data-k="g5">Testo latino</span></div>
   </div>
 </div>
 
@@ -294,9 +409,24 @@
       <div class="srule"></div>
     </div>
     <div class="cards">
-      <div class="card fu"><div class="card-bar"></div><div class="cn">I</div><h3 class="ct" data-k="c1t">Arte e Tecnica</h3><p class="cb" data-k="c1b">Robuste cornici bullonate suddividono la porta in 24 pannelli su sei registri orizzontali. L'opera fonde incisione, agemina e scultura — un documento unico sull'evoluzione delle tecniche di lavorazione del bronzo nell'Italia meridionale medievale.</p></div>
-      <div class="card fu" style="transition-delay:.1s"><div class="card-bar"></div><div class="cn">II</div><h3 class="ct" data-k="c2t">I Vescovi di Troia</h3><p class="cb" data-k="c2b">Nella parte superiore sono finemente incise le sagome ageminate dei primi nove vescovi di Troia. L'ultimo, Guglielmo II, è raffigurato nell'atto di donare la città ai Santi Apostoli Pietro e Paolo, accanto alla scritta Troiana Civitas.</p></div>
-      <div class="card fu" style="transition-delay:.2s"><div class="card-bar"></div><div class="cn">III</div><h3 class="ct" data-k="c3t">La Lunga Iscrizione</h3><p class="cb" data-k="c3b">La parte inferiore reca un'iscrizione carica di pathos che celebra la lotta per la libertà contro Ruggero II. Fonte storiografica irripetibile: la data di fondazione della città e la cronotassi episcopale dei suoi primi 108 anni.</p></div>
+      <div class="card fu">
+        <div class="card-bar"></div>
+        <div class="cn">I</div>
+        <h3 class="ct" data-k="c1t">Arte e Tecnica</h3>
+        <p class="cb" data-k="c1b">Robuste cornici bullonate suddividono la porta in 24 pannelli su sei registri orizzontali. L'opera fonde incisione, agemina e scultura — un documento unico sull'evoluzione delle tecniche di lavorazione del bronzo nell'Italia meridionale medievale.</p>
+      </div>
+      <div class="card fu" style="transition-delay:.1s">
+        <div class="card-bar"></div>
+        <div class="cn">II</div>
+        <h3 class="ct" data-k="c2t">I Vescovi di Troia</h3>
+        <p class="cb" data-k="c2b">Nella parte superiore sono finemente incise le sagome ageminate dei primi nove vescovi di Troia. L'ultimo, Guglielmo II, è raffigurato nell'atto di donare la città ai Santi Apostoli Pietro e Paolo, accanto alla scritta <em>Troiana Civitas</em>.</p>
+      </div>
+      <div class="card fu" style="transition-delay:.2s">
+        <div class="card-bar"></div>
+        <div class="cn">III</div>
+        <h3 class="ct" data-k="c3t">La Lunga Iscrizione</h3>
+        <p class="cb" data-k="c3b">La parte inferiore reca un'iscrizione carica di pathos che celebra la lotta per la libertà contro Ruggero II. Fonte storiografica irripetibile: la data di fondazione della città e la cronotassi episcopale dei suoi primi 108 anni.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -320,7 +450,9 @@
 
 <!-- IMG FEATURE -->
 <div class="img-feature">
-  <div class="ifimg"><img src="img/facade.jpg" alt="Cattedrale di Troia" loading="lazy"/></div>
+  <div class="ifimg">
+    <img src="img/facade.jpg" loading="lazy" alt="Cattedrale di Troia — fianco con la Porta della Libertà"/>
+  </div>
   <div class="iftext">
     <div class="slabel" data-k="if_lb">Luogo · Troia, Foggia</div>
     <h2 class="sh2" data-k="if_h2">La Cattedrale <em>e la sua Porta</em></h2>
@@ -336,15 +468,16 @@
     <h2 class="sh2" data-k="s3_h2">I Nove Vescovi <em>di Troia</em></h2>
     <div class="srule"></div>
     <div class="vgrid fu">
-      <div class="vc"><div class="vo" data-k="v1o">I vescovo</div><div class="vn">Oriano</div><div class="vr" data-k="vrf">fondazione della sede</div></div>
-      <div class="vc"><div class="vo" data-k="v2o">II vescovo</div><div class="vn">Angelo</div><div class="vr" data-k="vrc">cronotassi episcopale</div></div>
-      <div class="vc"><div class="vo" data-k="v3o">III vescovo</div><div class="vn">Giovanni</div><div class="vr" data-k="vrc2">cronotassi episcopale</div></div>
-      <div class="vc"><div class="vo" data-k="v4o">IV vescovo</div><div class="vn">Stefano</div><div class="vr" data-k="vrc3">cronotassi episcopale</div></div>
-      <div class="vc"><div class="vo" data-k="v5o">V vescovo</div><div class="vn">Gualtiero</div><div class="vr" data-k="vrc4">cronotassi episcopale</div></div>
-      <div class="vc"><div class="vo" data-k="v6o">VI vescovo</div><div class="vn">Girardo</div><div class="vr" data-k="vrc5">cronotassi episcopale</div></div>
-      <div class="vc"><div class="vo" data-k="v7o">VII vescovo</div><div class="vn">Uberto</div><div class="vr" data-k="vrc6">cronotassi episcopale</div></div>
-      <div class="vc"><div class="vo" data-k="v8o">VIII vescovo</div><div class="vn">Guglielmo I</div><div class="vr" data-k="vrc7">cronotassi episcopale</div></div>
+      <div class="vc"><div class="vo" data-k="v1o">I vescovo</div><div class="vn" data-k="v1n">Oriano</div><div class="vr" data-k="vrf">fondazione della sede</div></div>
+      <div class="vc"><div class="vo" data-k="v2o">II vescovo</div><div class="vn" data-k="v2n">Angelo</div><div class="vr" data-k="vrc">cronotassi episcopale</div></div>
+      <div class="vc"><div class="vo" data-k="v3o">III vescovo</div><div class="vn" data-k="v3n">Giovanni</div><div class="vr" data-k="vrc2">cronotassi episcopale</div></div>
+      <div class="vc"><div class="vo" data-k="v4o">IV vescovo</div><div class="vn" data-k="v4n">Stefano</div><div class="vr" data-k="vrc3">cronotassi episcopale</div></div>
+      <div class="vc"><div class="vo" data-k="v5o">V vescovo</div><div class="vn" data-k="v5n">Gualtiero</div><div class="vr" data-k="vrc4">cronotassi episcopale</div></div>
+      <div class="vc"><div class="vo" data-k="v6o">VI vescovo</div><div class="vn" data-k="v6n">Girardo</div><div class="vr" data-k="vrc5">cronotassi episcopale</div></div>
+      <div class="vc"><div class="vo" data-k="v7o">VII vescovo</div><div class="vn" data-k="v7n">Uberto</div><div class="vr" data-k="vrc6">cronotassi episcopale</div></div>
+      <div class="vc"><div class="vo" data-k="v8o">VIII vescovo</div><div class="vn" data-k="v8n">Guglielmo I</div><div class="vr" data-k="vrc7">cronotassi episcopale</div></div>
       <div class="vc hi"><div class="vo" data-k="v9o">IX vescovo</div><div class="vn">Guglielmo II</div><div class="vr" data-k="v9r">donatore della porta · 1127</div></div>
+      
     </div>
   </div>
 </section>
@@ -365,7 +498,9 @@
           <a class="pi" href="https://www.comune.troia.fg.it/it" target="_blank" rel="noopener noreferrer"><div><div class="pn" data-k="pr3n">Comune di Troia</div><div class="pd" data-k="pr3r">Raccolta fondi e patrocinio</div></div></a>
         </div>
       </div>
-      <div class="rest-img fu"><img src="img/facade.jpg" alt="Cattedrale di Troia" loading="lazy"/></div>
+      <div class="rest-img fu">
+        <img src="img/facade.jpg" loading="lazy" alt="Cattedrale di Troia"/>
+      </div>
     </div>
   </div>
 </section>
@@ -380,20 +515,13 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="flogo"><img src="img/logo.jpg" alt="FAI — Fondo per l'Ambiente Italiano"/></div>
+  <div class="flogo"><img src="img/logo.jpg" loading="lazy" alt="FAI — Fondo per l'Ambiente Italiano"/></div>
   <div class="fc" data-k="ft_c">Luoghi del Cuore — XII Edizione<br>Restauro sostenuto da FAI e Intesa Sanpaolo</div>
   <div class="fr" data-k="ft_r">Cattedrale di Troia · Foggia, Puglia<br>Portale Bronzeo Minore — Porta della Libertà</div>
 </footer>
 
-<!-- LIGHTBOX -->
-<div class="lb-overlay" id="lb" onclick="closeLB(event)">
-  <button class="lb-close" onclick="document.getElementById('lb').classList.remove('open');document.body.style.overflow=''">✕</button>
-  <img id="lb-img" src="" alt=""/>
-  <div class="lb-caption" id="lb-cap"></div>
-</div>
-
 <script>
-const T={
+const T = {
   it:{
     nav_op:"L'Opera",nav_is:"Iscrizione",nav_ve:"Vescovi",nav_re:"Restauro",
     hero_credit:"Porta della Libertà · Cattedrale di Troia · 1127",
@@ -406,7 +534,7 @@ const T={
     g1:"Guglielmo II · Troiana Civitas",g2:"Protome leonina",g3:"Facciata Ovest",g4:"III registro",g5:"Testo latino",
     s1_lb:"01 · L'Opera",s1_h2:"Una porta, tre <em>linguaggi</em>",
     c1t:"Arte e Tecnica",c1b:"Robuste cornici bullonate suddividono la porta in 24 pannelli su sei registri orizzontali. L'opera fonde incisione, agemina e scultura — un documento unico sull'evoluzione delle tecniche di lavorazione del bronzo nell'Italia meridionale medievale.",
-    c2t:"I Vescovi di Troia",c2b:"Nella parte superiore sono finemente incise le sagome ageminate dei primi nove vescovi di Troia. L'ultimo, Guglielmo II, è raffigurato nell'atto di donare la città ai Santi Apostoli Pietro e Paolo, accanto alla scritta Troiana Civitas.",
+    c2t:"I Vescovi di Troia",c2b:"Nella parte superiore sono finemente incise le sagome ageminate dei primi nove vescovi di Troia. L'ultimo, Guglielmo II, è raffigurato nell'atto di donare la città ai Santi Apostoli Pietro e Paolo, accanto alla scritta <em>Troiana Civitas</em>.",
     c3t:"La Lunga Iscrizione",c3b:"La parte inferiore reca un'iscrizione carica di pathos che celebra la lotta per la libertà contro Ruggero II. Fonte storiografica irripetibile: la data di fondazione della città e la cronotassi episcopale dei suoi primi 108 anni.",
     s2_lb:"02 · Iscrizione Originale",s2_h2:"Il testo che tramanda la libertà",
     s2_div:"Traduzione italiana",
@@ -414,9 +542,15 @@ const T={
     if_lb:"Luogo · Troia, Foggia",if_h2:"La Cattedrale <em>e la sua Porta</em>",
     if_p:"Il portale bronzeo minore è incastonato nel fianco romanico della Cattedrale di Troia, uno dei più straordinari esempi di architettura pugliese dell'XI–XII secolo. La porta, oggi sottoposta a restauro, sarà restituita alla fruizione pubblica grazie al sostegno di FAI e Intesa Sanpaolo.",
     s3_lb:"03 · Episcopato",s3_h2:"I Nove Vescovi <em>di Troia</em>",
-    v1o:"I vescovo",v2o:"II vescovo",v3o:"III vescovo",v4o:"IV vescovo",v5o:"V vescovo",v6o:"VI vescovo",v7o:"VII vescovo",v8o:"VIII vescovo",v9o:"IX vescovo",
-    vrf:"fondazione della sede",vrc:"cronotassi episcopale",vrc2:"cronotassi episcopale",vrc3:"cronotassi episcopale",vrc4:"cronotassi episcopale",vrc5:"cronotassi episcopale",vrc6:"cronotassi episcopale",vrc7:"cronotassi episcopale",
-    v9r:"donatore della porta · 1127",
+    v1o:"I vescovo",v1n:"Oriano",vrf:"fondazione della sede",
+    v2o:"II vescovo",v2n:"Angelo",vrc:"cronotassi episcopale",
+    v3o:"III vescovo",v3n:"Giovanni",vrc2:"cronotassi episcopale",
+    v4o:"IV vescovo",v4n:"Stefano",vrc3:"cronotassi episcopale",
+    v5o:"V vescovo",v5n:"Gualtiero",vrc4:"cronotassi episcopale",
+    v6o:"VI vescovo",v6n:"Girardo",vrc5:"cronotassi episcopale",
+    v7o:"VII vescovo",v7n:"Uberto",vrc6:"cronotassi episcopale",
+    v8o:"VIII vescovo",v8n:"Guglielmo I",vrc7:"cronotassi episcopale",
+    v9o:"IX vescovo",v9r:"donatore della porta · 1127",
     s4_lb:"04 · Restauro",s4_h2:"Restituire la <em>Bellezza</em>",
     r_b1:"Avanzati processi di ossidazione avevano prodotto perdite materiche e fessurazioni che mettevano in pericolo sia la superficie decorata sia la struttura metallica, rischiando di comprometterne la leggibilità.",
     r_b2:"Grazie a un cospicuo contributo ottenuto attraverso la <strong>XII edizione dei \"Luoghi del Cuore\"</strong> e a una raccolta fondi con la partecipazione del Comune, di aziende e privati cittadini, il restauro è oggi realtà.",
@@ -438,17 +572,23 @@ const T={
     g1:"William II · Troiana Civitas",g2:"Lion head knocker",g3:"West Facade",g4:"3rd register",g5:"Latin text",
     s1_lb:"01 · The Work",s1_h2:"One door, three <em>languages</em>",
     c1t:"Art and Technique",c1b:"Sturdy bolted frames divide the door into 24 panels across six horizontal registers. The work masterfully combines engraving, damascening and sculpture — a unique document on bronze-working techniques in medieval southern Italy.",
-    c2t:"The Bishops of Troia",c2b:"The upper section bears the finely engraved damascened silhouettes of the first nine bishops of Troia. The last, William II, is depicted donating the city to the Holy Apostles, beside the inscription Troiana Civitas.",
+    c2t:"The Bishops of Troia",c2b:"The upper section bears the finely engraved damascened silhouettes of the first nine bishops of Troia. The last, William II, is depicted donating the city to the Holy Apostles, beside the inscription <em>Troiana Civitas</em>.",
     c3t:"The Long Inscription",c3b:"The lower section carries an inscription celebrating the struggle for freedom against Roger II. An irreplaceable historical source: the city's founding date and the episcopal sequence covering its first 108 years.",
     s2_lb:"02 · Original Inscription",s2_h2:"The text that perpetuates freedom",
     s2_div:"English translation",
-    s2_tr:"The moderator of justice, Lord <strong>William the Second</strong>, ninth Bishop of this venerable See of Troia, had these doors built at his own expense in the year of the Lord <strong>1127</strong> — then the <strong>People of Troia</strong>, to defend their freedom, demolished the Fortress and <strong>fortified the City with surrounding walls and a moat</strong>.",
+    s2_tr:"The moderator of justice, liberator of the homeland, Lord <strong>William the Second</strong>, ninth Bishop of this venerable See of Troia, generously had these doors built at his own expense, in the year of the Incarnation of the Lord <strong>1127</strong> — then the <strong>People of Troia</strong>, to defend their freedom, demolished the Fortress and <strong>fortified the City with surrounding walls and a moat</strong>.",
     if_lb:"Place · Troia, Foggia",if_h2:"The Cathedral <em>and its Door</em>",
     if_p:"The minor bronze portal is set into the Romanesque flank of the Cathedral of Troia, one of the most extraordinary examples of Apulian architecture of the 11th–12th century. The door will be returned to public access thanks to the support of FAI and Intesa Sanpaolo.",
     s3_lb:"03 · Episcopate",s3_h2:"The Nine Bishops <em>of Troia</em>",
-    v1o:"1st bishop",v2o:"2nd bishop",v3o:"3rd bishop",v4o:"4th bishop",v5o:"5th bishop",v6o:"6th bishop",v7o:"7th bishop",v8o:"8th bishop",v9o:"9th bishop",
-    vrf:"founding of the see",vrc:"episcopal sequence",vrc2:"episcopal sequence",vrc3:"episcopal sequence",vrc4:"episcopal sequence",vrc5:"episcopal sequence",vrc6:"episcopal sequence",vrc7:"episcopal sequence",
-    v9r:"donor of the portal · 1127",
+    v1o:"1st bishop",v1n:"Oriano",vrf:"founding of the see",
+    v2o:"2nd bishop",v2n:"Angelo",vrc:"episcopal sequence",
+    v3o:"3rd bishop",v3n:"Giovanni",vrc2:"episcopal sequence",
+    v4o:"4th bishop",v4n:"Stefano",vrc3:"episcopal sequence",
+    v5o:"5th bishop",v5n:"Gualtiero",vrc4:"episcopal sequence",
+    v6o:"6th bishop",v6n:"Girardo",vrc5:"episcopal sequence",
+    v7o:"7th bishop",v7n:"Uberto",vrc6:"episcopal sequence",
+    v8o:"8th bishop",v8n:"Guglielmo I",vrc7:"episcopal sequence",
+    v9o:"9th bishop",v9r:"donor of the portal · 1127",
     s4_lb:"04 · Restoration",s4_h2:"Restoring <em>Beauty</em>",
     r_b1:"Advanced oxidation had caused material losses and cracks endangering both the decorated surface and the metal structure, risking the legibility of this precious work.",
     r_b2:"Thanks to a substantial grant from the <strong>12th edition of \"I Luoghi del Cuore\"</strong> and a fundraising campaign, the restoration is now a reality.",
@@ -464,23 +604,29 @@ const T={
     hero_ey:"Patrimoine Médiéval · Pouilles, Italie",
     hero_h1:"La Porte de la <em>Liberté</em>",
     hero_loc:"Cathédrale de Troie · Portail de Bronze Mineur",
-    hero_body:"Une glorieuse page d'histoire gravée dans le bronze pour transmettre l'épopée d'un peuple qui lutte pour sa liberté. Œuvre d'Oderisio da Benevento, datant de 1127.",
+    hero_body:"Une glorieuse page d'histoire gravée dans le bronze pour transmettre aux générations futures l'épopée d'un peuple qui lutte pour sa liberté. Œuvre d'Oderisio da Benevento, datant de 1127.",
     d_an:"Année",d_au:"Auteur",d_pa:"Panneaux",d_pa_v:"24 · six registres",d_ma:"Matériau",d_ma_v:"Bronze damasquiné",
     hero_cta:"Découvrir l'Œuvre",
-    g1:"Guillaume II · Troiana Civitas",g2:"Heurtoir tête de lion",g3:"Façade Ouest",g4:"3e registre",g5:"Texte latin",
+    g1:"Guillaume II · Troiana Civitas",g2:"Heurtoir tête de lion",g3:"West Facade",g4:"3e registre",g5:"Texte latin",
     s1_lb:"01 · L'Œuvre",s1_h2:"Une porte, trois <em>langages</em>",
     c1t:"Art et Technique",c1b:"De robustes cadres divisent la porte en 24 panneaux sur six registres. L'œuvre mêle gravure, damasquinure et sculpture — un document unique sur les techniques du bronze dans l'Italie médiévale.",
-    c2t:"Les Évêques de Troie",c2b:"La partie supérieure porte les silhouettes des neuf premiers évêques de Troie. Le dernier, Guillaume II, offre la ville aux Saints Apôtres, à côté de l'inscription Troiana Civitas.",
+    c2t:"Les Évêques de Troie",c2b:"La partie supérieure porte les silhouettes des neuf premiers évêques de Troie. Le dernier, Guillaume II, offre la ville aux Saints Apôtres, à côté de l'inscription <em>Troiana Civitas</em>.",
     c3t:"La Longue Inscription",c3b:"La partie inférieure célèbre la lutte pour la liberté contre Roger II. Source historique irremplaçable : date de fondation et chronologie épiscopale des 108 premières années.",
     s2_lb:"02 · Inscription Originale",s2_h2:"Le texte qui perpétue la liberté",
     s2_div:"Traduction française",
-    s2_tr:"Le Seigneur <strong>Guillaume Second</strong>, neuvième Évêque de Troie, fit construire ces portes en l'an <strong>1127</strong> — alors le <strong>Peuple de Troie</strong>, pour défendre sa liberté, abattit le Château et <strong>fortifia la Cité de murs d'enceinte et d'un fossé</strong>.",
+    s2_tr:"Le modérateur de la justice, le Seigneur <strong>Guillaume Second</strong>, neuvième Évêque de Troie, fit construire ces portes en l'an <strong>1127</strong> — alors le <strong>Peuple de Troie</strong>, pour défendre sa liberté, abattit le Château et <strong>fortifia la Cité de murs et d'un fossé</strong>.",
     if_lb:"Lieu · Troie, Foggia",if_h2:"La Cathédrale <em>et sa Porte</em>",
     if_p:"Le portail de bronze est enchâssé dans le flanc roman de la Cathédrale de Troie, l'un des plus extraordinaires exemples d'architecture des Pouilles des XIe–XIIe siècles.",
     s3_lb:"03 · Épiscopat",s3_h2:"Les Neuf Évêques <em>de Troie</em>",
-    v1o:"1er évêque",v2o:"2e évêque",v3o:"3e évêque",v4o:"4e évêque",v5o:"5e évêque",v6o:"6e évêque",v7o:"7e évêque",v8o:"8e évêque",v9o:"9e évêque",
-    vrf:"fondation du siège",vrc:"chronologie épiscopale",vrc2:"chronologie épiscopale",vrc3:"chronologie épiscopale",vrc4:"chronologie épiscopale",vrc5:"chronologie épiscopale",vrc6:"chronologie épiscopale",vrc7:"chronologie épiscopale",
-    v9r:"donateur du portail · 1127",
+    v1o:"1er évêque",v1n:"Oriano",vrf:"fondation du siège",
+    v2o:"2e évêque",v2n:"Angelo",vrc:"chronologie épiscopale",
+    v3o:"3e évêque",v3n:"Giovanni",vrc2:"chronologie épiscopale",
+    v4o:"4e évêque",v4n:"Stefano",vrc3:"chronologie épiscopale",
+    v5o:"5e évêque",v5n:"Gualtiero",vrc4:"chronologie épiscopale",
+    v6o:"6e évêque",v6n:"Girardo",vrc5:"chronologie épiscopale",
+    v7o:"7e évêque",v7n:"Uberto",vrc6:"chronologie épiscopale",
+    v8o:"8e évêque",v8n:"Guglielmo I",vrc7:"chronologie épiscopale",
+    v9o:"9e évêque",v9r:"donateur du portail · 1127",
     s4_lb:"04 · Restauration",s4_h2:"Rendre sa <em>Beauté</em>",
     r_b1:"Des processus d'oxydation avaient provoqué des pertes matérielles et des fissures mettant en danger la surface décorée et la structure métallique.",
     r_b2:"Grâce à la <strong>XII édition des \"Luoghi del Cuore\"</strong> et à une collecte de fonds, la restauration est désormais une réalité.",
@@ -502,7 +648,7 @@ const T={
     g1:"Wilhelm II. · Troiana Civitas",g2:"Löwenkopf-Klopfer",g3:"Westfassade",g4:"3. Register",g5:"Lateinischer Text",
     s1_lb:"01 · Das Werk",s1_h2:"Ein Tor, drei <em>Sprachen</em>",
     c1t:"Kunst und Technik",c1b:"Robuste Rahmen unterteilen das Tor in 24 Felder auf sechs Registern. Das Werk vereint Gravur, Tauschierung und Skulptur — ein einzigartiges Dokument der Bronzeverarbeitung im mittelalterlichen Süditalien.",
-    c2t:"Die Bischöfe von Troia",c2b:"Im oberen Teil sind die tauschierten Silhouetten der ersten neun Bischöfe eingraviert. Der letzte, Wilhelm II., schenkt die Stadt den Aposteln — neben der Inschrift Troiana Civitas.",
+    c2t:"Die Bischöfe von Troia",c2b:"Im oberen Teil sind die tauschierten Silhouetten der ersten neun Bischöfe eingraviert. Der letzte, Wilhelm II., schenkt die Stadt den Aposteln — neben der Inschrift <em>Troiana Civitas</em>.",
     c3t:"Die Lange Inschrift",c3b:"Der untere Teil feiert den Kampf für die Freiheit gegen Roger II. Eine unersetzliche historische Quelle: Gründungsdatum und Bischofsliste der ersten 108 Jahre.",
     s2_lb:"02 · Originalinschrift",s2_h2:"Der Text, der die Freiheit überliefert",
     s2_div:"Deutsche Übersetzung",
@@ -510,9 +656,15 @@ const T={
     if_lb:"Ort · Troia, Foggia",if_h2:"Die Kathedrale <em>und ihr Tor</em>",
     if_p:"Das kleine Bronzeportal ist in die romanische Flanke der Kathedrale von Troia eingelassen, einem der außergewöhnlichsten Beispiele apulischer Architektur des 11.–12. Jahrhunderts.",
     s3_lb:"03 · Episkopat",s3_h2:"Die Neun Bischöfe <em>von Troia</em>",
-    v1o:"1. Bischof",v2o:"2. Bischof",v3o:"3. Bischof",v4o:"4. Bischof",v5o:"5. Bischof",v6o:"6. Bischof",v7o:"7. Bischof",v8o:"8. Bischof",v9o:"9. Bischof",
-    vrf:"Gründung des Stuhles",vrc:"Bischofsliste",vrc2:"Bischofsliste",vrc3:"Bischofsliste",vrc4:"Bischofsliste",vrc5:"Bischofsliste",vrc6:"Bischofsliste",vrc7:"Bischofsliste",
-    v9r:"Stifter des Portals · 1127",
+    v1o:"1. Bischof",v1n:"Oriano",vrf:"Gründung des Stuhles",
+    v2o:"2. Bischof",v2n:"Angelo",vrc:"Bischofsliste",
+    v3o:"3. Bischof",v3n:"Giovanni",vrc2:"Bischofsliste",
+    v4o:"4. Bischof",v4n:"Stefano",vrc3:"Bischofsliste",
+    v5o:"5. Bischof",v5n:"Gualtiero",vrc4:"Bischofsliste",
+    v6o:"6. Bischof",v6n:"Girardo",vrc5:"Bischofsliste",
+    v7o:"7. Bischof",v7n:"Uberto",vrc6:"Bischofsliste",
+    v8o:"8. Bischof",v8n:"Guglielmo I",vrc7:"Bischofsliste",
+    v9o:"9. Bischof",v9r:"Stifter des Portals · 1127",
     s4_lb:"04 · Restaurierung",s4_h2:"Die <em>Schönheit</em> Zurückgeben",
     r_b1:"Oxidationsprozesse hatten Materialverluste und Risse verursacht, die die dekorierte Oberfläche und die Metallstruktur gefährdeten.",
     r_b2:"Dank der <strong>XII. Ausgabe der \"Luoghi del Cuore\"</strong> und einer Spendensammlung ist die Restaurierung heute Wirklichkeit.",
@@ -534,7 +686,7 @@ const T={
     g1:"Guillermo II · Troiana Civitas",g2:"Aldaba cabeza de león",g3:"Fachada Oeste",g4:"3.er registro",g5:"Texto latino",
     s1_lb:"01 · La Obra",s1_h2:"Una puerta, tres <em>lenguajes</em>",
     c1t:"Arte y Técnica",c1b:"Robustos marcos dividen la puerta en 24 paneles sobre seis registros. La obra combina grabado, damasquinado y escultura — un documento único sobre el trabajo en bronce en la Italia medieval.",
-    c2t:"Los Obispos de Troia",c2b:"La parte superior lleva las siluetas de los nueve primeros obispos. El último, Guillermo II, dona la ciudad a los Apóstoles, junto a la inscripción Troiana Civitas.",
+    c2t:"Los Obispos de Troia",c2b:"La parte superior lleva las siluetas de los nueve primeros obispos. El último, Guillermo II, dona la ciudad a los Apóstoles, junto a la inscripción <em>Troiana Civitas</em>.",
     c3t:"La Larga Inscripción",c3b:"La parte inferior celebra la lucha por la libertad contra Rogelio II. Fuente histórica irremplazable: fecha de fundación y cronología episcopal de los primeros 108 años.",
     s2_lb:"02 · Inscripción Original",s2_h2:"El texto que perpetúa la libertad",
     s2_div:"Traducción española",
@@ -542,9 +694,15 @@ const T={
     if_lb:"Lugar · Troia, Foggia",if_h2:"La Catedral <em>y su Puerta</em>",
     if_p:"El portal de bronce está encastrado en el flanco románico de la Catedral de Troia, uno de los más extraordinarios ejemplos de arquitectura apulia de los siglos XI–XII.",
     s3_lb:"03 · Episcopado",s3_h2:"Los Nueve Obispos <em>de Troia</em>",
-    v1o:"1.er obispo",v2o:"2.º obispo",v3o:"3.er obispo",v4o:"4.º obispo",v5o:"5.º obispo",v6o:"6.º obispo",v7o:"7.º obispo",v8o:"8.º obispo",v9o:"9.º obispo",
-    vrf:"fundación de la sede",vrc:"cronología episcopal",vrc2:"cronología episcopal",vrc3:"cronología episcopal",vrc4:"cronología episcopal",vrc5:"cronología episcopal",vrc6:"cronología episcopal",vrc7:"cronología episcopal",
-    v9r:"donante del portal · 1127",
+    v1o:"1.er obispo",v1n:"Oriano",vrf:"fundación de la sede",
+    v2o:"2.º obispo",v2n:"Angelo",vrc:"cronología episcopal",
+    v3o:"3.er obispo",v3n:"Giovanni",vrc2:"cronología episcopal",
+    v4o:"4.º obispo",v4n:"Stefano",vrc3:"cronología episcopal",
+    v5o:"5.º obispo",v5n:"Gualtiero",vrc4:"cronología episcopal",
+    v6o:"6.º obispo",v6n:"Girardo",vrc5:"cronología episcopal",
+    v7o:"7.º obispo",v7n:"Uberto",vrc6:"cronología episcopal",
+    v8o:"8.º obispo",v8n:"Guglielmo I",vrc7:"cronología episcopal",
+    v9o:"9.º obispo",v9r:"donante del portal · 1127",
     s4_lb:"04 · Restauración",s4_h2:"Devolver la <em>Belleza</em>",
     r_b1:"Los procesos de oxidación habían producido pérdidas materiales y grietas que ponían en peligro la superficie decorada y la estructura metálica.",
     r_b2:"Gracias a la <strong>XII edición de los \"Luoghi del Cuore\"</strong> y a una recaudación de fondos, la restauración es hoy una realidad.",
@@ -556,6 +714,25 @@ const T={
   }
 };
 
+function openLB(src, caption){
+  document.getElementById('lb-img').src = src;
+  document.getElementById('lb-cap').textContent = caption;
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLB(e){
+  if(e.target.id==='lb' || e.target.id==='lb-img'){
+    document.getElementById('lb').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+document.addEventListener('keydown', e => {
+  if(e.key==='Escape'){
+    document.getElementById('lb').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
 function setLang(l){
   const t=T[l]; if(!t) return;
   document.documentElement.lang=l;
@@ -565,32 +742,17 @@ function setLang(l){
   document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase()===l));
 }
 
-function openLB(src,caption){
-  document.getElementById('lb-img').src=src;
-  document.getElementById('lb-cap').textContent=caption;
-  document.getElementById('lb').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeLB(e){
-  if(e.target.id==='lb'||e.target.id==='lb-img'){
-    document.getElementById('lb').classList.remove('open');
-    document.body.style.overflow='';
-  }
-}
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){document.getElementById('lb').classList.remove('open');document.body.style.overflow='';}
-});
-
-// Nav scroll effect
-window.addEventListener('scroll', () => {
-  const nav = document.querySelector('.nav-overlay');
-  if(nav) nav.classList.toggle('scrolled', window.scrollY > 80);
-});
-
 const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
-  if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}
+  if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}
 }),{threshold:0.08});
 document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 </script>
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lb" onclick="closeLB(event)">
+  <button class="lb-close" onclick="document.getElementById('lb').classList.remove('open')">✕</button>
+  <img id="lb-img" src="" alt=""/>
+  <div class="lb-caption" id="lb-cap"></div>
+</div>
 </body>
 </html>

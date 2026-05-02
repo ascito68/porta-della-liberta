@@ -90,6 +90,10 @@
       display:grid;grid-template-columns:2fr 1fr 1fr;
       height:400px;gap:2px;background:var(--text);
     }
+    .gallery-bottom{
+      display:grid;grid-template-columns:1fr 1fr;
+      height:300px;gap:2px;background:var(--text);margin-top:2px;
+    }
     .gp{overflow:hidden;position:relative;background:#111;cursor:zoom-in}
     .gp img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease,opacity .4s}
     .gp:hover img{transform:scale(1.04);opacity:.9}
@@ -456,6 +460,42 @@
   </div>
 </section>
 
+<!-- GALLERY 2 -->
+<div class="gallery-strip">
+  <div class="gp gp-main" onclick="openLB('img/g03.jpg', this.querySelector('.gp-label').textContent)">
+    <img src="img/g03.jpg" alt="Porta aperta" loading="lazy"/>
+    <span class="gp-label" data-k="gg3">Porta aperta</span>
+  </div>
+  <div class="gallery-sub">
+    <div class="gp" onclick="openLB('img/g04.jpg', this.querySelector('.gp-label').textContent)">
+      <img src="img/g04.jpg" alt="Notturno" loading="lazy"/>
+      <span class="gp-label" data-k="gg4">Notturno</span>
+    </div>
+    <div class="gp" onclick="openLB('img/g01.jpg', this.querySelector('.gp-label').textContent)">
+      <img src="img/g01.jpg" alt="Protomi leonine" loading="lazy"/>
+      <span class="gp-label" data-k="gg1">Protomi leonine</span>
+    </div>
+    <div class="gp" onclick="openLB('img/g02.jpg', this.querySelector('.gp-label').textContent)">
+      <img src="img/g02.jpg" alt="Protome singola" loading="lazy"/>
+      <span class="gp-label" data-k="gg2">Protome singola</span>
+    </div>
+    <div class="gp" onclick="openLB('img/g07.jpg', this.querySelector('.gp-label').textContent)">
+      <img src="img/g07.jpg" alt="Dettaglio porta" loading="lazy"/>
+      <span class="gp-label" data-k="gg7">Dettaglio porta</span>
+    </div>
+  </div>
+</div>
+<div class="gallery-bottom">
+  <div class="gp" onclick="openLB('img/g05.jpg', this.querySelector('.gp-label').textContent)">
+    <img src="img/g05.jpg" alt="Facciata" loading="lazy"/>
+    <span class="gp-label" data-k="gg5">Facciata</span>
+  </div>
+  <div class="gp" onclick="openLB('img/g06.jpg', this.querySelector('.gp-label').textContent)">
+    <img src="img/g06.jpg" alt="Fianco Cattedrale" loading="lazy"/>
+    <span class="gp-label" data-k="gg6">Fianco della Cattedrale</span>
+  </div>
+</div>
+
 <!-- QUOTE -->
 <section class="quote-sec">
   <div class="wrap-sm">
@@ -509,7 +549,8 @@ const T = {
     bq:"Un aggregato ancora informe di uomini iniziò a costruire la propria identità di popolo intorno all'idea di <strong>libertà</strong> come valore da coltivare e difendere.",
     qt:"troiana civitas · 1127",
     ft_c:"Luoghi del Cuore — XII Edizione<br>Restauro sostenuto da FAI e Intesa Sanpaolo",
-    ft_r:"Cattedrale di Troia · Foggia, Puglia<br>Portale Bronzeo Minore — Porta della Libertà",
+    ft_r:"Cattedrale di Troia · Foggia, Puglia<br>Portale Bronzeo Minore — Porta della Libertà",,
+    gg1:"Protomi leonine",gg2:"Protome singola",gg3:"Porta aperta",gg4:"Notturno",gg5:"Facciata",gg6:"Fianco della Cattedrale",gg7:"Dettaglio porta"
   },
   en:{
     nav_op:"The Work",nav_is:"Inscription",nav_ve:"Bishops",nav_re:"Restoration",
@@ -547,7 +588,8 @@ const T = {
     bq:"A still formless gathering of people began to build its identity as a community around the idea of <strong>freedom</strong> as a value to cultivate and defend.",
     qt:"troiana civitas · 1127",
     ft_c:"I Luoghi del Cuore — 12th Edition<br>Restoration supported by FAI and Intesa Sanpaolo",
-    ft_r:"Cathedral of Troia · Foggia, Apulia<br>Minor Bronze Portal — Gate of Freedom",
+    ft_r:"Cathedral of Troia · Foggia, Apulia<br>Minor Bronze Portal — Gate of Freedom",,
+    gg1:"Lion heads",gg2:"Single lion head",gg3:"Open door",gg4:"Night view",gg5:"Facade",gg6:"Cathedral flank",gg7:"Door detail"
   },
   fr:{
     nav_op:"L'Œuvre",nav_is:"Inscription",nav_ve:"Évêques",nav_re:"Restauration",
@@ -585,7 +627,8 @@ const T = {
     bq:"Un agrégat encore informe d'hommes commença à construire son identité de peuple autour de l'idée de <strong>liberté</strong> comme valeur à cultiver et à défendre.",
     qt:"troiana civitas · 1127",
     ft_c:"Luoghi del Cuore — XII Édition<br>Restauration soutenue par FAI et Intesa Sanpaolo",
-    ft_r:"Cathédrale de Troie · Foggia, Pouilles<br>Portail de Bronze Mineur — Porte de la Liberté",
+    ft_r:"Cathédrale de Troie · Foggia, Pouilles<br>Portail de Bronze Mineur — Porte de la Liberté",,
+    gg1:"Têtes de lion",gg2:"Tête de lion",gg3:"Porte ouverte",gg4:"Vue nocturne",gg5:"Façade",gg6:"Flanc cathédrale",gg7:"Détail de la porte"
   },
   de:{
     nav_op:"Das Werk",nav_is:"Inschrift",nav_ve:"Bischöfe",nav_re:"Restaurierung",
@@ -623,7 +666,8 @@ const T = {
     bq:"Eine noch formlose Gemeinschaft begann, ihre Identität als Volk um die Idee der <strong>Freiheit</strong> aufzubauen.",
     qt:"troiana civitas · 1127",
     ft_c:"Luoghi del Cuore — XII. Ausgabe<br>Restaurierung gefördert von FAI und Intesa Sanpaolo",
-    ft_r:"Kathedrale von Troia · Foggia, Apulien<br>Kleines Bronzeportal — Tor der Freiheit",
+    ft_r:"Kathedrale von Troia · Foggia, Apulien<br>Kleines Bronzeportal — Tor der Freiheit",,
+    gg1:"Löwenköpfe",gg2:"Löwenkopf",gg3:"Offene Tür",gg4:"Nachtansicht",gg5:"Fassade",gg6:"Kathedrale Flanke",gg7:"Türdetail"
   },
   es:{
     nav_op:"La Obra",nav_is:"Inscripción",nav_ve:"Obispos",nav_re:"Restauración",
@@ -661,7 +705,8 @@ const T = {
     bq:"Un conjunto aún informe de hombres comenzó a construir su identidad de pueblo en torno a la idea de <strong>libertad</strong> como valor que cultivar y defender.",
     qt:"troiana civitas · 1127",
     ft_c:"Luoghi del Cuore — XII Edición<br>Restauración patrocinada por FAI e Intesa Sanpaolo",
-    ft_r:"Catedral de Troia · Foggia, Apulia<br>Portal Menor de Bronce — Puerta de la Libertad",
+    ft_r:"Catedral de Troia · Foggia, Apulia<br>Portal Menor de Bronce — Puerta de la Libertad",,
+    gg1:"Cabezas de león",gg2:"Cabeza de león",gg3:"Puerta abierta",gg4:"Nocturno",gg5:"Fachada",gg6:"Flanco catedral",gg7:"Detalle puerta"
   }
 };
 

@@ -665,23 +665,40 @@ const T = {
   }
 };
 
+// iOS-safe scroll lock
+let _scrollY = 0;
+function lockScroll(){
+  _scrollY = window.scrollY;
+  document.body.style.position = 'fixed';
+  document.body.style.top = '-' + _scrollY + 'px';
+  document.body.style.left = '0';
+  document.body.style.right = '0';
+  document.body.style.overflow = 'hidden';
+}
+function unlockScroll(){
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.left = '';
+  document.body.style.right = '';
+  document.body.style.overflow = '';
+  window.scrollTo(0, _scrollY);
+}
 function openLB(src, caption){
   document.getElementById('lb-img').src = src;
   document.getElementById('lb-cap').textContent = caption;
   document.getElementById('lb').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  lockScroll();
+}
+function closeLBNow(){
+  document.getElementById('lb').classList.remove('open');
+  document.getElementById('lb-img').src = '';
+  unlockScroll();
 }
 function closeLB(e){
-  if(e.target.id==='lb' || e.target.id==='lb-img'){
-    document.getElementById('lb').classList.remove('open');
-    document.body.style.overflow = '';
-  }
+  if(e.target.id==='lb' || e.target.id==='lb-img') closeLBNow();
 }
 document.addEventListener('keydown', e => {
-  if(e.key==='Escape'){
-    document.getElementById('lb').classList.remove('open');
-    document.body.style.overflow = '';
-  }
+  if(e.key==='Escape') closeLBNow();
 });
 
 function setLang(l){
@@ -706,7 +723,7 @@ document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 
 <!-- LIGHTBOX -->
 <div class="lb-overlay" id="lb" onclick="closeLB(event)">
-  <button class="lb-close" onclick="document.getElementById('lb').classList.remove('open')">✕</button>
+  <button class="lb-close" onclick="closeLBNow()">✕</button>
   <img id="lb-img" src="" alt=""/>
   <div class="lb-caption" id="lb-cap"></div>
 </div>

@@ -72,11 +72,27 @@
 
     @media(max-width:768px){
       nav{padding:0 20px}
+      .page-hero{height:280px}
+      .page-hero-title{font-size:clamp(26px,7vw,44px)}
       .content{padding:48px 20px 60px}
-      .sponsor-grid{grid-template-columns:1fr 1fr}
+      .sponsor-section{margin-bottom:48px}
+      .section-title{margin-bottom:20px}
+      /* 3 sponsor principali: una colonna ciascuno */
+      .sponsor-grid{grid-template-columns:1fr}
+      .sponsor-card{padding:28px 24px}
+      .sponsor-card img{max-height:80px;max-width:220px}
+      /* coppie: mantieni 2 colonne */
       .partner-grid-2{grid-template-columns:1fr 1fr}
-      .partner-grid-3{grid-template-columns:1fr 1fr}
-      .page-hero{height:240px}
+      /* triplette: una colonna ciascuno */
+      .partner-grid-3{grid-template-columns:1fr}
+      .partner-card img{max-height:60px;max-width:160px}
+    }
+    @media(max-width:480px){
+      .content{padding:40px 16px 52px}
+      /* su schermi molto piccoli anche le coppie in colonna */
+      .partner-grid-2{grid-template-columns:1fr}
+      .partner-card{padding:24px 16px}
+      .partner-card img{max-height:56px;max-width:140px}
     }
   </style>
 </head>

@@ -163,10 +163,47 @@
     .footer-sp img:hover{opacity:1}
 
     /* RESPONSIVE */
-    @media(max-width:960px){
+    /* HAMBURGER */
+    .nav-hamburger{
+      display:none;
+      flex-direction:column;justify-content:center;gap:5px;
+      background:none;border:none;cursor:pointer;padding:4px;
+      width:36px;height:36px;
+    }
+    .nav-hamburger span{
+      display:block;width:24px;height:2px;
+      background:#fff;border-radius:2px;
+      transition:all .3s;
+    }
+    /* MOBILE MENU */
+    .mobile-menu{
+      display:none;
+      position:fixed;inset:0;z-index:300;
+      background:var(--green-dark);
+      flex-direction:column;align-items:center;justify-content:center;
+      gap:0;
+    }
+    .mobile-menu.open{display:flex}
+    .mobile-menu-close{
+      position:absolute;top:24px;right:24px;
+      background:none;border:none;color:#fff;
+      font-size:28px;cursor:pointer;padding:4px;
+    }
+    .mobile-menu ul{list-style:none;text-align:center}
+    .mobile-menu ul li{border-bottom:1px solid rgba(255,255,255,.1)}
+    .mobile-menu ul li a{
+      display:block;padding:20px 48px;
+      font-size:16px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+      color:#fff;text-decoration:none;
+      transition:color .2s,background .2s;
+    }
+    .mobile-menu ul li a:hover{color:var(--orange)}
+
+        @media(max-width:960px){
       .wrap,.wrap-sm{padding:0 20px}
       nav{padding:0 20px}
       .nav-links{display:none}
+      .nav-hamburger{display:flex}
       .hero-full{height:100svh}
       .hero-content{padding:0 24px 64px}
       .hero-data{grid-template-columns:1fr 1fr;gap:14px 24px}
@@ -199,6 +236,9 @@
     <li><a href="scheda.html" data-k="nav_sc">Scheda informativa</a></li>
     <li><a href="sponsor.html" data-k="nav_sp">Sponsor</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
   <div class="nav-langs">
     <button class="lb active" onclick="setLang('it')">IT</button>
     <button class="lb" onclick="setLang('en')">EN</button>
@@ -388,6 +428,19 @@
   </div>
 </footer>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
+  <ul>
+    <li><a href="#opera" data-k="nav_op" onclick="toggleMenu()">L'Opera</a></li>
+    <li><a href="#iscrizione" data-k="nav_is" onclick="toggleMenu()">Iscrizione</a></li>
+    <li><a href="#vescovi" data-k="nav_ve" onclick="toggleMenu()">Vescovi</a></li>
+    <li><a href="#restauro" data-k="nav_re" onclick="toggleMenu()">Restauro</a></li>
+    <li><a href="scheda.html" data-k="nav_sc" onclick="toggleMenu()">Scheda informativa</a></li>
+    <li><a href="sponsor.html" data-k="nav_sp" onclick="toggleMenu()">Sponsor</a></li>
+  </ul>
+</div>
+
 <!-- LIGHTBOX -->
 <div class="lb-overlay" id="lb" onclick="closeLB(event)">
   <button class="lb-close" onclick="closeLBNow()">✕</button>
@@ -430,6 +483,13 @@ function closeLB(e){
 document.addEventListener('keydown', function(e){
   if(e.key==='Escape') closeLBNow();
 });
+
+// Mobile menu
+function toggleMenu(){
+  var menu = document.getElementById('mobile-menu');
+  var isOpen = menu.classList.toggle('open');
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
 
 // Nav scroll
 window.addEventListener('scroll', function(){

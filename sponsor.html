@@ -51,13 +51,19 @@
     .sponsor-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:4px}
     .sponsor-role{font-size:12px;color:var(--light);font-style:italic}
 
-    /* PARTNER SECTION — smaller logos */
-    .partner-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border)}
+    /* PARTNER GRIDS */
+    .partner-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border)}
+    .partner-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border)}
     .partner-card{background:var(--white);padding:28px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:background .2s}
     .partner-card:hover{background:var(--green-pale)}
     .partner-card img{max-height:56px;max-width:140px;width:auto;height:auto;object-fit:contain;margin-bottom:12px}
     .partner-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px}
     .partner-role{font-size:11px;color:var(--light);font-style:italic}
+
+    /* PRIVATI */
+    .privato-card{background:var(--white);padding:32px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:background .2s}
+    .privato-card:hover{background:var(--green-pale)}
+    .privato-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--text)}
 
     /* FOOTER */
     .page-footer{background:var(--green-dark);padding:24px 40px;text-align:center}
@@ -68,7 +74,8 @@
       nav{padding:0 20px}
       .content{padding:48px 20px 60px}
       .sponsor-grid{grid-template-columns:1fr 1fr}
-      .partner-grid{grid-template-columns:1fr 1fr}
+      .partner-grid-2{grid-template-columns:1fr 1fr}
+      .partner-grid-3{grid-template-columns:1fr 1fr}
       .page-hero{height:240px}
     }
   </style>
@@ -103,7 +110,7 @@
     <p data-k="intro">Il restauro della Porta della Libertà è stato reso possibile grazie al generoso contributo di istituzioni, aziende e privati cittadini che hanno creduto nel valore di questo straordinario patrimonio.</p>
   </div>
 
-  <!-- SPONSOR PRINCIPALI -->
+  <!-- SPONSOR ISTITUZIONALI -->
   <div class="sponsor-section">
     <div class="section-label" data-k="s1_label">Sponsor Istituzionali</div>
     <div class="section-title" data-k="s1_title">Contributo Principale</div>
@@ -127,12 +134,12 @@
     </div>
   </div>
 
-  <!-- PARTNER -->
+  <!-- ENTI PATROCINATORI -->
   <div class="sponsor-section">
-    <div class="section-label" data-k="s2_label">Partner e Sostenitori</div>
-    <div class="section-title" data-k="s2_title">Con il loro supporto</div>
+    <div class="section-label" data-k="s_pat_label">Enti Patrocinatori</div>
+    <div class="section-title" data-k="s_pat_title">Con il Patrocinio di</div>
     <div class="section-rule"></div>
-    <div class="partner-grid">
+    <div class="partner-grid-3">
       <div class="partner-card">
         <img src="img/L0.jpg" alt="MiC — Ministero della Cultura"/>
         <div class="partner-name">MiC</div>
@@ -148,20 +155,80 @@
         <div class="partner-name">Capitulum</div>
         <div class="partner-role" data-k="r_cap">Ecclesiae Troianae</div>
       </div>
+    </div>
+  </div>
+
+  <!-- CON IL SUPPORTO DI -->
+  <div class="sponsor-section">
+    <div class="section-label" data-k="s2_label">Con il supporto di</div>
+    <div class="section-title" data-k="s2_title">Il loro supporto</div>
+    <div class="section-rule"></div>
+    <div class="partner-grid-2">
       <div class="partner-card">
-        <img src="img/L7.jpg" alt="ELDA Cantine"/>
-        <div class="partner-name">ELDA Cantine</div>
-        <div class="partner-role" data-k="r_eld">Sostenitore</div>
+        <img src="img/comune-troia.jpg" alt="Comune di Troia"/>
+        <div class="partner-name">Comune di Troia</div>
+        <div class="partner-role" data-k="r_com">Raccolta fondi e patrocinio</div>
       </div>
+      <div class="partner-card">
+        <img src="img/L4.jpg" alt="ECEplast"/>
+        <div class="partner-name">ECEplast</div>
+        <div class="partner-role" data-k="r_ece">Sostenitore</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPONSOR TECNICI -->
+  <div class="sponsor-section">
+    <div class="section-label" data-k="s3_label">Sponsor Tecnici</div>
+    <div class="section-title" data-k="s3_title">Supporto Tecnico al Restauro</div>
+    <div class="section-rule"></div>
+    <div class="partner-grid-2">
+      <div class="partner-card">
+        <img src="img/edil-tortorella.jpg" alt="Edil Tortorella snc"/>
+        <div class="partner-name">Edil Tortorella snc</div>
+        <div class="partner-role" data-k="r_tor">Impresa Edile</div>
+      </div>
+      <div class="partner-card">
+        <img src="img/elisa-liguori.jpg" alt="Elisa Liguori Fotografa"/>
+        <div class="partner-name">Elisa Liguori</div>
+        <div class="partner-role" data-k="r_eli">Fotografa</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPONSOR -->
+  <div class="sponsor-section">
+    <div class="section-label" data-k="s4_label">Sponsor</div>
+    <div class="section-title" data-k="s4_title">Con il loro contributo</div>
+    <div class="section-rule"></div>
+    <div class="partner-grid-2">
       <div class="partner-card">
         <img src="img/L8.jpg" alt="G Vitale Impianti Tecnologici"/>
         <div class="partner-name">G Vitale</div>
         <div class="partner-role" data-k="r_vit">Impianti Tecnologici</div>
       </div>
       <div class="partner-card">
-        <img src="img/L4.jpg" alt="ECEplast"/>
-        <div class="partner-name">ECEplast</div>
-        <div class="partner-role" data-k="r_ece">Sostenitore</div>
+        <img src="img/L7.jpg" alt="ELDA Cantine"/>
+        <div class="partner-name">ELDA Cantine</div>
+        <div class="partner-role" data-k="r_eld">Sostenitore</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRIVATI -->
+  <div class="sponsor-section">
+    <div class="section-label" data-k="s5_label">Privati</div>
+    <div class="section-title" data-k="s5_title">Donatori Privati</div>
+    <div class="section-rule"></div>
+    <div class="partner-grid-3">
+      <div class="privato-card">
+        <div class="privato-name">Famiglia Beccia-Catalano</div>
+      </div>
+      <div class="privato-card">
+        <div class="privato-name">Nipoti Mons. M. De Santis</div>
+      </div>
+      <div class="privato-card">
+        <div class="privato-name">ing. Angelo Moffa</div>
       </div>
     </div>
   </div>
@@ -174,11 +241,86 @@
 
 <script>
 var T = {
-  it:{back:"\u2190 Torna al sito",label:"Sponsor e Partner",intro:"Il restauro della Porta della Libert\u00e0 \u00e8 stato reso possibile grazie al generoso contributo di istituzioni, aziende e privati cittadini che hanno creduto nel valore di questo straordinario patrimonio.",s1_label:"Sponsor Istituzionali",s1_title:"Contributo Principale",s2_label:"Partner e Sostenitori",s2_title:"Con il loro supporto",r_fai:"Fondo per l'Ambiente Italiano",r_ldc:"XII Edizione \u00b7 2024",r_isa:"Contributo principale",r_mic:"Ministero della Cultura",r_par:"Parrocchia di Troia",r_cap:"Ecclesiae Troianae",r_eld:"Sostenitore",r_vit:"Impianti Tecnologici",r_ece:"Sostenitore"},
-  en:{back:"\u2190 Back to site",label:"Sponsors & Partners",intro:"The restoration of the Gate of Freedom was made possible thanks to the generous contribution of institutions, businesses and private citizens who believed in the value of this extraordinary heritage.",s1_label:"Institutional Sponsors",s1_title:"Main Contribution",s2_label:"Partners & Supporters",s2_title:"With their support",r_fai:"Italian Environment Fund",r_ldc:"12th Edition \u00b7 2024",r_isa:"Main sponsor",r_mic:"Ministry of Culture",r_par:"Parish of Troia",r_cap:"Ecclesiae Troianae",r_eld:"Supporter",r_vit:"Technological Systems",r_ece:"Supporter"},
-  fr:{back:"\u2190 Retour au site",label:"Sponsors et Partenaires",intro:"La restauration de la Porte de la Libert\u00e9 a \u00e9t\u00e9 rendue possible gr\u00e2ce \u00e0 la g\u00e9n\u00e9reuse contribution d'institutions, d'entreprises et de citoyens priv\u00e9s qui ont cru en la valeur de ce patrimoine extraordinaire.",s1_label:"Sponsors Institutionnels",s1_title:"Contribution Principale",s2_label:"Partenaires et Soutiens",s2_title:"Avec leur soutien",r_fai:"Fonds pour l'Environnement Italien",r_ldc:"XII \u00c9dition \u00b7 2024",r_isa:"Contribution principale",r_mic:"Minist\u00e8re de la Culture",r_par:"Paroisse de Troie",r_cap:"Ecclesiae Troianae",r_eld:"Soutien",r_vit:"Syst\u00e8mes Technologiques",r_ece:"Soutien"},
-  de:{back:"\u2190 Zur\u00fcck zur Website",label:"Sponsoren & Partner",intro:"Die Restaurierung des Tors der Freiheit wurde dank des gro\u00dfz\u00fcgigen Beitrags von Institutionen, Unternehmen und Privatpersonen erm\u00f6glicht, die an den Wert dieses au\u00dferordentlichen Erbes geglaubt haben.",s1_label:"Institutionelle Sponsoren",s1_title:"Hauptbeitrag",s2_label:"Partner & Unterst\u00fctzer",s2_title:"Mit ihrer Unterst\u00fctzung",r_fai:"Italienischer Umweltfonds",r_ldc:"XII. Ausgabe \u00b7 2024",r_isa:"Hauptsponsor",r_mic:"Kulturministerium",r_par:"Pfarrei Troia",r_cap:"Ecclesiae Troianae",r_eld:"Unterst\u00fctzer",r_vit:"Technische Anlagen",r_ece:"Unterst\u00fctzer"},
-  es:{back:"\u2190 Volver al sitio",label:"Patrocinadores y Socios",intro:"La restauraci\u00f3n de la Puerta de la Libertad fue posible gracias a la generosa contribuci\u00f3n de instituciones, empresas y ciudadanos privados que creyeron en el valor de este extraordinario patrimonio.",s1_label:"Patrocinadores Institucionales",s1_title:"Contribuci\u00f3n Principal",s2_label:"Socios y Colaboradores",s2_title:"Con su apoyo",r_fai:"Fondo para el Ambiente Italiano",r_ldc:"XII Edici\u00f3n \u00b7 2024",r_isa:"Contribuci\u00f3n principal",r_mic:"Ministerio de Cultura",r_par:"Parroquia de Troia",r_cap:"Ecclesiae Troianae",r_eld:"Colaborador",r_vit:"Instalaciones Tecnol\u00f3gicas",r_ece:"Colaborador"}
+  it:{
+    back:"← Torna al sito",
+    label:"Sponsor e Partner",
+    intro:"Il restauro della Porta della Libertà è stato reso possibile grazie al generoso contributo di istituzioni, aziende e privati cittadini che hanno creduto nel valore di questo straordinario patrimonio.",
+    s1_label:"Sponsor Istituzionali",s1_title:"Contributo Principale",
+    s_pat_label:"Enti Patrocinatori",s_pat_title:"Con il Patrocinio di",
+    s2_label:"Con il supporto di",s2_title:"Il loro supporto",
+    s3_label:"Sponsor Tecnici",s3_title:"Supporto Tecnico al Restauro",
+    s4_label:"Sponsor",s4_title:"Con il loro contributo",
+    s5_label:"Privati",s5_title:"Donatori Privati",
+    r_fai:"Fondo per l’Ambiente Italiano",r_ldc:"XII Edizione · 2024",r_isa:"Contributo principale",
+    r_mic:"Ministero della Cultura",r_par:"Parrocchia di Troia",r_cap:"Ecclesiae Troianae",
+    r_com:"Raccolta fondi e patrocinio",r_ece:"Sostenitore",
+    r_tor:"Impresa Edile",r_eli:"Fotografa",
+    r_vit:"Impianti Tecnologici",r_eld:"Sostenitore"
+  },
+  en:{
+    back:"← Back to site",
+    label:"Sponsors & Partners",
+    intro:"The restoration of the Gate of Freedom was made possible thanks to the generous contribution of institutions, businesses and private citizens who believed in the value of this extraordinary heritage.",
+    s1_label:"Institutional Sponsors",s1_title:"Main Contribution",
+    s_pat_label:"Institutional Patrons",s_pat_title:"Under the Patronage of",
+    s2_label:"With the support of",s2_title:"Their Support",
+    s3_label:"Technical Sponsors",s3_title:"Technical Support for Restoration",
+    s4_label:"Sponsors",s4_title:"With their contribution",
+    s5_label:"Private Donors",s5_title:"Private Supporters",
+    r_fai:"Italian Environment Fund",r_ldc:"12th Edition · 2024",r_isa:"Main sponsor",
+    r_mic:"Ministry of Culture",r_par:"Parish of Troia",r_cap:"Ecclesiae Troianae",
+    r_com:"Fundraising and patronage",r_ece:"Supporter",
+    r_tor:"Construction Company",r_eli:"Photographer",
+    r_vit:"Technological Systems",r_eld:"Supporter"
+  },
+  fr:{
+    back:"← Retour au site",
+    label:"Sponsors et Partenaires",
+    intro:"La restauration de la Porte de la Liberté a été rendue possible grâce à la généreuse contribution d’institutions, d’entreprises et de citoyens privés qui ont cru en la valeur de ce patrimoine extraordinaire.",
+    s1_label:"Sponsors Institutionnels",s1_title:"Contribution Principale",
+    s_pat_label:"Entités Patrones",s_pat_title:"Sous le Patronage de",
+    s2_label:"Avec le soutien de",s2_title:"Leur soutien",
+    s3_label:"Sponsors Techniques",s3_title:"Soutien Technique à la Restauration",
+    s4_label:"Sponsors",s4_title:"Avec leur contribution",
+    s5_label:"Donateurs Privés",s5_title:"Soutien Privé",
+    r_fai:"Fonds pour l’Environnement Italien",r_ldc:"XII Édition · 2024",r_isa:"Contribution principale",
+    r_mic:"Ministère de la Culture",r_par:"Paroisse de Troie",r_cap:"Ecclesiae Troianae",
+    r_com:"Collecte de fonds et patronage",r_ece:"Soutien",
+    r_tor:"Entreprise de Construction",r_eli:"Photographe",
+    r_vit:"Systèmes Technologiques",r_eld:"Soutien"
+  },
+  de:{
+    back:"← Zurück zur Website",
+    label:"Sponsoren & Partner",
+    intro:"Die Restaurierung des Tors der Freiheit wurde dank des großzügigen Beitrags von Institutionen, Unternehmen und Privatpersonen ermöglicht, die an den Wert dieses außerordentlichen Erbes geglaubt haben.",
+    s1_label:"Institutionelle Sponsoren",s1_title:"Hauptbeitrag",
+    s_pat_label:"Institutionelle Schirmherren",s_pat_title:"Unter der Schirmherrschaft von",
+    s2_label:"Mit der Unterstützung von",s2_title:"Ihre Unterstützung",
+    s3_label:"Technische Sponsoren",s3_title:"Technische Unterstützung der Restaurierung",
+    s4_label:"Sponsoren",s4_title:"Mit ihrem Beitrag",
+    s5_label:"Privatpersonen",s5_title:"Private Spender",
+    r_fai:"Italienischer Umweltfonds",r_ldc:"XII. Ausgabe · 2024",r_isa:"Hauptsponsor",
+    r_mic:"Kulturministerium",r_par:"Pfarrei Troia",r_cap:"Ecclesiae Troianae",
+    r_com:"Spendensammlung und Schirmherrschaft",r_ece:"Unterstützer",
+    r_tor:"Bauunternehmen",r_eli:"Fotografin",
+    r_vit:"Technische Anlagen",r_eld:"Unterstützer"
+  },
+  es:{
+    back:"← Volver al sitio",
+    label:"Patrocinadores y Socios",
+    intro:"La restauración de la Puerta de la Libertad fue posible gracias a la generosa contribución de instituciones, empresas y ciudadanos privados que creyeron en el valor de este extraordinario patrimonio.",
+    s1_label:"Patrocinadores Institucionales",s1_title:"Contribución Principal",
+    s_pat_label:"Entidades Patrocinadoras",s_pat_title:"Bajo el Patrocinio de",
+    s2_label:"Con el apoyo de",s2_title:"Su apoyo",
+    s3_label:"Patrocinadores Técnicos",s3_title:"Apoyo Técnico a la Restauración",
+    s4_label:"Patrocinadores",s4_title:"Con su contribución",
+    s5_label:"Donantes Privados",s5_title:"Donantes Privados",
+    r_fai:"Fondo para el Ambiente Italiano",r_ldc:"XII Edición · 2024",r_isa:"Contribución principal",
+    r_mic:"Ministerio de Cultura",r_par:"Parroquia de Troia",r_cap:"Ecclesiae Troianae",
+    r_com:"Recaudación y patrocinio",r_ece:"Colaborador",
+    r_tor:"Empresa de Construcción",r_eli:"Fotógrafa",
+    r_vit:"Instalaciones Tecnológicas",r_eld:"Colaborador"
+  }
 };
 
 function setLang(l){

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lavori in Corso — Porta della Libertà</title>
+  <link rel="icon" type="image/jpeg" href="img/troiana.jpg"/>
+  <link rel="apple-touch-icon" href="img/troiana.jpg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --green:#1E4D2B;--green-dark:#163820;--green-pale:#EBF2ED;
+      --orange:#D94F1E;
+      --white:#FFFFFF;--bg:#F2F2F0;--border:#E0E0DC;
+      --text:#1A1A18;--muted:#666660;--light:#999994;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Source Sans 3',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;margin:0}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:linear-gradient(to bottom,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0) 100%);transition:background .4s}
+    nav.scrolled{background:var(--green-dark)}
+    .nav-back{font-size:11px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:#fff;text-decoration:none;display:flex;align-items:center;gap:8px;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+    .nav-back svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+    .nav-langs{display:flex;align-items:center}
+    .lb{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;background:transparent;border:none;color:rgba(255,255,255,.55);padding:0 9px;height:36px;cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+    .lb:hover{color:#fff}
+    .lb.active{color:#fff;border-bottom-color:rgba(255,255,255,.7)}
+
+    /* HERO */
+    .page-hero{position:relative;width:100%;height:420px;overflow:hidden}
+    .page-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;filter:brightness(0.28) blur(3px);transform:scale(1.06)}
+    .page-hero-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 40px}
+    .page-hero-label{font-size:10px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;text-shadow:0 1px 8px rgba(0,0,0,1)}
+    .page-hero-title{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,62px);font-weight:700;color:#fff;line-height:1.05;text-shadow:0 2px 20px rgba(0,0,0,.8)}
+    .page-hero-title em{font-style:italic;font-weight:400}
+    .page-hero-sub{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:rgba(255,255,255,.65);margin-top:14px;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+
+    /* CONTENT */
+    .content{max-width:860px;margin:0 auto;padding:72px 40px 88px}
+
+    /* STATO AVANZAMENTO */
+    .status-block{text-align:center;margin-bottom:64px}
+    .status-badge{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:#fff;font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:10px 22px;margin-bottom:32px}
+    .status-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--orange);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+    .status-h2{font-family:'Playfair Display',serif;font-size:clamp(22px,2.8vw,36px);font-weight:700;color:var(--text);margin-bottom:16px}
+    .status-h2 em{font-style:italic;color:var(--green);font-weight:400}
+    .status-rule{width:40px;height:3px;background:var(--orange);margin:0 auto 24px}
+    .status-p{font-size:16px;line-height:1.9;color:var(--muted);max-width:640px;margin:0 auto}
+
+    /* FASI */
+    .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:56px}
+    .phase{background:var(--white);padding:32px 24px;text-align:center}
+    .phase-num{font-family:'Playfair Display',serif;font-size:38px;font-style:italic;color:var(--border);line-height:1;margin-bottom:12px}
+    .phase-title{font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text);margin-bottom:10px}
+    .phase-desc{font-size:13px;line-height:1.75;color:var(--muted)}
+    .phase.done .phase-num{color:var(--green)}
+    .phase.done .phase-title{color:var(--green)}
+    .phase.active .phase-num{color:var(--orange)}
+    .phase.active .phase-title{color:var(--orange)}
+
+    /* GALLERY PREVIEW */
+    .gallery-preview{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--text);margin-top:64px}
+    .gp{overflow:hidden;height:220px;background:#111}
+    .gp img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+    .gp:hover img{transform:scale(1.05)}
+    .gallery-note{text-align:center;margin-top:20px;font-size:12px;color:var(--light);font-style:italic}
+
+    /* FOOTER */
+    .page-footer{background:var(--green-dark);padding:24px 40px;text-align:center}
+    .page-footer a{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+    .page-footer a:hover{color:#fff}
+
+    @media(max-width:768px){
+      nav{padding:0 20px}
+      .page-hero{height:300px}
+      .content{padding:52px 20px 64px}
+      .phases{grid-template-columns:1fr}
+      .gallery-preview{grid-template-columns:1fr 1fr}
+      .gp{height:180px}
+    }
+    @media(max-width:480px){
+      .gallery-preview{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="wnav">
+  <a class="nav-back" href="index.html">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    <span data-k="back">Torna al sito</span>
+  </a>
+  <div class="nav-langs">
+    <button class="lb active" onclick="setLang('it')">IT</button>
+    <button class="lb" onclick="setLang('en')">EN</button>
+    <button class="lb" onclick="setLang('fr')">FR</button>
+    <button class="lb" onclick="setLang('de')">DE</button>
+    <button class="lb" onclick="setLang('es')">ES</button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <img src="img/troiana.jpg" alt="Pannello Troiana Civitas"/>
+  <div class="page-hero-content">
+    <div class="page-hero-label" data-k="label">Restauro · 2024–2025</div>
+    <h1 class="page-hero-title" data-k="hero_title">Lavori in <em>Corso</em></h1>
+    <p class="page-hero-sub" data-k="hero_sub">Porta della Libertà · Cattedrale di Troia</p>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="status-block">
+    <div class="status-badge" data-k="badge">Restauro in corso</div>
+    <h2 class="status-h2" data-k="status_h2">Un patrimonio che <em>rinasce</em></h2>
+    <div class="status-rule"></div>
+    <p class="status-p" data-k="status_p1">Il restauro del portale bronzeo minore della Cattedrale di Troia è attualmente in corso. Gli specialisti stanno operando con tecniche conservative d'avanguardia per restituire alla Porta della Libertà il suo splendore originale.</p>
+    <p class="status-p" style="margin-top:16px" data-k="status_p2">Questa sezione verrà aggiornata con foto e aggiornamenti sullo stato di avanzamento dei lavori.</p>
+  </div>
+
+  <!-- FASI DEL RESTAURO -->
+  <div class="phases">
+    <div class="phase done">
+      <div class="phase-num">I</div>
+      <div class="phase-title" data-k="ph1_t">Diagnosi</div>
+      <div class="phase-desc" data-k="ph1_d">Analisi dello stato di conservazione, mappatura dei degradi e indagini diagnostiche sulla superficie bronzea.</div>
+    </div>
+    <div class="phase active">
+      <div class="phase-num">II</div>
+      <div class="phase-title" data-k="ph2_t">Restauro</div>
+      <div class="phase-desc" data-k="ph2_d">Rimozione delle ossidazioni, consolidamento delle perdite materiche e recupero delle superfici ageminate.</div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">III</div>
+      <div class="phase-title" data-k="ph3_t">Restituzione</div>
+      <div class="phase-desc" data-k="ph3_d">Protezione finale, reinstallazione del portale e riapertura al pubblico della Cattedrale.</div>
+    </div>
+  </div>
+
+  <!-- GALLERY PREVIEW -->
+  <div class="gallery-preview">
+    <div class="gp"><img src="img/g01.jpg" loading="lazy" alt="Protomi leonine"/></div>
+    <div class="gp"><img src="img/troiana.jpg" loading="lazy" alt="Pannello Troiana Civitas"/></div>
+    <div class="gp"><img src="img/insc1.jpg" loading="lazy" alt="Iscrizione"/></div>
+  </div>
+  <p class="gallery-note" data-k="gallery_note">Immagini della porta prima dell'intervento di restauro · Aggiornamenti in arrivo</p>
+
+</div>
+
+<div class="page-footer">
+  <a href="index.html" data-k="back">← Torna al sito</a>
+</div>
+
+<script>
+const T = {
+  it:{
+    back:"← Torna al sito",
+    label:"Restauro · 2024–2025",
+    hero_title:"Lavori in <em>Corso</em>",
+    hero_sub:"Porta della Libertà · Cattedrale di Troia",
+    badge:"Restauro in corso",
+    status_h2:"Un patrimonio che <em>rinasce</em>",
+    status_p1:"Il restauro del portale bronzeo minore della Cattedrale di Troia è attualmente in corso. Gli specialisti stanno operando con tecniche conservative d'avanguardia per restituire alla Porta della Libertà il suo splendore originale.",
+    status_p2:"Questa sezione verrà aggiornata con foto e aggiornamenti sullo stato di avanzamento dei lavori.",
+    ph1_t:"Diagnosi",ph1_d:"Analisi dello stato di conservazione, mappatura dei degradi e indagini diagnostiche sulla superficie bronzea.",
+    ph2_t:"Restauro",ph2_d:"Rimozione delle ossidazioni, consolidamento delle perdite materiche e recupero delle superfici ageminate.",
+    ph3_t:"Restituzione",ph3_d:"Protezione finale, reinstallazione del portale e riapertura al pubblico della Cattedrale.",
+    gallery_note:"Immagini della porta prima dell'intervento di restauro · Aggiornamenti in arrivo"
+  },
+  en:{
+    back:"← Back to site",
+    label:"Restoration · 2024–2025",
+    hero_title:"Work in <em>Progress</em>",
+    hero_sub:"Gate of Freedom · Cathedral of Troia",
+    badge:"Restoration underway",
+    status_h2:"A heritage that <em>is reborn</em>",
+    status_p1:"The restoration of the minor bronze portal of the Cathedral of Troia is currently underway. Specialists are working with cutting-edge conservation techniques to restore the Gate of Freedom to its original splendour.",
+    status_p2:"This section will be updated with photos and progress reports on the restoration work.",
+    ph1_t:"Diagnosis",ph1_d:"Assessment of conservation status, damage mapping and diagnostic investigations on the bronze surface.",
+    ph2_t:"Restoration",ph2_d:"Removal of oxidation, consolidation of material losses and recovery of damascened surfaces.",
+    ph3_t:"Return",ph3_d:"Final protection, reinstallation of the portal and reopening of the Cathedral to the public.",
+    gallery_note:"Images of the door before the restoration · Updates coming soon"
+  },
+  fr:{
+    back:"← Retour au site",
+    label:"Restauration · 2024–2025",
+    hero_title:"Travaux en <em>Cours</em>",
+    hero_sub:"Porte de la Liberté · Cathédrale de Troie",
+    badge:"Restauration en cours",
+    status_h2:"Un patrimoine qui <em>renaît</em>",
+    status_p1:"La restauration du portail de bronze mineur de la Cathédrale de Troie est actuellement en cours. Des spécialistes travaillent avec des techniques de conservation de pointe pour restituer à la Porte de la Liberté sa splendeur originelle.",
+    status_p2:"Cette section sera mise à jour avec des photos et des rapports sur l'avancement des travaux.",
+    ph1_t:"Diagnostic",ph1_d:"Évaluation de l'état de conservation, cartographie des dégradations et investigations diagnostiques sur la surface de bronze.",
+    ph2_t:"Restauration",ph2_d:"Élimination des oxydations, consolidation des pertes matérielles et récupération des surfaces damasquinées.",
+    ph3_t:"Restitution",ph3_d:"Protection finale, réinstallation du portail et réouverture de la Cathédrale au public.",
+    gallery_note:"Images de la porte avant l'intervention de restauration · Mises à jour à venir"
+  },
+  de:{
+    back:"← Zurück zur Website",
+    label:"Restaurierung · 2024–2025",
+    hero_title:"Laufende <em>Arbeiten</em>",
+    hero_sub:"Tor der Freiheit · Kathedrale von Troia",
+    badge:"Restaurierung im Gange",
+    status_h2:"Ein Erbe, das <em>wiedergeboren</em> wird",
+    status_p1:"Die Restaurierung des kleinen Bronzeportals der Kathedrale von Troia ist derzeit im Gange. Fachleute arbeiten mit modernsten Konservierungstechniken, um dem Tor der Freiheit seinen ursprünglichen Glanz zurückzugeben.",
+    status_p2:"Dieser Abschnitt wird mit Fotos und Fortschrittsberichten zur Restaurierungsarbeit aktualisiert.",
+    ph1_t:"Diagnose",ph1_d:"Bewertung des Erhaltungszustands, Kartierung der Schäden und diagnostische Untersuchungen der Bronzeoberfläche.",
+    ph2_t:"Restaurierung",ph2_d:"Entfernung von Oxidationen, Konsolidierung von Materialverlusten und Wiederherstellung der tauschierten Oberflächen.",
+    ph3_t:"Rückgabe",ph3_d:"Abschließender Schutz, Wiedereinbau des Portals und Wiedereröffnung der Kathedrale für die Öffentlichkeit.",
+    gallery_note:"Bilder des Tores vor der Restaurierung · Aktualisierungen folgen"
+  },
+  es:{
+    back:"← Volver al sitio",
+    label:"Restauración · 2024–2025",
+    hero_title:"Trabajos en <em>Curso</em>",
+    hero_sub:"Puerta de la Libertad · Catedral de Troia",
+    badge:"Restauración en curso",
+    status_h2:"Un patrimonio que <em>renace</em>",
+    status_p1:"La restauración del portal de bronce menor de la Catedral de Troia está actualmente en curso. Los especialistas trabajan con técnicas de conservación de vanguardia para devolver a la Puerta de la Libertad su esplendor original.",
+    status_p2:"Esta sección se actualizará con fotos e informes sobre el avance de los trabajos de restauración.",
+    ph1_t:"Diagnóstico",ph1_d:"Evaluación del estado de conservación, mapeo de daños e investigaciones diagnósticas sobre la superficie de bronce.",
+    ph2_t:"Restauración",ph2_d:"Eliminación de oxidaciones, consolidación de pérdidas materiales y recuperación de superficies damasquinadas.",
+    ph3_t:"Restitución",ph3_d:"Protección final, reinstalación del portal y reapertura de la Catedral al público.",
+    gallery_note:"Imágenes de la puerta antes de la intervención de restauración · Actualizaciones próximamente"
+  }
+};
+
+function setLang(l){
+  const t=T[l]; if(!t) return;
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-k]').forEach(function(el){
+    var v=t[el.dataset.k]; if(v!==undefined) el.innerHTML=v;
+  });
+  document.querySelectorAll('.lb').forEach(function(b){
+    b.classList.toggle('active', b.textContent.toLowerCase()===l);
+  });
+}
+
+window.addEventListener('scroll',function(){
+  document.getElementById('wnav').classList.toggle('scrolled', window.scrollY > 60);
+});
+</script>
+</body>
+</html>

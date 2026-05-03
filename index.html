@@ -4,6 +4,8 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Porta della Libertà — Cattedrale di Troia</title>
+  <link rel="icon" type="image/jpeg" href="img/troiana.jpg"/>
+  <link rel="apple-touch-icon" href="img/troiana.jpg"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -235,6 +237,7 @@
     <li><a href="#restauro" data-k="nav_re">Restauro</a></li>
     <li><a href="scheda.html" data-k="nav_sc">Scheda informativa</a></li>
     <li><a href="sponsor.html" data-k="nav_sp">Sponsor</a></li>
+    <li><a href="wip.html" data-k="nav_wip">Lavori in Corso</a></li>
   </ul>
   <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -499,7 +502,7 @@ window.addEventListener('scroll', function(){
 // Translations
 const T={
   it:{
-    nav_op:"L'Opera",nav_is:"Iscrizione",nav_ve:"Vescovi",nav_re:"Restauro",nav_sc:"Scheda informativa",nav_sp:"Sponsor",
+    nav_op:"L'Opera",nav_is:"Iscrizione",nav_ve:"Vescovi",nav_re:"Restauro",nav_sc:"Scheda informativa",nav_sp:"Sponsor",nav_wip:"Lavori in Corso",
     hero_ey:"Luoghi del Cuore FAI · 2026",
     hero_h1:"Porta della <em>Libertà</em>",
     hero_loc:"Cattedrale di Troia · Portale Bronzeo Minore",
@@ -531,7 +534,7 @@ const T={
     ft_sp:"Con il sostegno di",ft_r:"Cattedrale di Troia · Foggia, Puglia<br>Portale Bronzeo Minore — Porta della Libertà",
   },
   en:{
-    nav_op:"The Work",nav_is:"Inscription",nav_ve:"Bishops",nav_re:"Restoration",nav_sc:"Information Sheet",nav_sp:"Sponsors",
+    nav_op:"The Work",nav_is:"Inscription",nav_ve:"Bishops",nav_re:"Restoration",nav_sc:"Information Sheet",nav_sp:"Sponsors",nav_wip:"Work in Progress",
     hero_ey:"Luoghi del Cuore FAI · 2026",
     hero_h1:"The Gate of <em>Freedom</em>",
     hero_loc:"Cathedral of Troia · Minor Bronze Portal",
@@ -563,7 +566,7 @@ const T={
     ft_sp:"With the support of",ft_r:"Cathedral of Troia · Foggia, Apulia<br>Minor Bronze Portal — Gate of Freedom",
   },
   fr:{
-    nav_op:"L'Œuvre",nav_is:"Inscription",nav_ve:"Évêques",nav_re:"Restauration",nav_sc:"Fiche informative",nav_sp:"Sponsors",
+    nav_op:"L'Œuvre",nav_is:"Inscription",nav_ve:"Évêques",nav_re:"Restauration",nav_sc:"Fiche informative",nav_sp:"Sponsors",nav_wip:"Travaux en Cours",
     hero_ey:"Luoghi del Cuore FAI · 2026",
     hero_h1:"La Porte de la <em>Liberté</em>",
     hero_loc:"Cathédrale de Troie · Portail de Bronze Mineur",
@@ -595,7 +598,7 @@ const T={
     ft_sp:"Avec le soutien de",ft_r:"Cathédrale de Troie · Foggia, Pouilles<br>Portail de Bronze Mineur — Porte de la Liberté",
   },
   de:{
-    nav_op:"Das Werk",nav_is:"Inschrift",nav_ve:"Bischöfe",nav_re:"Restaurierung",nav_sc:"Informationsblatt",nav_sp:"Sponsoren",
+    nav_op:"Das Werk",nav_is:"Inschrift",nav_ve:"Bischöfe",nav_re:"Restaurierung",nav_sc:"Informationsblatt",nav_sp:"Sponsoren",nav_wip:"Laufende Arbeiten",
     hero_ey:"Luoghi del Cuore FAI · 2026",
     hero_h1:"Das Tor der <em>Freiheit</em>",
     hero_loc:"Kathedrale von Troia · Kleines Bronzeportal",
@@ -627,7 +630,7 @@ const T={
     ft_sp:"Mit Unterstützung von",ft_r:"Kathedrale von Troia · Foggia, Apulien<br>Kleines Bronzeportal — Tor der Freiheit",
   },
   es:{
-    nav_op:"La Obra",nav_is:"Inscripción",nav_ve:"Obispos",nav_re:"Restauración",nav_sc:"Ficha informativa",nav_sp:"Patrocinadores",
+    nav_op:"La Obra",nav_is:"Inscripción",nav_ve:"Obispos",nav_re:"Restauración",nav_sc:"Ficha informativa",nav_sp:"Patrocinadores",nav_wip:"Trabajos en Curso",
     hero_ey:"Luoghi del Cuore FAI · 2026",
     hero_h1:"La Puerta de la <em>Libertad</em>",
     hero_loc:"Catedral de Troia · Portal Menor de Bronce",

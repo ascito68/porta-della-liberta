@@ -96,19 +96,11 @@ quotaplan_cfg : dialog {
     : boxed_column {
       label = " Tipo di quota ";
 
-      : radio_column {
-        : radio_button {
-          key   = "k_type_lin";
-          label = "Solo lineari  (DIMLINEAR)";
-        }
-        : radio_button {
-          key   = "k_type_ali";
-          label = "Solo allineate  (DIMALIGNED)";
-        }
-        : radio_button {
-          key   = "k_type_both";
-          label = "Lineari  +  Allineate";
-        }
+      : radio_group {
+        key = "k_dimtype";
+        : radio_button { label = "Solo lineari  (DIMLINEAR)"; }
+        : radio_button { label = "Solo allineate  (DIMALIGNED)"; }
+        : radio_button { label = "Lineari  +  Allineate"; }
       }
     }
   }

@@ -73,10 +73,11 @@
          (set_tile "k_minseg" (rtos *QP:MINSEG* 2 3))
          (set_tile "k_south"  (if *QP:SOUTH* "1" "0"))
          (set_tile "k_west"   (if *QP:WEST*  "1" "0"))
+         ; radio_group: 0=lineari 1=allineate 2=entrambe
          (cond
-           ((= *QP:DIMTYPE* "L") (set_tile "k_type_lin"  "1"))
-           ((= *QP:DIMTYPE* "A") (set_tile "k_type_ali"  "1"))
-           (t                    (set_tile "k_type_both" "1")))
+           ((= *QP:DIMTYPE* "L") (set_tile "k_dimtype" "0"))
+           ((= *QP:DIMTYPE* "A") (set_tile "k_dimtype" "1"))
+           (t                    (set_tile "k_dimtype" "2")))
          (setq res (start_dialog))
          (if (= res 1) (qp:read-dialog))
          (unload_dialog dcl-id)
@@ -219,10 +220,11 @@
   (if (and tmp (> tmp 0)) (setq *QP:MINSEG* tmp))
   (setq *QP:SOUTH* (= (get_tile "k_south") "1"))
   (setq *QP:WEST*  (= (get_tile "k_west")  "1"))
+  ; radio_group: 0=lineari 1=allineate 2=entrambe
   (cond
-    ((= (get_tile "k_type_lin")  "1") (setq *QP:DIMTYPE* "L"))
-    ((= (get_tile "k_type_ali")  "1") (setq *QP:DIMTYPE* "A"))
-    ((= (get_tile "k_type_both") "1") (setq *QP:DIMTYPE* "B"))))
+    ((= (get_tile "k_dimtype") "0") (setq *QP:DIMTYPE* "L"))
+    ((= (get_tile "k_dimtype") "1") (setq *QP:DIMTYPE* "A"))
+    (t                              (setq *QP:DIMTYPE* "B"))))
 
 
 ;;; ================================================================

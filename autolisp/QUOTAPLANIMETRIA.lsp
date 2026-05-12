@@ -196,16 +196,12 @@
 ;;;  HELPER - DIALOGO DCL
 ;;; ================================================================
 
-(defun qp:find-dcl (/ lsp i)
-  (setq lsp (findfile "QUOTAPLANIMETRIA.lsp"))
-  (if lsp
-    (progn
-      (setq i (strlen lsp))
-      (while (and (> i 0)
-                  (not (member (substr lsp i 1) '("/" "\\"))))
-        (setq i (1- i)))
-      (strcat (substr lsp 1 i) "QUOTAPLANIMETRIA.dcl"))
-    "QUOTAPLANIMETRIA.dcl"))
+(defun qp:find-dcl ()
+  ; Usa il percorso salvato al caricamento; fallback su findfile
+  (cond
+    (*QP:DCL-PATH* *QP:DCL-PATH*)
+    ((findfile "QUOTAPLANIMETRIA.dcl") (findfile "QUOTAPLANIMETRIA.dcl"))
+    (t "QUOTAPLANIMETRIA.dcl")))
 
 (defun qp:read-dialog (/ tmp col)
   (setq tmp (get_tile "k_layer"))
@@ -447,9 +443,31 @@
 
 
 ;;; ================================================================
+;;;  PERCORSO DCL  -  calcolato al momento del caricamento
+;;;  A runtime findfile non trova piu' il file perche' AutoCAD
+;;;  rimuove il percorso temporaneo dopo APPLOAD.
+;;;  Qui lo calcoliamo subito e lo salviamo in *QP:DCL-PATH*.
+;;; ================================================================
+(setq *QP:DCL-PATH* nil)
+(setq _qp_tmp (findfile "QUOTAPLANIMETRIA.lsp"))
+(if _qp_tmp
+  (progn
+    (setq _qp_i (strlen _qp_tmp))
+    (while (and (> _qp_i 0)
+                (not (member (substr _qp_tmp _qp_i 1) '("/" "\\"))))
+      (setq _qp_i (1- _qp_i)))
+    (setq *QP:DCL-PATH*
+      (strcat (substr _qp_tmp 1 _qp_i) "QUOTAPLANIMETRIA.dcl"))))
+(setq _qp_tmp nil  _qp_i nil)
+
+
+;;; ================================================================
 ;;;  MESSAGGIO DI CARICAMENTO
 ;;; ================================================================
 (princ "\n  [QUOTAPLANIMETRIA v2.1] Caricato.")
+(if *QP:DCL-PATH*
+  (princ (strcat "\n  DCL: " *QP:DCL-PATH*))
+  (princ "\n  DCL non trovato - impostare: (setq *QP:DCL-PATH* \"/percorso/QUOTAPLANIMETRIA.dcl\")"))
 (princ "\n  Comandi:  QP  (quota)   QPCONFIG  (configurazione)\n")
 (princ)
 

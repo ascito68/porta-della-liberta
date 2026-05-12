@@ -22,32 +22,21 @@
 ;;;    QP                (alias breve)
 ;;;    QUOTAPLANIMETRIA  (nome completo)
 ;;;
-;;;  CONFIGURAZIONE AVANZATA:
-;;;    Prima di eseguire il comando, è possibile sovrascrivere
-;;;    i valori predefiniti dalla console AutoLISP:
-;;;
-;;;      (setq *QP:OFF1* 3000.0)   ; cambia offset prima catena
-;;;      (setq *QP:OFF2* 1500.0)   ; cambia offset quota totale
-;;;      (setq *QP:LAYER* "DIM")   ; cambia nome layer
-;;;      (setq *QP:MINSEG* 200.0)  ; ignora segmenti < 200 mm
-;;;      (setq *QP:TOL* 2.0)       ; tolleranza H/V più permissiva
-;;;
 ;;; ================================================================
 
 ;;; ----------------------------------------------------------------
-;;;  VARIABILI GLOBALI DI CONFIGURAZIONE
-;;;  Inizializzate solo se non già definite (permette override)
+;;;  CONFIG  –  Modifica questi valori e ricarica il file
 ;;; ----------------------------------------------------------------
 
-(if (null *QP:TOL*)    (setq *QP:TOL*    1.0))    ; tolleranza per classificare H/V
-(if (null *QP:MINSEG*) (setq *QP:MINSEG* 100.0))  ; lunghezza minima segmento (mm)
-(if (null *QP:OFF1*)   (setq *QP:OFF1*   30.0))    ; offset dal bordo - catena singola
-(if (null *QP:OFF2*)   (setq *QP:OFF2*   40.0))    ; gap tra catena singola e quota totale
-(if (null *QP:LAYER*)  (setq *QP:LAYER*  "QUOTE")) ; layer destinazione quote
-(if (null *QP:COLOR*)  (setq *QP:COLOR*  3))       ; colore layer (3=verde ACI)
-(if (null *QP:STYLE*)  (setq *QP:STYLE*  ""))      ; stile dimcota ("" = stile corrente)
-(if (null *QP:SOUTH*)  (setq *QP:SOUTH*  T))       ; T = crea quote sotto (orizzontali)
-(if (null *QP:WEST*)   (setq *QP:WEST*   T))       ; T = crea quote a sinistra (verticali)
+(setq *QP:TOL*    1.0)     ; tolleranza per classificare H/V (unità disegno)
+(setq *QP:MINSEG* 100.0)   ; lunghezza minima segmento da quotare (mm)
+(setq *QP:OFF1*   30.0)    ; offset dal bordo alla prima catena di quote
+(setq *QP:OFF2*   40.0)    ; spazio tra prima catena e quota totale
+(setq *QP:LAYER*  "QUOTE") ; layer destinazione quote
+(setq *QP:COLOR*  3)       ; colore layer (3=verde ACI)
+(setq *QP:STYLE*  "")      ; stile dimcota ("" = stile corrente)
+(setq *QP:SOUTH*  T)       ; T = crea quote sotto (orizzontali)
+(setq *QP:WEST*   T)       ; T = crea quote a sinistra (verticali)
 
 ;;; ================================================================
 ;;;  COMANDO PRINCIPALE
@@ -87,7 +76,7 @@
   ;;; ----- Parametri interattivi con default -----
   (setq off1
     (progn
-      (initget 6)  ; no zero, no negative
+      (initget 6)
       (cond
         ((setq off1 (getdist
            (strcat "\nOffset prima catena di quote <"
@@ -167,10 +156,6 @@
   (princ (strcat "\n  Estensione Y: " (rtos ymin 2 0) " ... " (rtos ymax 2 0)))
 
   ;;; ===== QUOTE ORIZZONTALI =====
-  ;;; Raccoglie tutti i valori X dagli endpoint dei segmenti orizzontali,
-  ;;; li deduplicati e crea una catena di DIMLINEAR orizzontali sotto
-  ;;; la planimetria, più una quota totale ancora più in basso.
-
   (if (and segs-h *QP:SOUTH*)
     (progn
       (setq all-x (qp:endpoints-x segs-h))
@@ -180,18 +165,12 @@
           (princ (strcat "\n  Creazione "
                          (itoa (1- (length all-x)))
                          " quote orizzontali..."))
-          ;; Catena dimensioni individuali
           (qp:chain-h all-x ymin (- ymin off1))
-          ;; Quota totale (da xmin a xmax)
           (qp:dim-h (car all-x) ymin
                     (last all-x) (- ymin (+ off1 off2))))
         (princ "\n  [QP] Punti X insufficienti per quote orizzontali."))))
 
   ;;; ===== QUOTE VERTICALI =====
-  ;;; Raccoglie tutti i valori Y dagli endpoint dei segmenti verticali,
-  ;;; li deduplicati e crea una catena di DIMLINEAR verticali a sinistra
-  ;;; della planimetria, più una quota totale ancora più a sinistra.
-
   (if (and segs-v *QP:WEST*)
     (progn
       (setq all-y (qp:endpoints-y segs-v))
@@ -201,9 +180,7 @@
           (princ (strcat "\n  Creazione "
                          (itoa (1- (length all-y)))
                          " quote verticali..."))
-          ;; Catena dimensioni individuali
           (qp:chain-v all-y xmin (- xmin off1))
-          ;; Quota totale (da ymin a ymax)
           (qp:dim-v (car all-y) xmin
                     (last all-y) (- xmin (+ off1 off2))))
         (princ "\n  [QP] Punti Y insufficienti per quote verticali."))))
@@ -227,7 +204,6 @@
 ;;; ================================================================
 
 (defun qp:mk-layer (nm col)
-  ;;; Crea il layer solo se non esiste già
   (if (null (tblsearch "LAYER" nm))
     (entmake
       (list '(0 . "LAYER")
@@ -243,13 +219,11 @@
 ;;; ================================================================
 
 (defun qp:extract (ss / i en segs)
-  ;;; Itera sulla selezione ed estrae segmenti da ogni entità
   (setq segs nil  i 0)
   (while (< i (sslength ss))
     (setq en (ssname ss i))
     (setq segs (append segs (qp:ent->segs en)))
     (setq i (1+ i)))
-  ;;; Scarta i segmenti troppo corti (spigoli, nodi, etc.)
   (vl-remove-if
     '(lambda (s) (< (qp:len s) *QP:MINSEG*))
     segs))
@@ -263,13 +237,11 @@
     ((= tp "POLYLINE")   (qp:poly->segs en))
     (t nil)))
 
-;;; LINE: legge i codici 10 (start) e 11 (end)
 (defun qp:line->seg (ed / p1 p2)
   (setq p1 (cdr (assoc 10 ed))
         p2 (cdr (assoc 11 ed)))
   (list (car p1) (cadr p1) (car p2) (cadr p2)))
 
-;;; LWPOLYLINE: raccoglie i vertici (codice 10) e costruisce segmenti
 (defun qp:lwpoly->segs (ed / vs cls i p1 p2 segs)
   (setq vs   nil
         cls  (= (logand (cdr (assoc 70 ed)) 1) 1)
@@ -284,7 +256,6 @@
     (setq segs
       (cons (list (car p1) (cadr p1) (car p2) (cadr p2)) segs))
     (setq i (1+ i)))
-  ;;; Segmento di chiusura se la polilinea è chiusa
   (if cls
     (progn
       (setq p1 (last vs)  p2 (car vs))
@@ -292,7 +263,6 @@
         (cons (list (car p1) (cadr p1) (car p2) (cadr p2)) segs))))
   segs)
 
-;;; POLYLINE (formato legacy): naviga le sub-entità VERTEX
 (defun qp:poly->segs (en / ed sub cls segs fp pp pt)
   (setq ed   (entget en)
         cls  (= (logand (cdr (assoc 70 ed)) 1) 1)
@@ -329,11 +299,9 @@
             (list (nth 2 s) (nth 3 s))))
 
 (defun qp:horiz? (s)
-  ;;; Segmento orizzontale se |Δy| < tolleranza
   (< (abs (- (nth 3 s) (nth 1 s))) *QP:TOL*))
 
 (defun qp:vert? (s)
-  ;;; Segmento verticale se |Δx| < tolleranza
   (< (abs (- (nth 2 s) (nth 0 s))) *QP:TOL*))
 
 (defun qp:bbox (segs / xmn ymn xmx ymx s)
@@ -346,21 +314,18 @@
   (list xmn ymn xmx ymx))
 
 (defun qp:endpoints-x (segs / pts)
-  ;;; Raccoglie tutti i valori X (x1 e x2) dei segmenti
   (setq pts nil)
   (foreach s segs
     (setq pts (cons (nth 0 s) (cons (nth 2 s) pts))))
   pts)
 
 (defun qp:endpoints-y (segs / pts)
-  ;;; Raccoglie tutti i valori Y (y1 e y2) dei segmenti
   (setq pts nil)
   (foreach s segs
     (setq pts (cons (nth 1 s) (cons (nth 3 s) pts))))
   pts)
 
 (defun qp:dedup (vals tol / res v ok)
-  ;;; Rimuove valori numerici duplicati entro la tolleranza tol
   (setq res nil)
   (foreach v vals
     (setq ok t)
@@ -376,9 +341,6 @@
 ;;; ================================================================
 
 (defun qp:dim-h (x1 y x2 dim-y)
-  ;;; DIMLINEAR orizzontale: misura la distanza X tra x1 e x2.
-  ;;; La linea di quota viene posizionata a Y = dim-y.
-  ;;; Il punto DIM viene posto al centro in X per forza il tipo H.
   (if (> (abs (- x2 x1)) *QP:TOL*)
     (command "._DIMLINEAR"
              (list x1 y 0.0)
@@ -386,8 +348,6 @@
              (list (/ (+ x1 x2) 2.0) dim-y 0.0))))
 
 (defun qp:dim-v (y1 x y2 dim-x)
-  ;;; DIMLINEAR verticale: misura la distanza Y tra y1 e y2.
-  ;;; La linea di quota viene posizionata a X = dim-x.
   (if (> (abs (- y2 y1)) *QP:TOL*)
     (command "._DIMLINEAR"
              (list x y1 0.0)
@@ -395,14 +355,12 @@
              (list dim-x (/ (+ y1 y2) 2.0) 0.0))))
 
 (defun qp:chain-h (sorted-x y dim-y / i)
-  ;;; Crea una catena continua di quote orizzontali tra valori X consecutivi
   (setq i 0)
   (while (< i (1- (length sorted-x)))
     (qp:dim-h (nth i sorted-x) y (nth (1+ i) sorted-x) dim-y)
     (setq i (1+ i))))
 
 (defun qp:chain-v (sorted-y x dim-x / i)
-  ;;; Crea una catena continua di quote verticali tra valori Y consecutivi
   (setq i 0)
   (while (< i (1- (length sorted-y)))
     (qp:dim-v (nth i sorted-y) x (nth (1+ i) sorted-y) dim-x)
@@ -415,9 +373,8 @@
 
 (princ
   (strcat
-    "\n  [QUOTAPLANIMETRIA v1.0] Caricato con successo."
-    "\n  Comandi:  QP   oppure   QUOTAPLANIMETRIA"
-    "\n  Configurazione: (setq *QP:OFF1* 3000) (setq *QP:LAYER* \"DIM\")\n"))
+    "\n  [QUOTAPLANIMETRIA v1.0] Caricato."
+    "\n  Comandi:  QP   oppure   QUOTAPLANIMETRIA\n"))
 (princ)
 
 ;;; ================================================================

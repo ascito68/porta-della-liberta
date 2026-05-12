@@ -41,8 +41,8 @@
 
 (if (null *QP:TOL*)    (setq *QP:TOL*    1.0))    ; tolleranza per classificare H/V
 (if (null *QP:MINSEG*) (setq *QP:MINSEG* 100.0))  ; lunghezza minima segmento (mm)
-(if (null *QP:OFF1*)   (setq *QP:OFF1*   2500.0))  ; offset dal bordo - catena singola
-(if (null *QP:OFF2*)   (setq *QP:OFF2*   1200.0))  ; gap tra catena singola e quota totale
+(if (null *QP:OFF1*)   (setq *QP:OFF1*   30.0))    ; offset dal bordo - catena singola
+(if (null *QP:OFF2*)   (setq *QP:OFF2*   40.0))    ; gap tra catena singola e quota totale
 (if (null *QP:LAYER*)  (setq *QP:LAYER*  "QUOTE")) ; layer destinazione quote
 (if (null *QP:COLOR*)  (setq *QP:COLOR*  3))       ; colore layer (3=verde ACI)
 (if (null *QP:STYLE*)  (setq *QP:STYLE*  ""))      ; stile dimcota ("" = stile corrente)

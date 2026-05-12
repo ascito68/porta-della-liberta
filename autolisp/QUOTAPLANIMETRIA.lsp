@@ -34,8 +34,6 @@
 ;;;
 ;;; ================================================================
 
-(vl-load-com)
-
 ;;; ----------------------------------------------------------------
 ;;;  VARIABILI GLOBALI DI CONFIGURAZIONE
 ;;;  Inizializzate solo se non già definite (permette override)

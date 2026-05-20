@@ -71,10 +71,14 @@
 
     /* GALLERY PREVIEW */
     .gallery-preview{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--text);margin-top:64px}
-    .gp{overflow:hidden;height:220px;background:#111}
+    .gp{overflow:hidden;height:220px;background:#111;cursor:pointer}
     .gp img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
     .gp:hover img{transform:scale(1.05)}
     .gallery-note{text-align:center;margin-top:20px;font-size:12px;color:var(--light);font-style:italic}
+    .lb-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.92);align-items:center;justify-content:center;touch-action:none}
+    .lb-overlay.open{display:flex}
+    .lb-overlay img{max-width:92vw;max-height:92vh;object-fit:contain}
+    .lb-close{position:fixed;top:20px;right:24px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;z-index:1001;line-height:1}
 
     /* FOOTER */
     .page-footer{background:var(--green-dark);padding:24px 40px;text-align:center}
@@ -150,12 +154,17 @@
 
   <!-- GALLERY PREVIEW -->
   <div class="gallery-preview">
-    <div class="gp"><img src="img/g01.jpg" loading="lazy" alt="Protomi leonine"/></div>
-    <div class="gp"><img src="img/troiana.jpg" loading="lazy" alt="Pannello Troiana Civitas"/></div>
-    <div class="gp"><img src="img/insc1.jpg" loading="lazy" alt="Iscrizione"/></div>
+    <div class="gp" onclick="openLB('img/g01.jpg')"><img src="img/g01.jpg" loading="lazy" alt="Protomi leonine"/></div>
+    <div class="gp" onclick="openLB('img/troiana.jpg')"><img src="img/troiana.jpg" loading="lazy" alt="Pannello Troiana Civitas"/></div>
+    <div class="gp" onclick="openLB('img/insc1.jpg')"><img src="img/insc1.jpg" loading="lazy" alt="Iscrizione"/></div>
   </div>
   <p class="gallery-note" data-k="gallery_note">Immagini della porta prima dell'intervento di restauro · Aggiornamenti in arrivo</p>
 
+</div>
+
+<div class="lb-overlay" id="lb" onclick="closeLB(event)">
+  <button class="lb-close" onclick="closeLBNow()">✕</button>
+  <img id="lb-img" src="" alt=""/>
 </div>
 
 <div class="page-footer">
@@ -249,6 +258,23 @@ function setLang(l){
 
 window.addEventListener('scroll',function(){
   document.getElementById('wnav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+function openLB(src){
+  document.getElementById('lb-img').src = src;
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLBNow(){
+  document.getElementById('lb').classList.remove('open');
+  document.getElementById('lb-img').src = '';
+  document.body.style.overflow = '';
+}
+function closeLB(e){
+  if(e.target === document.getElementById('lb')) closeLBNow();
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeLBNow();
 });
 </script>
 </body>

@@ -96,6 +96,8 @@
 
     @media(max-width:768px){
       nav{padding:0 20px}
+      .nav-links{display:none}
+      .nav-hamburger{display:flex}
       .page-hero{height:280px}
       .page-hero-title{font-size:clamp(26px,7vw,44px)}
       .content{padding:48px 20px 60px}
@@ -124,10 +126,19 @@
 <body>
 
 <nav id="snav">
-  <a class="nav-back" href="index.html">
-    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-    <span data-k="back">Torna al sito</span>
-  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#opera" data-k="nav_op">L'Opera</a></li>
+    <li><a href="index.html#iscrizione" data-k="nav_is">Iscrizione</a></li>
+    <li><a href="index.html#vescovi" data-k="nav_ve">Vescovi</a></li>
+    <li><a href="index.html#restauro" data-k="nav_re">Restauro</a></li>
+    <li><a href="scheda.html" data-k="nav_sc">Scheda informativa</a></li>
+    <li><a href="sponsor.html" data-k="nav_sp" class="cur">Sponsor</a></li>
+    <li><a href="wip.html" data-k="nav_wip">Lavori in Corso</a></li>
+    <li><a href="credits.html" data-k="nav_cr">Credits</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
   <div class="nav-langs">
     <button class="lb active" onclick="setLang('it')">IT</button>
     <button class="lb" onclick="setLang('en')">EN</button>

@@ -52,6 +52,9 @@
     .sponsor-card img{max-height:72px;max-width:180px;width:auto;height:auto;object-fit:contain;margin-bottom:16px}
     .sponsor-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:4px}
     .sponsor-role{font-size:12px;color:var(--light);font-style:italic}
+    .sponsor-single{background:var(--white);padding:48px 32px;display:flex;justify-content:center;align-items:center}
+    .sponsor-single img{max-width:560px;width:100%;height:auto;object-fit:contain}
+    .sponsor-single a{display:flex;justify-content:center}
 
     /* PARTNER GRIDS */
     .partner-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border)}
@@ -79,10 +82,11 @@
       .content{padding:48px 20px 60px}
       .sponsor-section{margin-bottom:48px}
       .section-title{margin-bottom:20px}
-      /* 3 sponsor principali: una colonna ciascuno */
       .sponsor-grid{grid-template-columns:1fr}
       .sponsor-card{padding:28px 24px}
       .sponsor-card img{max-height:80px;max-width:220px}
+      .sponsor-single{padding:32px 20px}
+      .sponsor-single img{max-width:340px}
       /* coppie: mantieni 2 colonne */
       .partner-grid-2{grid-template-columns:1fr 1fr}
       /* triplette: una colonna ciascuno */
@@ -133,21 +137,10 @@
     <div class="section-label" data-k="s1_label">Sponsor Istituzionali</div>
     <div class="section-title" data-k="s1_title">Contributo Principale</div>
     <div class="section-rule"></div>
-    <div class="sponsor-grid">
-      <div class="sponsor-card">
-        <img src="img/L1.jpg" alt="FAI — Fondo Ambiente Italiano"/>
-        <div class="sponsor-name">FAI</div>
-        <div class="sponsor-role" data-k="r_fai">Fondo per l'Ambiente Italiano</div>
-      </div>
-      <a class="sponsor-card" href="https://fondoambiente.it/luoghi/porta-della-liberta-cattedrale-di-troia?luogoSalvato=" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
-        <img src="img/L2.jpeg" alt="I Luoghi del Cuore"/>
-        <div class="sponsor-name">I Luoghi del Cuore</div>
-        <div class="sponsor-role" data-k="r_ldc">XIII Edizione · 2025</div>
+    <div class="sponsor-single">
+      <a href="https://fondoambiente.it/luoghi/porta-della-liberta-cattedrale-di-troia?luogoSalvato=" target="_blank" rel="noopener">
+        <img src="img/logo-fai-intesa.png" alt="I Luoghi del Cuore · FAI Fondo per l'Ambiente Italiano · Intesa Sanpaolo"/>
       </a>
-      <div class="sponsor-card">
-        <img src="img/L3.jpeg" alt="Intesa Sanpaolo"/>
-        <div class="sponsor-name">Intesa Sanpaolo</div>
-      </div>
     </div>
   </div>
 

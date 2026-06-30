@@ -41,8 +41,10 @@
     /* HERO */
     .hero-full{position:relative;width:100%;height:100vh;min-height:580px;overflow:hidden}
     .hero-full>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,.3) 100%)}
-    .hero-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:0 64px 72px}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,.3) 100%);pointer-events:none}
+    .hero-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:0 64px 72px;pointer-events:none}
+    .hero-content .btn,.hero-content .btn-scheda{pointer-events:auto}
+    .hero-arrow{pointer-events:auto}
     .eyebrow{font-size:13px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;display:flex;align-items:center;gap:12px;text-shadow:0 1px 4px rgba(0,0,0,1),0 2px 12px rgba(0,0,0,1),0 0 24px rgba(0,0,0,.8)}
     .eyebrow::before{content:'';display:block;width:24px;height:2px;background:var(--orange)}
     .hero-title{font-family:'Playfair Display',serif;font-size:clamp(38px,5.5vw,76px);font-weight:700;line-height:1.03;color:#fff;margin-bottom:8px;text-shadow:0 2px 24px rgba(0,0,0,.5)}
@@ -250,7 +252,7 @@
     <li><a href="wip.html" data-k="nav_wip">Lavori in Corso</a></li>
     <li><a href="credits.html" data-k="nav_cr">Credits</a></li>
   </ul>
-  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
   <div class="nav-langs">
@@ -502,8 +504,23 @@ document.addEventListener('keydown', function(e){
 
 // Mobile menu
 function toggleMenu(){
-  document.getElementById('mobile-menu').classList.toggle('open');
+  var m = document.getElementById('mobile-menu');
+  m.classList.toggle('open');
+  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
 }
+(function(){
+  var btn = document.getElementById('hamburger');
+  var lastT = 0;
+  btn.addEventListener('touchend', function(e){
+    e.preventDefault();
+    lastT = Date.now();
+    toggleMenu();
+  });
+  btn.addEventListener('click', function(){
+    if(Date.now() - lastT < 600) return;
+    toggleMenu();
+  });
+})();
 
 // Nav scroll
 window.addEventListener('scroll', function(){
@@ -635,8 +652,8 @@ const T={
     v9r:"Stifter des Portals · 1127",
     s4_lb:"04 · Restaurierung",s4_h2:"Die <em>Schönheit</em> Zurückgeben",
     r_b1:"Oxidationsprozesse hatten Materialverluste und Risse verursacht, die die dekorierte Oberfläche und die Metallstruktur gefährdeten.",
-    r_b2:”Dank eines Beitrags von 24.000 Euro für das Restaurierungsprojekt von FAI und Intesa Sanpaolo im Rahmen des Programms „I Luoghi del Cuore” und einer Spendensammlung mit Beteiligung der Gemeinde, von Unternehmen und Privatpersonen ist die Restaurierung der Porta della Libertà heute Wirklichkeit.”,
-    wip_link:”Weiterlesen →”,
+    r_b2:"Dank eines Beitrags von 24.000 Euro für das Restaurierungsprojekt von FAI und Intesa Sanpaolo im Rahmen des Programms „I Luoghi del Cuore“ und einer Spendensammlung mit Beteiligung der Gemeinde, von Unternehmen und Privatpersonen ist die Restaurierung der Porta della Libertà heute Wirklichkeit.",
+    wip_link:"Weiterlesen →",
     pr1:"12. Ausgabe des Zensus · I Luoghi del Cuore",pr2:"Hauptbeitrag",pr3n:"Gemeinde Troia",pr3r:"Spendensammlung und Schirmherrschaft",
     gg1:"Löwenköpfe",gg2:"Löwenkopf",gg3:"Offene Tür",gg4:"Nachtansicht",gg5:"Fassade",gg6:"Kathedrale Flanke",gg7:"Türdetail",
     bq:"Eine noch formlose Gemeinschaft begann, ihre Identität als Volk um die Idee der <strong>Freiheit</strong> aufzubauen.",

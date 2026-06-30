@@ -189,14 +189,13 @@
       transition:all .3s;
     }
     /* MOBILE MENU */
-    html.menu-open{overflow:hidden;position:fixed;width:100%}
     .mobile-menu{
       display:none;
       position:fixed;top:0;right:0;bottom:0;left:0;z-index:9999;
       background:var(--green-dark);
       flex-direction:column;align-items:center;justify-content:center;
     }
-    .mobile-menu.open{display:-webkit-flex;display:flex}
+    .mobile-menu.open{display:flex}
     .mobile-menu-close{
       position:absolute;top:24px;right:24px;
       background:none;border:none;color:#fff;
@@ -503,9 +502,7 @@ document.addEventListener('keydown', function(e){
 
 // Mobile menu
 function toggleMenu(){
-  var menu = document.getElementById('mobile-menu');
-  var isOpen = menu.classList.toggle('open');
-  document.documentElement.classList.toggle('menu-open', isOpen);
+  document.getElementById('mobile-menu').classList.toggle('open');
 }
 
 // Nav scroll

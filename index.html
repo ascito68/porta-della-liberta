@@ -68,6 +68,8 @@
       transition:color .2s,border-color .2s;
     }
     .btn-scheda:hover{color:#fff;border-bottom-color:var(--orange)}
+    .btn-wip{display:inline-flex;align-items:center;gap:6px;color:var(--green);text-decoration:none;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-top:20px;border-bottom:1.5px solid var(--green);padding-bottom:2px;transition:color .2s,border-color .2s}
+    .btn-wip:hover{color:var(--orange);border-bottom-color:var(--orange)}
     @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
 
     /* GALLERY */
@@ -381,6 +383,7 @@
         <div class="srule" style="margin-bottom:24px"></div>
         <p class="rb" data-k="r_b1">Avanzati processi di ossidazione avevano prodotto perdite materiche e fessurazioni che mettevano in pericolo sia la superficie decorata sia la struttura metallica, rischiando di comprometterne la leggibilità.</p>
         <p class="rb" data-k="r_b2">Grazie al contributo di 24.000 euro destinato al progetto di restauro da FAI e Intesa Sanpaolo, nell'ambito del programma 'I Luoghi del Cuore', e a una raccolta fondi con la partecipazione del Comune, di aziende e privati cittadini, il restauro della Porta della Libertà è oggi realtà.</p>
+        <a href="wip.html" class="btn-wip" data-k="wip_link">Continua a leggere →</a>
         <div class="plist">
           <a class="pi" href="https://fondoambiente.it/luoghi/porta-della-liberta-cattedrale-di-troia?luogoSalvato" target="_blank" rel="noopener"><div><div class="pn">FAI – Fondo per l'Ambiente Italiano</div><div class="pd" data-k="pr1">XII edizione censimento I Luoghi del Cuore</div></div></a>
         </div>
@@ -536,6 +539,7 @@ const T={
     s4_lb:"04 · Restauro",s4_h2:"Restituire la <em>Bellezza</em>",
     r_b1:"Avanzati processi di ossidazione avevano prodotto perdite materiche e fessurazioni che mettevano in pericolo sia la superficie decorata sia la struttura metallica, rischiando di comprometterne la leggibilità.",
     r_b2:"Grazie al contributo di 24.000 euro destinato al progetto di restauro da FAI e Intesa Sanpaolo, nell'ambito del programma 'I Luoghi del Cuore', e a una raccolta fondi con la partecipazione del Comune, di aziende e privati cittadini, il restauro della Porta della Libertà è oggi realtà.",
+    wip_link:"Continua a leggere →",
     pr1:"XII edizione censimento I Luoghi del Cuore",pr2:"Contributo principale",pr3n:"Comune di Troia",pr3r:"Raccolta fondi e patrocinio",
     gg1:"Protomi leonine",gg2:"Protome singola",gg3:"Porta aperta",gg4:"Notturno",gg5:"Facciata",gg6:"Fianco della Cattedrale",gg7:"Dettaglio porta",
     bq:"Un aggregato ancora informe di uomini iniziò a costruire la propria identità di popolo intorno all'idea di <strong>libertà</strong> come valore da coltivare e difendere.",
@@ -568,6 +572,7 @@ const T={
     s4_lb:"04 · Restoration",s4_h2:"Restoring <em>Beauty</em>",
     r_b1:"Advanced oxidation had caused material losses and cracks endangering both the decorated surface and the metal structure.",
     r_b2:"Thanks to a contribution of €24,000 dedicated to the restoration project by FAI and Intesa Sanpaolo, as part of the 'I Luoghi del Cuore' programme, and to a fundraising campaign with the participation of the Municipality, businesses and private citizens, the restoration of the Porta della Libertà is now a reality.",
+    wip_link:"Read more →",
     pr1:"12th census edition · I Luoghi del Cuore",pr2:"Main sponsor",pr3n:"Municipality of Troia",pr3r:"Fundraising and patronage",
     gg1:"Lion heads",gg2:"Single lion head",gg3:"Open door",gg4:"Night view",gg5:"Facade",gg6:"Cathedral flank",gg7:"Door detail",
     bq:"A still formless gathering of people began to build its identity as a community around the idea of <strong>freedom</strong> as a value to cultivate and defend.",
@@ -600,6 +605,7 @@ const T={
     s4_lb:"04 · Restauration",s4_h2:"Rendre sa <em>Beauté</em>",
     r_b1:"Des processus d'oxydation avaient provoqué des pertes matérielles et des fissures mettant en danger la surface décorée et la structure métallique.",
     r_b2:"Grâce à une contribution de 24 000 euros destinée au projet de restauration par le FAI et Intesa Sanpaolo, dans le cadre du programme « I Luoghi del Cuore », et à une collecte de fonds avec la participation de la Commune, d'entreprises et de citoyens, la restauration de la Porte de la Liberté est aujourd'hui une réalité.",
+    wip_link:"Lire la suite →",
     pr1:"12e édition du recensement · I Luoghi del Cuore",pr2:"Contribution principale",pr3n:"Commune de Troie",pr3r:"Collecte de fonds et patronage",
     gg1:"Têtes de lion",gg2:"Tête de lion",gg3:"Porte ouverte",gg4:"Vue nocturne",gg5:"Façade",gg6:"Flanc cathédrale",gg7:"Détail de la porte",
     bq:"Un agrégat encore informe d'hommes commença à construire son identité de peuple autour de l'idée de <strong>liberté</strong> comme valeur à cultiver et à défendre.",
@@ -631,7 +637,8 @@ const T={
     v9r:"Stifter des Portals · 1127",
     s4_lb:"04 · Restaurierung",s4_h2:"Die <em>Schönheit</em> Zurückgeben",
     r_b1:"Oxidationsprozesse hatten Materialverluste und Risse verursacht, die die dekorierte Oberfläche und die Metallstruktur gefährdeten.",
-    r_b2:"Dank eines Beitrags von 24.000 Euro für das Restaurierungsprojekt von FAI und Intesa Sanpaolo im Rahmen des Programms „I Luoghi del Cuore“ und einer Spendensammlung mit Beteiligung der Gemeinde, von Unternehmen und Privatpersonen ist die Restaurierung der Porta della Libertà heute Wirklichkeit.",
+    r_b2:”Dank eines Beitrags von 24.000 Euro für das Restaurierungsprojekt von FAI und Intesa Sanpaolo im Rahmen des Programms „I Luoghi del Cuore” und einer Spendensammlung mit Beteiligung der Gemeinde, von Unternehmen und Privatpersonen ist die Restaurierung der Porta della Libertà heute Wirklichkeit.”,
+    wip_link:”Weiterlesen →”,
     pr1:"12. Ausgabe des Zensus · I Luoghi del Cuore",pr2:"Hauptbeitrag",pr3n:"Gemeinde Troia",pr3r:"Spendensammlung und Schirmherrschaft",
     gg1:"Löwenköpfe",gg2:"Löwenkopf",gg3:"Offene Tür",gg4:"Nachtansicht",gg5:"Fassade",gg6:"Kathedrale Flanke",gg7:"Türdetail",
     bq:"Eine noch formlose Gemeinschaft begann, ihre Identität als Volk um die Idee der <strong>Freiheit</strong> aufzubauen.",
@@ -664,6 +671,7 @@ const T={
     s4_lb:"04 · Restauración",s4_h2:"Devolver la <em>Belleza</em>",
     r_b1:"Los procesos de oxidación habían producido pérdidas materiales y grietas que ponían en peligro la superficie decorada y la estructura metálica.",
     r_b2:"Gracias a una aportación de 24.000 euros destinada al proyecto de restauración por FAI e Intesa Sanpaolo, en el marco del programa 'I Luoghi del Cuore', y a una recaudación de fondos con la participación del Ayuntamiento, empresas y ciudadanos, la restauración de la Porta della Libertà es hoy una realidad.",
+    wip_link:"Seguir leyendo →",
     pr1:"12.ª edición del censo · I Luoghi del Cuore",pr2:"Contribución principal",pr3n:"Ayuntamiento de Troia",pr3r:"Recaudación y patrocinio",
     gg1:"Cabezas de león",gg2:"Cabeza de león",gg3:"Puerta abierta",gg4:"Nocturno",gg5:"Fachada",gg6:"Flanco catedral",gg7:"Detalle puerta",
     bq:"Un conjunto aún informe de hombres comenzó a construir su identidad de pueblo en torno a la idea de <strong>libertad</strong> como valor que cultivar y defender.",

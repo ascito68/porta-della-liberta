@@ -190,10 +190,11 @@
     /* MOBILE MENU */
     .mobile-menu{
       display:none;
-      position:fixed;inset:0;z-index:300;
+      position:fixed;top:0;right:0;bottom:0;left:0;z-index:300;
       background:var(--green-dark);
       flex-direction:column;align-items:center;justify-content:center;
       gap:0;
+      -webkit-overflow-scrolling:touch;
     }
     .mobile-menu.open{display:flex}
     .mobile-menu-close{
@@ -504,7 +505,7 @@ document.addEventListener('keydown', function(e){
 function toggleMenu(){
   var menu = document.getElementById('mobile-menu');
   var isOpen = menu.classList.toggle('open');
-  document.body.style.overflow = isOpen ? 'hidden' : '';
+  if(isOpen) lockScroll(); else unlockScroll();
 }
 
 // Nav scroll

@@ -100,6 +100,22 @@
     .page-footer a{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
     .page-footer a:hover{color:#fff}
 
+    /* ARTICOLO */
+    .article-block{background:var(--white);padding:52px 40px;margin:64px -40px 0;border-top:3px solid var(--orange)}
+    .article-eyebrow{font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+    .article-date{font-size:12px;color:var(--light);letter-spacing:.05em;margin-bottom:24px}
+    .article-title{font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,32px);font-weight:700;color:var(--text);line-height:1.15;margin-bottom:8px}
+    .article-rule{width:40px;height:3px;background:var(--orange);margin-bottom:28px}
+    .article-intro{font-size:15px;line-height:1.95;color:var(--muted);margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--border)}
+    .article-h3{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--text);margin-bottom:12px;margin-top:36px}
+    .article-p{font-size:15px;line-height:1.9;color:var(--muted)}
+    .article-img{margin:20px 0;overflow:hidden;background:#f0f0ee;cursor:pointer;max-height:460px}
+    .article-img img{width:100%;max-height:460px;object-fit:cover;object-position:center top;display:block;transition:transform .6s ease}
+    .article-img:hover img{transform:scale(1.02)}
+    .article-img-full{margin:0 -40px 32px;height:380px;overflow:hidden;background:#111;cursor:pointer}
+    .article-img-full img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .6s ease}
+    .article-img-full:hover img{transform:scale(1.02)}
+
     @media(max-width:768px){
       nav{padding:0 20px}
       .nav-links{display:none}
@@ -110,6 +126,8 @@
       .gallery-preview{grid-template-columns:1fr 1fr}
       .gp{height:180px}
       .project-block{padding:40px 20px;margin:0 -20px}
+      .article-block{padding:40px 20px;margin:48px -20px 0}
+      .article-img-full{margin:0 -20px 24px;height:240px}
     }
     @media(max-width:480px){
       .gallery-preview{grid-template-columns:1fr}
@@ -198,6 +216,70 @@
   </div>
   <p class="gallery-note" data-k="gallery_note">Immagini della porta prima dell'intervento di restauro · Aggiornamenti in arrivo</p>
 
+  <!-- ARTICOLO: CONVEGNO DI PRESENTAZIONE -->
+  <div class="article-block">
+    <div class="article-eyebrow" data-k="conv_tag">Aggiornamento</div>
+    <div class="article-date" data-k="conv_date">1 luglio 2026 · ore 18:30</div>
+    <h2 class="article-title" data-k="conv_title">La Porta della Libertà si racconta: il convegno di presentazione del restauro</h2>
+    <div class="article-rule"></div>
+    <p class="article-intro" data-k="conv_intro">Una porta che parla di bronzo e di libertà, di fede e di storia, di identità e di futuro. La presentazione ufficiale del progetto di restauro della Porta della Libertà ha riunito a Troia istituzioni, esperti e cittadini intorno all'opera che Oderisio da Benevento scolpì nel 1127 per la Cattedrale della città. Un pomeriggio di voci diverse, ciascuna capace di illuminare un aspetto diverso di un bene che appartiene a tutti.</p>
+
+    <div class="article-img-full" onclick="openLB('img/convegno-sala.jpg')">
+      <img src="img/convegno-sala.jpg" loading="lazy" alt="Convegno di presentazione del restauro"/>
+    </div>
+
+    <h3 class="article-h3" data-k="conv_s1_t">Il valore storico-artistico: la parola alla promotrice</h3>
+    <p class="article-p" data-k="conv_s1_p">Ad aprire i lavori è stata la prof.ssa Mina De Santis, promotrice dell'iniziativa e principale artefice del percorso che ha condotto la Porta della Libertà fino al censimento FAI dei Luoghi del Cuore. De Santis ha ripercorso la storia dell'opera — i ventiquattro pannelli in bronzo ageminato, i sei registri orizzontali, l'iscrizione che celebra la lotta del popolo troiano contro Ruggero II — restituendone la straordinaria densità storica, artistica e culturale. Una fonte irripetibile che custodisce la data di fondazione della città e la cronotassi episcopale dei suoi primi centotto anni.</p>
+    <div class="article-img" onclick="openLB('img/convegno-de-santis.jpg')">
+      <img src="img/convegno-de-santis.jpg" loading="lazy" alt="Prof.ssa Mina De Santis"/>
+    </div>
+
+    <h3 class="article-h3" data-k="conv_s2_t">Una soglia tra due mondi: il significato catecumenale</h3>
+    <p class="article-p" data-k="conv_s2_p">Don Paolo Paolella, in rappresentanza della Chiesa Troiana, ha offerto una lettura spirituale e simbolica dell'opera. La porta, ha spiegato, non è solo monumento: è soglia. Il passaggio fisico attraverso i suoi battenti di bronzo richiama il cammino catecumenale, il transito dalla schiavitù alla libertà, dalla tenebra alla luce. Un messaggio che il Medioevo ha saputo fondere in materia e che continua, a quasi novecento anni di distanza, a parlare a chi varca la cattedrale.</p>
+    <div class="article-img" onclick="openLB('img/convegno-paolella.jpg')">
+      <img src="img/convegno-paolella.jpg" loading="lazy" alt="Don Paolo Paolella"/>
+    </div>
+
+    <h3 class="article-h3" data-k="conv_s3_t">Il contributo del Comune e il futuro del territorio</h3>
+    <p class="article-p" data-k="conv_s3_p">Francesco Caserta, Sindaco di Troia, ha portato la voce dell'amministrazione comunale che ha affiancato il progetto sin dalle prime fasi, contribuendo alla raccolta fondi e garantendo il patrocinio istituzionale. Caserta ha sottolineato come il restauro della Porta della Libertà si inserisca in una visione più ampia di valorizzazione del territorio, anticipando una delle iniziative più attese: il progetto del nuovo Museo Civico di Troia, che si propone di raccogliere e rendere accessibile al pubblico il patrimonio storico, artistico e documentale della città. Un segnale concreto di come la tutela del passato e l'investimento sul futuro possano procedere insieme.</p>
+    <div class="article-img" onclick="openLB('img/convegno-caserta.jpg')">
+      <img src="img/convegno-caserta.jpg" loading="lazy" alt="Sindaco Francesco Caserta"/>
+    </div>
+
+    <h3 class="article-h3" data-k="conv_s4_t">Il FAI e la tutela del patrimonio pugliese</h3>
+    <p class="article-p" data-k="conv_s4_p">Il prof. Saverio Russo, presidente regionale del FAI, ha portato la voce dell'associazione che ha contribuito in modo determinante al finanziamento del restauro. Russo ha ricordato l'impegno decennale del FAI nella tutela del patrimonio culturale pugliese e ha sottolineato come la mobilitazione spontanea dei cittadini intorno alla Porta della Libertà — votata tra i Luoghi del Cuore nella XII edizione del censimento — rappresenti un esempio virtuoso di come la partecipazione popolare possa tradursi in azione concreta e risultati tangibili.</p>
+    <div class="article-img" onclick="openLB('img/convegno-russo.jpg')">
+      <img src="img/convegno-russo.jpg" loading="lazy" alt="Prof. Saverio Russo"/>
+    </div>
+
+    <h3 class="article-h3" data-k="conv_s5_t">Dai voti al cantiere: il meccanismo dei Luoghi del Cuore</h3>
+    <p class="article-p" data-k="conv_s5_p">L'arch. Beniamino Attoma Pepe, responsabile regionale per il censimento dei Luoghi del Cuore in Puglia, ha illustrato il percorso che trasforma i voti dei cittadini in finanziamenti reali. Negli anni, ha spiegato, il programma ha permesso di tutelare e valorizzare decine di beni in tutto il territorio nazionale. La Puglia si conferma tra le regioni più attive, e il caso della Porta della Libertà ne è una dimostrazione concreta: dalla raccolta firme alla firma del contratto di restauro, passando per il contributo di FAI e Intesa Sanpaolo e il supporto del Comune e dei privati.</p>
+    <div class="article-img" onclick="openLB('img/convegno-attoma-pepe.jpg')">
+      <img src="img/convegno-attoma-pepe.jpg" loading="lazy" alt="Arch. Beniamino Attoma Pepe"/>
+    </div>
+
+    <h3 class="article-h3" data-k="conv_s6_t">La Soprintendenza: scienza, tutela e didattica</h3>
+    <p class="article-p" data-k="conv_s6_p">La dott.ssa Gaia Caula, funzionaria restauratrice della SABAP per le province di BAT e Foggia, ha illustrato il ruolo della Soprintendenza nel processo di tutela dell'opera. Oltre all'aspetto conservativo, Caula ha posto l'accento su una dimensione spesso trascurata: il valore didattico e scientifico del restauro. Un intervento di questa portata non si limita a restituire alla porta il suo aspetto originario, ma produce conoscenza, documentazione e metodo — un patrimonio di dati destinato a diventare riferimento per il restauro di opere analoghe nel futuro.</p>
+    <div class="article-img" onclick="openLB('img/convegno-caula.jpg')">
+      <img src="img/convegno-caula.jpg" loading="lazy" alt="Dott.ssa Gaia Caula"/>
+    </div>
+
+    <h3 class="article-h3" data-k="conv_s7_t">Dal degrado alla rinascita: i dettagli tecnici</h3>
+    <p class="article-p" data-k="conv_s7_p">A chiudere la serie di interventi è stata la dott.ssa Loredana La Torre, progettista ed esecutrice del restauro, che ha guidato i presenti in un percorso tecnico rigoroso e appassionante. Partendo dalla documentazione dello stato di degrado — avanzati processi di ossidazione, perdite materiche, fessurazioni nella struttura metallica — ha illustrato le lavorazioni necessarie per la conservazione e il consolidamento delle superfici bronzee. Un intervento complesso, condotto con metodo e competenza, che restituirà alla città e al mondo uno dei più straordinari esempi di arte medievale del Mezzogiorno d'Italia.</p>
+    <div class="article-img" onclick="openLB('img/convegno-la-torre.jpg')">
+      <img src="img/convegno-la-torre.jpg" loading="lazy" alt="Dott.ssa Loredana La Torre"/>
+    </div>
+
+    <h3 class="article-h3" data-k="conv_s8_t">Il gesto che inaugura i lavori</h3>
+    <p class="article-p" data-k="conv_s8_p">A chiudere il convegno è stato Alessandro Altobelli, in rappresentanza di ECEPLAST, tra i cofinanziatori privati che hanno reso possibile il restauro. Altobelli ha rivolto un ringraziamento sentito alla prof.ssa De Santis per la tenacia e la visione con cui ha condotto l'iniziativa, portando una comunità intera a mobilitarsi attorno a un'opera che rischiava di essere dimenticata. Il suo intervento si è concluso con un gesto carico di significato: la chiusura formale della porta, atto simbolico e ufficiale che ha inaugurato i lavori di restauro. Una porta che si chiude perché possa tornare a raccontare la propria storia.</p>
+    <div class="article-img" onclick="openLB('img/convegno-altobelli.jpg')">
+      <img src="img/convegno-altobelli.jpg" loading="lazy" alt="Alessandro Altobelli — ECEPLAST"/>
+    </div>
+    <div class="article-img" onclick="openLB('img/convegno-chiusura-porta.jpg')">
+      <img src="img/convegno-chiusura-porta.jpg" loading="lazy" alt="La chiusura formale della Porta della Libertà"/>
+    </div>
+  </div>
+
 </div>
 
 <div class="lb-overlay" id="lb" onclick="closeLB(event)">
@@ -244,7 +326,27 @@ const T = {
     ph1_t:"Diagnosi",ph1_d:"Analisi dello stato di conservazione, mappatura dei degradi e indagini diagnostiche sulla superficie bronzea.",
     ph2_t:"Restauro",ph2_d:"Rimozione delle ossidazioni, consolidamento delle perdite materiche.",
     ph3_t:"Restituzione",ph3_d:"Protezione finale, reinstallazione del portale e riapertura al pubblico della Cattedrale.",
-    gallery_note:"Immagini della porta prima dell'intervento di restauro · Aggiornamenti in arrivo"
+    gallery_note:"Immagini della porta prima dell'intervento di restauro · Aggiornamenti in arrivo",
+    conv_tag:"Aggiornamento",
+    conv_date:"1 luglio 2026 · ore 18:30",
+    conv_title:"La Porta della Libertà si racconta: il convegno di presentazione del restauro",
+    conv_intro:"Una porta che parla di bronzo e di libertà, di fede e di storia, di identità e di futuro. La presentazione ufficiale del progetto di restauro della Porta della Libertà ha riunito a Troia istituzioni, esperti e cittadini intorno all'opera che Oderisio da Benevento scolpì nel 1127 per la Cattedrale della città. Un pomeriggio di voci diverse, ciascuna capace di illuminare un aspetto diverso di un bene che appartiene a tutti.",
+    conv_s1_t:"Il valore storico-artistico: la parola alla promotrice",
+    conv_s1_p:"Ad aprire i lavori è stata la prof.ssa Mina De Santis, promotrice dell'iniziativa e principale artefice del percorso che ha condotto la Porta della Libertà fino al censimento FAI dei Luoghi del Cuore. De Santis ha ripercorso la storia dell'opera — i ventiquattro pannelli in bronzo ageminato, i sei registri orizzontali, l'iscrizione che celebra la lotta del popolo troiano contro Ruggero II — restituendone la straordinaria densità storica, artistica e culturale. Una fonte irripetibile che custodisce la data di fondazione della città e la cronotassi episcopale dei suoi primi centotto anni.",
+    conv_s2_t:"Una soglia tra due mondi: il significato catecumenale",
+    conv_s2_p:"Don Paolo Paolella, in rappresentanza della Chiesa Troiana, ha offerto una lettura spirituale e simbolica dell'opera. La porta, ha spiegato, non è solo monumento: è soglia. Il passaggio fisico attraverso i suoi battenti di bronzo richiama il cammino catecumenale, il transito dalla schiavitù alla libertà, dalla tenebra alla luce. Un messaggio che il Medioevo ha saputo fondere in materia e che continua, a quasi novecento anni di distanza, a parlare a chi varca la cattedrale.",
+    conv_s3_t:"Il contributo del Comune e il futuro del territorio",
+    conv_s3_p:"Francesco Caserta, Sindaco di Troia, ha portato la voce dell'amministrazione comunale che ha affiancato il progetto sin dalle prime fasi, contribuendo alla raccolta fondi e garantendo il patrocinio istituzionale. Caserta ha sottolineato come il restauro della Porta della Libertà si inserisca in una visione più ampia di valorizzazione del territorio, anticipando una delle iniziative più attese: il progetto del nuovo Museo Civico di Troia, che si propone di raccogliere e rendere accessibile al pubblico il patrimonio storico, artistico e documentale della città. Un segnale concreto di come la tutela del passato e l'investimento sul futuro possano procedere insieme.",
+    conv_s4_t:"Il FAI e la tutela del patrimonio pugliese",
+    conv_s4_p:"Il prof. Saverio Russo, presidente regionale del FAI, ha portato la voce dell'associazione che ha contribuito in modo determinante al finanziamento del restauro. Russo ha ricordato l'impegno decennale del FAI nella tutela del patrimonio culturale pugliese e ha sottolineato come la mobilitazione spontanea dei cittadini intorno alla Porta della Libertà — votata tra i Luoghi del Cuore nella XII edizione del censimento — rappresenti un esempio virtuoso di come la partecipazione popolare possa tradursi in azione concreta e risultati tangibili.",
+    conv_s5_t:"Dai voti al cantiere: il meccanismo dei Luoghi del Cuore",
+    conv_s5_p:"L'arch. Beniamino Attoma Pepe, responsabile regionale per il censimento dei Luoghi del Cuore in Puglia, ha illustrato il percorso che trasforma i voti dei cittadini in finanziamenti reali. Negli anni, ha spiegato, il programma ha permesso di tutelare e valorizzare decine di beni in tutto il territorio nazionale. La Puglia si conferma tra le regioni più attive, e il caso della Porta della Libertà ne è una dimostrazione concreta: dalla raccolta firme alla firma del contratto di restauro, passando per il contributo di FAI e Intesa Sanpaolo e il supporto del Comune e dei privati.",
+    conv_s6_t:"La Soprintendenza: scienza, tutela e didattica",
+    conv_s6_p:"La dott.ssa Gaia Caula, funzionaria restauratrice della SABAP per le province di BAT e Foggia, ha illustrato il ruolo della Soprintendenza nel processo di tutela dell'opera. Oltre all'aspetto conservativo, Caula ha posto l'accento su una dimensione spesso trascurata: il valore didattico e scientifico del restauro. Un intervento di questa portata non si limita a restituire alla porta il suo aspetto originario, ma produce conoscenza, documentazione e metodo — un patrimonio di dati destinato a diventare riferimento per il restauro di opere analoghe nel futuro.",
+    conv_s7_t:"Dal degrado alla rinascita: i dettagli tecnici",
+    conv_s7_p:"A chiudere la serie di interventi è stata la dott.ssa Loredana La Torre, progettista ed esecutrice del restauro, che ha guidato i presenti in un percorso tecnico rigoroso e appassionante. Partendo dalla documentazione dello stato di degrado — avanzati processi di ossidazione, perdite materiche, fessurazioni nella struttura metallica — ha illustrato le lavorazioni necessarie per la conservazione e il consolidamento delle superfici bronzee. Un intervento complesso, condotto con metodo e competenza, che restituirà alla città e al mondo uno dei più straordinari esempi di arte medievale del Mezzogiorno d'Italia.",
+    conv_s8_t:"Il gesto che inaugura i lavori",
+    conv_s8_p:"A chiudere il convegno è stato Alessandro Altobelli, in rappresentanza di ECEPLAST, tra i cofinanziatori privati che hanno reso possibile il restauro. Altobelli ha rivolto un ringraziamento sentito alla prof.ssa De Santis per la tenacia e la visione con cui ha condotto l'iniziativa, portando una comunità intera a mobilitarsi attorno a un'opera che rischiava di essere dimenticata. Il suo intervento si è concluso con un gesto carico di significato: la chiusura formale della porta, atto simbolico e ufficiale che ha inaugurato i lavori di restauro. Una porta che si chiude perché possa tornare a raccontare la propria storia."
   },
   en:{
     nav_op:"The Work",nav_is:"Inscription",nav_ve:"Bishops",nav_re:"Restoration",nav_sc:"Information Sheet",nav_sp:"Sponsors",nav_wip:"Work in Progress",nav_cr:"Credits",
@@ -264,7 +366,27 @@ const T = {
     ph1_t:"Diagnosis",ph1_d:"Assessment of conservation status, damage mapping and diagnostic investigations on the bronze surface.",
     ph2_t:"Restoration",ph2_d:"Removal of oxidation, consolidation of material losses.",
     ph3_t:"Return",ph3_d:"Final protection, reinstallation of the portal and reopening of the Cathedral to the public.",
-    gallery_note:"Images of the door before the restoration · Updates coming soon"
+    gallery_note:"Images of the door before the restoration · Updates coming soon",
+    conv_tag:"Update",
+    conv_date:"1 July 2026 · 6:30 pm",
+    conv_title:"The Gate of Freedom speaks: the presentation conference of the restoration",
+    conv_intro:"A door that speaks of bronze and freedom, of faith and history, of identity and future. The official presentation of the Gate of Freedom restoration project brought together institutions, experts and citizens in Troia around the work that Oderisio da Benevento carved in 1127 for the city's Cathedral. An afternoon of different voices, each capable of illuminating a different aspect of a heritage that belongs to everyone.",
+    conv_s1_t:"Historical and artistic value: the promoter speaks",
+    conv_s1_p:"Opening the proceedings was Prof. Mina De Santis, initiator of the project and principal architect of the journey that led the Gate of Freedom to the FAI Places of the Heart census. De Santis retraced the history of the work — the twenty-four damascened bronze panels, the six horizontal registers, the inscription celebrating the Troian people's struggle against Roger II — conveying its extraordinary historical, artistic and cultural density. An irreplaceable source, she recalled, that preserves the city's founding date and the episcopal sequence of its first one hundred and eight years.",
+    conv_s2_t:"A threshold between two worlds: the catechumenal meaning",
+    conv_s2_p:"Don Paolo Paolella, representing the Church of Troia, offered a spiritual and symbolic reading of the work. The door, he explained, is not merely a monument: it is a threshold. The physical passage through its bronze panels recalls the catechumenal journey, the transit from slavery to freedom, from darkness to light. A message that the Middle Ages succeeded in fusing into matter and which continues, nearly nine hundred years later, to speak to those who cross the cathedral's threshold.",
+    conv_s3_t:"The Municipality's contribution and the future of the territory",
+    conv_s3_p:"Francesco Caserta, Mayor of Troia, brought the voice of the municipal administration, which has supported the project since its earliest stages, contributing to the fundraising and providing institutional patronage. Caserta emphasised how the restoration of the Gate of Freedom fits into a broader vision for enhancing the territory, previewing one of the most eagerly awaited initiatives: the project for the new Civic Museum of Troia, which aims to gather and make accessible to the public the city's historical, artistic and documentary heritage. A concrete sign of how protecting the past and investing in the future can proceed hand in hand.",
+    conv_s4_t:"The FAI and the protection of Apulian heritage",
+    conv_s4_p:"Prof. Saverio Russo, FAI regional president, brought the voice of the association that made a decisive contribution to the restoration funding. Russo recalled the FAI's decade-long commitment to the protection of Apulian cultural heritage and underlined how the spontaneous mobilisation of citizens around the Gate of Freedom — voted among the Places of the Heart in the 12th edition of the census — represents a virtuous example of how popular participation can translate into concrete action and tangible results.",
+    conv_s5_t:"From votes to the building site: the Places of the Heart mechanism",
+    conv_s5_p:"Arch. Beniamino Attoma Pepe, regional coordinator for the Places of the Heart census in Puglia, illustrated the process that turns citizens' votes into real funding. Over the years, he explained, the programme has enabled the protection and enhancement of dozens of sites across the national territory. Puglia confirms itself as one of the most active regions, and the case of the Gate of Freedom is concrete proof: from the petition to the signing of the restoration contract, through the contribution of FAI and Intesa Sanpaolo and the support of the Municipality and private citizens.",
+    conv_s6_t:"The Superintendency: science, protection and education",
+    conv_s6_p:"Dr Gaia Caula, restoration officer at the SABAP for the provinces of BAT and Foggia, illustrated the role of the Superintendency in the process of protecting the work. Beyond the conservation aspect, Caula highlighted a dimension often overlooked: the educational and scientific value of the restoration. An intervention of this scale does not merely restore the door's appearance, but generates knowledge, documentation and methodology — a body of data destined to become a reference for the restoration of similar works in the future.",
+    conv_s7_t:"From deterioration to rebirth: the technical details",
+    conv_s7_p:"Closing the series of presentations was Dr Loredana La Torre, designer and executor of the restoration, who guided those present through a rigorous and compelling technical journey. Starting from the documentation of the deterioration — advanced oxidation processes, material losses, cracks in the metal structure — she illustrated the work required for the conservation and consolidation of the bronze surfaces. A complex intervention, carried out with method and expertise, which will restore to the city and the world one of the most extraordinary examples of medieval art in southern Italy.",
+    conv_s8_t:"The gesture that inaugurates the works",
+    conv_s8_p:"Closing the conference was Alessandro Altobelli, representing ECEPLAST, one of the private co-funders who made the restoration possible. Altobelli extended heartfelt thanks to Prof. De Santis for the tenacity and vision with which she led the initiative, bringing an entire community to rally around a work that risked being forgotten. His contribution concluded with a gesture laden with meaning: the formal closing of the door — a symbolic and official act that inaugurated the restoration works. A door that closes so that it may return to tell its own story."
   },
   fr:{
     nav_op:"L'Œuvre",nav_is:"Inscription",nav_ve:"Évêques",nav_re:"Restauration",nav_sc:"Fiche informative",nav_sp:"Sponsors",nav_wip:"Travaux en Cours",nav_cr:"Crédits",
@@ -284,7 +406,27 @@ const T = {
     ph1_t:"Diagnostic",ph1_d:"Évaluation de l'état de conservation, cartographie des dégradations et investigations diagnostiques sur la surface de bronze.",
     ph2_t:"Restauration",ph2_d:"Élimination des oxydations, consolidation des pertes matérielles.",
     ph3_t:"Restitution",ph3_d:"Protection finale, réinstallation du portail et réouverture de la Cathédrale au public.",
-    gallery_note:"Images de la porte avant l'intervention de restauration · Mises à jour à venir"
+    gallery_note:"Images de la porte avant l'intervention de restauration · Mises à jour à venir",
+    conv_tag:"Actualité",
+    conv_date:"1er juillet 2026 · 18h30",
+    conv_title:"La Porte de la Liberté se raconte: le colloque de présentation de la restauration",
+    conv_intro:"Une porte qui parle de bronze et de liberté, de foi et d'histoire, d'identité et d'avenir. La présentation officielle du projet de restauration de la Porte de la Liberté a réuni à Troie institutions, experts et citoyens autour de l'oeuvre qu'Oderisio da Benevento sculpta en 1127 pour la cathédrale de la ville. Un après-midi de voix différentes, chacune capable d'éclairer un aspect différent d'un bien qui appartient à tous.",
+    conv_s1_t:"La valeur historique et artistique: la parole à la promotrice",
+    conv_s1_p:"C'est la prof. Mina De Santis, promotrice de l'initiative et principale artisane du parcours qui a conduit la Porte de la Liberté jusqu'au recensement FAI des Lieux du Coeur, qui a ouvert les travaux. De Santis a retracé l'histoire de l'oeuvre — les vingt-quatre panneaux en bronze damasquiné, les six registres horizontaux, l'inscription qui célèbre la lutte du peuple troyen contre Roger II — en restituant son extraordinaire densité historique, artistique et culturelle. Une source irremplaçable, a-t-elle rappelé, qui conserve la date de fondation de la ville et la chronotaxie épiscopale de ses cent huit premières années.",
+    conv_s2_t:"Un seuil entre deux mondes: la signification catéchuménale",
+    conv_s2_p:"Don Paolo Paolella, représentant l'Eglise de Troie, a offert une lecture spirituelle et symbolique de l'oeuvre. La porte, a-t-il expliqué, n'est pas seulement un monument: c'est un seuil. Le passage physique à travers ses vantaux de bronze évoque le cheminement catéchuménal, le transit de l'esclavage à la liberté, des ténèbres à la lumière. Un message que le Moyen Age a su fondre dans la matière et qui continue, à près de neuf cents ans de distance, à parler à celui qui franchit le seuil de la cathédrale.",
+    conv_s3_t:"La contribution de la Commune et l'avenir du territoire",
+    conv_s3_p:"Francesco Caserta, Maire de Troie, a porté la voix de l'administration municipale qui a soutenu le projet dès ses premières phases, contribuant à la collecte de fonds et apportant le patronage institutionnel. Caserta a souligné comment la restauration de la Porte de la Liberté s'inscrit dans une vision plus large de valorisation du territoire, en annonçant l'une des initiatives les plus attendues: le projet du nouveau Musée Civique de Troie, qui vise à rassembler et à rendre accessible au public le patrimoine historique, artistique et documentaire de la ville. Un signe concret que la protection du passé et l'investissement dans l'avenir peuvent aller de pair.",
+    conv_s4_t:"Le FAI et la protection du patrimoine des Pouilles",
+    conv_s4_p:"Le prof. Saverio Russo, président régional du FAI, a porté la voix de l'association qui a contribué de manière déterminante au financement de la restauration. Russo a rappelé l'engagement décennal du FAI dans la protection du patrimoine culturel des Pouilles et a souligné comment la mobilisation spontanée des citoyens autour de la Porte de la Liberté — élue parmi les Lieux du Coeur lors de la XIIe édition du recensement — représente un exemple vertueux de la façon dont la participation populaire peut se traduire en action concrète et en résultats tangibles.",
+    conv_s5_t:"Des votes au chantier: le mécanisme des Lieux du Coeur",
+    conv_s5_p:"L'arch. Beniamino Attoma Pepe, responsable régional pour le recensement des Lieux du Coeur en Pouilles, a illustré le parcours qui transforme les votes des citoyens en financements réels. Au fil des années, a-t-il expliqué, le programme a permis de protéger et de valoriser des dizaines de biens sur l'ensemble du territoire national. Les Pouilles se confirment parmi les régions les plus actives, et le cas de la Porte de la Liberté en est une démonstration concrète: de la pétition à la signature du contrat de restauration, en passant par la contribution du FAI et d'Intesa Sanpaolo et le soutien de la Commune et des particuliers.",
+    conv_s6_t:"La Surintendance: science, protection et pédagogie",
+    conv_s6_p:"La Dr. Gaia Caula, fonctionnaire restauratrice de la SABAP pour les provinces de BAT et de Foggia, a illustré le rôle de la Surintendance dans le processus de protection de l'oeuvre. Au-delà de l'aspect conservatoire, Caula a mis l'accent sur une dimension souvent négligée: la valeur pédagogique et scientifique de la restauration. Une intervention de cette ampleur ne se limite pas à restituer à la porte son apparence originelle, mais produit des connaissances, de la documentation et une méthode — un patrimoine de données appelé à devenir une référence pour la restauration d'oeuvres analogues à l'avenir.",
+    conv_s7_t:"De la dégradation à la renaissance: les détails techniques",
+    conv_s7_p:"La Dr. Loredana La Torre, conceptrice et exécutrice de la restauration, a conclu la série d'interventions en guidant les participants dans un parcours technique rigoureux et passionnant. Partant de la documentation de l'état de dégradation — processus d'oxydation avancés, pertes matérielles, fissurations dans la structure métallique — elle a illustré les travaux nécessaires à la conservation et à la consolidation des surfaces de bronze. Une intervention complexe, menée avec méthode et compétence, qui restituera à la ville et au monde l'un des exemples les plus extraordinaires d'art médiéval du sud de l'Italie.",
+    conv_s8_t:"Le geste qui inaugure les travaux",
+    conv_s8_p:"Alessandro Altobelli, représentant ECEPLAST, l'un des cofinanceurs privés qui ont rendu la restauration possible, a clôturé le colloque. Altobelli a adressé des remerciements sincères à la prof. De Santis pour la ténacité et la vision avec lesquelles elle a mené l'initiative, mobilisant toute une communauté autour d'une oeuvre qui risquait d'être oubliée. Son intervention s'est conclue par un geste chargé de sens: la fermeture formelle de la porte, acte symbolique et officiel qui a inauguré les travaux de restauration. Une porte qui se ferme pour pouvoir à nouveau raconter sa propre histoire."
   },
   de:{
     nav_op:"Das Werk",nav_is:"Inschrift",nav_ve:"Bischöfe",nav_re:"Restaurierung",nav_sc:"Informationsblatt",nav_sp:"Sponsoren",nav_wip:"Laufende Arbeiten",nav_cr:"Mitwirkende",
@@ -304,7 +446,27 @@ const T = {
     ph1_t:"Diagnose",ph1_d:"Bewertung des Erhaltungszustands, Kartierung der Schäden und diagnostische Untersuchungen der Bronzeoberfläche.",
     ph2_t:"Restaurierung",ph2_d:"Entfernung von Oxidationen, Konsolidierung von Materialverlusten.",
     ph3_t:"Rückgabe",ph3_d:"Abschließender Schutz, Wiedereinbau des Portals und Wiedereröffnung der Kathedrale für die Öffentlichkeit.",
-    gallery_note:"Bilder des Tores vor der Restaurierung · Aktualisierungen folgen"
+    gallery_note:"Bilder des Tores vor der Restaurierung · Aktualisierungen folgen",
+    conv_tag:"Aktuell",
+    conv_date:"1. Juli 2026 · 18:30 Uhr",
+    conv_title:"Das Tor der Freiheit erzählt sich: das Präsentationskolloquium der Restaurierung",
+    conv_intro:"Eine Tür, die von Bronze und Freiheit spricht, von Glaube und Geschichte, von Identität und Zukunft. Die offizielle Präsentation des Restaurierungsprojekts des Tores der Freiheit brachte in Troia Institutionen, Experten und Bürger rund um das Werk zusammen, das Oderisio da Benevento 1127 für die Kathedrale der Stadt schuf. Ein Nachmittag unterschiedlicher Stimmen, jede fähig, einen anderen Aspekt eines Kulturguts zu beleuchten, das allen gehört.",
+    conv_s1_t:"Der historisch-künstlerische Wert: das Wort an die Initiatorin",
+    conv_s1_p:"Die Eröffnung übernahm Prof. Mina De Santis, Initiatorin des Projekts und Hauptarchitektin des Weges, der das Tor der Freiheit bis zur FAI-Volkszählung der Herzensorte geführt hat. De Santis rekapitulierte die Geschichte des Werkes — die vierundzwanzig Tafeln aus tauschierter Bronze, die sechs horizontalen Register, die Inschrift, die den Freiheitskampf des trojanischen Volkes gegen Roger II. feiert — und vermittelte dabei seine außergewöhnliche historische, künstlerische und kulturelle Dichte. Eine unersetzliche Quelle, erinnerte sie, die das Gründungsdatum der Stadt und die Bischofsreihenfolge ihrer ersten hundertacht Jahre bewahrt.",
+    conv_s2_t:"Eine Schwelle zwischen zwei Welten: die katechumenale Bedeutung",
+    conv_s2_p:"Don Paolo Paolella, als Vertreter der Kirche von Troia, bot eine spirituelle und symbolische Lektüre des Werkes an. Die Tür, erklärte er, ist nicht nur ein Monument: sie ist eine Schwelle. Der physische Durchgang durch ihre Bronzetüren erinnert an den katechumenalen Weg, den Übergang von der Knechtschaft zur Freiheit, vom Dunkel zum Licht. Eine Botschaft, die das Mittelalter in Materie zu gießen wusste und die, fast neun Jahrhunderte später, weiterhin zu denen spricht, die die Kathedrale betreten.",
+    conv_s3_t:"Der Beitrag der Gemeinde und die Zukunft des Territoriums",
+    conv_s3_p:"Francesco Caserta, Bürgermeister von Troia, brachte die Stimme der Gemeindeverwaltung ein, die das Projekt von Anfang an begleitet hat, zur Spendensammlung beigetragen und die institutionelle Schirmherrschaft übernommen hat. Caserta betonte, wie die Restaurierung des Tores der Freiheit in eine umfassendere Vision der Aufwertung des Territoriums eingebettet ist, und kündigte eine der meisterwarteten Initiativen an: das Projekt des neuen Stadtmuseums von Troia, das darauf abzielt, das historische, künstlerische und dokumentarische Erbe der Stadt zu sammeln und der Öffentlichkeit zugänglich zu machen. Ein konkretes Zeichen dafür, dass der Schutz der Vergangenheit und die Investition in die Zukunft Hand in Hand gehen können.",
+    conv_s4_t:"Der FAI und der Schutz des apulischen Kulturerbes",
+    conv_s4_p:"Prof. Saverio Russo, FAI-Regionalpräsident, brachte die Stimme der Vereinigung ein, die maßgeblich zur Finanzierung der Restaurierung beigetragen hat. Russo erinnerte an das jahrzehntelange Engagement des FAI für den Schutz des apulischen Kulturerbes und hob hervor, wie die spontane Mobilisierung der Bürger rund um das Tor der Freiheit — bei der zwölften Ausgabe der Herzensorte-Volkszählung gewählt — ein vorbildliches Beispiel dafür darstellt, wie Bürgerbeteiligung in konkretes Handeln und greifbare Ergebnisse umgesetzt werden kann.",
+    conv_s5_t:"Von den Stimmen zur Baustelle: der Mechanismus der Herzensorte",
+    conv_s5_p:"Arch. Beniamino Attoma Pepe, regionaler Koordinator der Herzensorte-Volkszählung in Apulien, erläuterte den Prozess, der die Stimmen der Bürger in echte Fördermittel umwandelt. Im Laufe der Jahre, erklärte er, hat das Programm den Schutz und die Aufwertung von Dutzenden von Kulturgütern im gesamten nationalen Gebiet ermöglicht. Apulien bestätigt sich als eine der aktivsten Regionen, und der Fall des Tores der Freiheit ist ein konkreter Beweis: vom Unterschriftensammeln bis zur Unterzeichnung des Restaurierungsvertrags, über den Beitrag von FAI und Intesa Sanpaolo und die Unterstützung der Gemeinde und von Privatpersonen.",
+    conv_s6_t:"Die Denkmalbehörde: Wissenschaft, Schutz und Bildung",
+    conv_s6_p:"Dr. Gaia Caula, Restaurierungsbeauftragte der SABAP für die Provinzen BAT und Foggia, erläuterte die Rolle der Denkmalbehörde im Prozess des Schutzes des Werkes. Neben dem konservatorischen Aspekt betonte Caula eine oft vernachlässigte Dimension: den didaktischen und wissenschaftlichen Wert der Restaurierung. Ein Eingriff dieses Ausmaßes beschränkt sich nicht darauf, der Tür ihr ursprüngliches Aussehen zurückzugeben, sondern erzeugt Wissen, Dokumentation und Methodik — einen Fundus an Daten, der zum Referenzwerk für die Restaurierung ähnlicher Werke in der Zukunft werden soll.",
+    conv_s7_t:"Vom Verfall zur Wiedergeburt: die technischen Details",
+    conv_s7_p:"Dr. Loredana La Torre, Planerin und Ausführende der Restaurierung, schloss die Reihe der Beiträge ab und führte die Anwesenden durch einen rigorosen und fesselnden technischen Weg. Ausgehend von der Dokumentation des Verfallszustands — fortgeschrittene Oxidationsprozesse, Materialverluste, Risse in der Metallstruktur — erläuterte sie die für die Erhaltung und Konsolidierung der Bronzeoberflächen erforderlichen Arbeiten. Ein komplexer Eingriff, mit Methode und Kompetenz durchgeführt, der der Stadt und der Welt eines der außergewöhnlichsten Beispiele mittelalterlicher Kunst in Süditalien zurückgeben wird.",
+    conv_s8_t:"Die Geste, die die Arbeiten einweiht",
+    conv_s8_p:"Den Abschluss des Kolloquiums bildete Alessandro Altobelli, Vertreter von ECEPLAST, einem der privaten Kofinanzierer, die die Restaurierung ermöglicht haben. Altobelli richtete herzliche Dankesworte an Prof. De Santis für die Beharrlichkeit und die Vision, mit der sie die Initiative geführt hat, und eine ganze Gemeinschaft rund um ein Werk mobilisiert hat, das zu vergessen drohte. Sein Beitrag endete mit einer bedeutungsvollen Geste: dem formellen Schließen der Tür, einem symbolischen und offiziellen Akt, der die Restaurierungsarbeiten einweihte. Eine Tür, die sich schließt, damit sie wieder ihre eigene Geschichte erzählen kann."
   },
   es:{
     nav_op:"La Obra",nav_is:"Inscripción",nav_ve:"Obispos",nav_re:"Restauración",nav_sc:"Ficha informativa",nav_sp:"Patrocinadores",nav_wip:"Trabajos en Curso",nav_cr:"Créditos",
@@ -324,7 +486,27 @@ const T = {
     ph1_t:"Diagnóstico",ph1_d:"Evaluación del estado de conservación, mapeo de daños e investigaciones diagnósticas sobre la superficie de bronce.",
     ph2_t:"Restauración",ph2_d:"Eliminación de oxidaciones, consolidación de pérdidas materiales.",
     ph3_t:"Restitución",ph3_d:"Protección final, reinstalación del portal y reapertura de la Catedral al público.",
-    gallery_note:"Imágenes de la puerta antes de la intervención de restauración · Actualizaciones próximamente"
+    gallery_note:"Imágenes de la puerta antes de la intervención de restauración · Actualizaciones próximamente",
+    conv_tag:"Actualización",
+    conv_date:"1 de julio de 2026 · 18:30",
+    conv_title:"La Puerta de la Libertad se cuenta: el coloquio de presentación de la restauración",
+    conv_intro:"Una puerta que habla de bronce y de libertad, de fe e historia, de identidad y futuro. La presentación oficial del proyecto de restauración de la Puerta de la Libertad reunió en Troia a instituciones, expertos y ciudadanos en torno a la obra que Oderisio da Benevento esculpió en 1127 para la Catedral de la ciudad. Una tarde de voces diferentes, cada una capaz de iluminar un aspecto distinto de un bien que pertenece a todos.",
+    conv_s1_t:"El valor histórico-artístico: la palabra a la promotora",
+    conv_s1_p:"La prof. Mina De Santis, promotora de la iniciativa y principal artífice del camino que llevó a la Puerta de la Libertad hasta el censo FAI de los Lugares del Corazón, abrió los trabajos. De Santis repasó la historia de la obra — los veinticuatro paneles en bronce damasquinado, los seis registros horizontales, la inscripción que celebra la lucha del pueblo troyano contra Rugiero II — transmitiendo su extraordinaria densidad histórica, artística y cultural. Una fuente irrepetible, recordó, que custodia la fecha de fundación de la ciudad y la cronotaxis episcopal de sus primeros ciento ocho años.",
+    conv_s2_t:"Un umbral entre dos mundos: el significado catecumenal",
+    conv_s2_p:"Don Paolo Paolella, en representación de la Iglesia Troiana, ofreció una lectura espiritual y simbólica de la obra. La puerta, explicó, no es solo un monumento: es un umbral. El paso físico a través de sus batientes de bronce evoca el camino catecumenal, el tránsito de la esclavitud a la libertad, de las tinieblas a la luz. Un mensaje que la Edad Media supo fundir en materia y que continúa, casi novecientos años después, hablando a quienes cruzan el umbral de la catedral.",
+    conv_s3_t:"La contribución del Municipio y el futuro del territorio",
+    conv_s3_p:"Francesco Caserta, Alcalde de Troia, llevó la voz de la administración municipal que ha acompañado el proyecto desde sus primeras fases, contribuyendo a la recaudación de fondos y garantizando el patrocinio institucional. Caserta subrayó cómo la restauración de la Puerta de la Libertad se inserta en una visión más amplia de valorización del territorio, anticipando una de las iniciativas más esperadas: el proyecto del nuevo Museo Cívico de Troia, que pretende reunir y hacer accesible al público el patrimonio histórico, artístico y documental de la ciudad. Una señal concreta de cómo la protección del pasado y la inversión en el futuro pueden avanzar juntas.",
+    conv_s4_t:"El FAI y la protección del patrimonio pugliese",
+    conv_s4_p:"El prof. Saverio Russo, presidente regional del FAI, llevó la voz de la asociación que ha contribuido de manera determinante a la financiación de la restauración. Russo recordó el compromiso decenario del FAI en la protección del patrimonio cultural pugliese y subrayó cómo la movilización espontánea de los ciudadanos en torno a la Puerta de la Libertad — elegida entre los Lugares del Corazón en la XII edición del censo — representa un ejemplo virtuoso de cómo la participación popular puede traducirse en acción concreta y resultados tangibles.",
+    conv_s5_t:"De los votos a la obra: el mecanismo de los Lugares del Corazón",
+    conv_s5_p:"El arq. Beniamino Attoma Pepe, responsable regional del censo de los Lugares del Corazón en Puglia, ilustró el recorrido que transforma los votos de los ciudadanos en financiación real. A lo largo de los años, explicó, el programa ha permitido proteger y valorizar decenas de bienes en todo el territorio nacional. Puglia se confirma entre las regiones más activas, y el caso de la Puerta de la Libertad es una demostración concreta: desde la recogida de firmas hasta la firma del contrato de restauración, pasando por la contribución del FAI e Intesa Sanpaolo y el apoyo del Municipio y de particulares.",
+    conv_s6_t:"La Superintendencia: ciencia, protección y didáctica",
+    conv_s6_p:"La dra. Gaia Caula, funcionaria restauradora de la SABAP para las provincias de BAT y Foggia, ilustró el papel de la Superintendencia en el proceso de protección de la obra. Más allá del aspecto conservativo, Caula puso el acento en una dimensión a menudo descuidada: el valor didáctico y científico de la restauración. Una intervención de esta envergadura no se limita a devolver a la puerta su apariencia original, sino que produce conocimiento, documentación y método — un patrimonio de datos destinado a convertirse en referencia para la restauración de obras similares en el futuro.",
+    conv_s7_t:"Del deterioro al renacimiento: los detalles técnicos",
+    conv_s7_p:"La dra. Loredana La Torre, proyectista y ejecutora de la restauración, cerró la serie de intervenciones guiando a los presentes en un recorrido técnico riguroso y apasionante. Partiendo de la documentación del estado de deterioro — avanzados procesos de oxidación, pérdidas materiales, fisuras en la estructura metálica — ilustró los trabajos necesarios para la conservación y consolidación de las superficies de bronce. Una intervención compleja, realizada con método y competencia, que devolverá a la ciudad y al mundo uno de los ejemplos más extraordinarios de arte medieval del sur de Italia.",
+    conv_s8_t:"El gesto que inaugura los trabajos",
+    conv_s8_p:"Alessandro Altobelli, en representación de ECEPLAST, uno de los cofinanciadores privados que hicieron posible la restauración, cerró el coloquio. Altobelli dirigió un sentido agradecimiento a la prof. De Santis por la tenacidad y la visión con las que ha conducido la iniciativa, movilizando a toda una comunidad en torno a una obra que corría el riesgo de caer en el olvido. Su intervención concluyó con un gesto cargado de significado: el cierre formal de la puerta, acto simbólico y oficial que inauguró los trabajos de restauración. Una puerta que se cierra para poder volver a contar su propia historia."
   }
 };
 

@@ -297,10 +297,8 @@ async function pushFile(path, base64, sha){
 async function uploadOne(i){
   if(!token){ alert('Inserisci prima il token GitHub.'); return; }
   var item=queue[i];
-  var ext = item.file.name.match(/\.([^.]+)$/);
-  var extStr = ext ? '.'+ext[1].toLowerCase() : '.jpg';
   var name = (item.name||'foto').replace(/[^a-z0-9\-]/g,'-');
-  var fullPath = IMG_PATH+'/'+name+extStr;
+  var fullPath = IMG_PATH+'/'+name+'.jpg';
 
   item.state='loading'; renderQueue();
   try{

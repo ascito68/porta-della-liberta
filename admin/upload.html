@@ -112,9 +112,9 @@
   <div class="section">
     <div class="section-title">Seleziona immagini</div>
     <div class="drop-area" id="drop-area" onclick="document.getElementById('file-input').click()">
-      <input type="file" id="file-input" accept="image/*" multiple onchange="addFiles(this.files)"/>
+      <input type="file" id="file-input" accept="image/*,.heic,.heif" multiple onchange="addFiles(this.files)"/>
       <div class="drop-icon">📷</div>
-      <div class="drop-label"><strong>Tocca per scegliere le foto</strong><br>JPEG · PNG · WebP — compresse automaticamente</div>
+      <div class="drop-label"><strong>Tocca per scegliere le foto</strong><br>JPEG · PNG · WebP · HEIC — convertite in JPG automaticamente</div>
     </div>
 
     <div class="quality-row">
@@ -207,8 +207,7 @@ function renderQueue(){
   document.getElementById('upload-all-row').style.display='flex';
   c.innerHTML='';
   queue.forEach(function(item,i){
-    var ext = item.file.name.match(/\.([^.]+)$/);
-    var extStr = ext ? '.'+ext[1].toLowerCase() : '.jpg';
+    var extStr = '.jpg';
     var sizeStr = item.size ? (item.size/1024<1000?(item.size/1024).toFixed(0)+'KB':((item.size/1024)/1024).toFixed(1)+'MB') : '';
     var stateHtml = '';
     if(item.state==='ok') stateHtml='<div class="qi-state ok">✓ Caricato — img/'+item.name+extStr+'</div>';

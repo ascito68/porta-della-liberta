@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carica foto — Porta della Libertà</title>
+  <link rel="icon" type="image/jpeg" href="../img/troiana.jpg"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --green:#1E4D2B;--green-dark:#163820;--green-pale:#EBF2ED;
+      --orange:#D94F1E;
+      --white:#FFFFFF;--bg:#F2F2F0;--border:#E0E0DC;
+      --text:#1A1A18;--muted:#666660;--light:#999994;
+    }
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:0}
+    header{background:var(--green-dark);padding:16px 24px;display:flex;align-items:center;gap:16px}
+    header a{color:rgba(255,255,255,.6);text-decoration:none;font-size:12px;letter-spacing:.1em}
+    header a:hover{color:#fff}
+    header h1{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;flex:1}
+    .badge{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;background:var(--orange);color:#fff;padding:3px 8px;border-radius:2px}
+
+    .main{max-width:640px;margin:0 auto;padding:24px 16px 48px}
+
+    /* TOKEN SECTION */
+    .section{background:var(--white);border:1px solid var(--border);padding:20px;margin-bottom:16px}
+    .section-title{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
+    .token-row{display:flex;gap:8px}
+    .token-row input{flex:1;border:1px solid var(--border);padding:10px 12px;font-size:14px;font-family:monospace;background:var(--bg);color:var(--text);outline:none}
+    .token-row input:focus{border-color:var(--green)}
+    .btn{background:var(--green);color:#fff;border:none;padding:10px 20px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+    .btn:active{background:var(--green-dark)}
+    .btn-sm{padding:7px 14px;font-size:11px}
+    .btn-danger{background:#c0392b}
+    .status-ok{font-size:12px;color:var(--green);font-weight:600;margin-top:8px}
+    .status-err{font-size:12px;color:#c0392b;font-weight:600;margin-top:8px}
+
+    /* UPLOAD SECTION */
+    .drop-area{border:2px dashed var(--border);padding:36px 20px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;background:var(--bg)}
+    .drop-area:hover,.drop-area.dragover{border-color:var(--green);background:var(--green-pale)}
+    .drop-area input{display:none}
+    .drop-icon{font-size:36px;margin-bottom:8px}
+    .drop-label{font-size:14px;color:var(--muted);line-height:1.5}
+    .drop-label strong{color:var(--text)}
+
+    /* QUEUE */
+    .queue{display:flex;flex-direction:column;gap:12px;margin-top:16px}
+    .queue-item{background:var(--white);border:1px solid var(--border);display:grid;grid-template-columns:72px 1fr;gap:0}
+    .qi-thumb{width:72px;height:72px;object-fit:cover;display:block}
+    .qi-thumb-placeholder{width:72px;height:72px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:24px}
+    .qi-body{padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+    .qi-name{font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--text)}
+    .qi-meta{font-size:10px;color:var(--light)}
+    .qi-filename{display:flex;gap:6px;align-items:center}
+    .qi-filename input{flex:1;border:1px solid var(--border);padding:5px 8px;font-size:12px;font-family:monospace;background:var(--bg);color:var(--text);outline:none;min-width:0}
+    .qi-filename input:focus{border-color:var(--green)}
+    .qi-ext{font-size:12px;color:var(--muted);font-family:monospace;white-space:nowrap}
+    .qi-state{font-size:11px;font-weight:600;padding:2px 0}
+    .qi-state.ok{color:var(--green)}
+    .qi-state.err{color:#c0392b}
+    .qi-state.loading{color:var(--orange)}
+    .qi-actions{display:flex;gap:6px;margin-top:2px}
+    .qi-btn{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--border);background:var(--bg);padding:4px 10px;cursor:pointer;color:var(--text)}
+    .qi-btn:active{background:var(--border)}
+    .qi-btn.primary{background:var(--green);color:#fff;border-color:var(--green)}
+    .qi-btn.danger{border-color:#c0392b;color:#c0392b}
+
+    /* QUALITY SLIDER */
+    .quality-row{display:flex;align-items:center;gap:10px;margin-top:8px}
+    .quality-row label{font-size:11px;color:var(--muted);white-space:nowrap}
+    .quality-row input[type=range]{flex:1;accent-color:var(--green)}
+    .quality-row span{font-size:11px;font-weight:700;color:var(--text);width:32px;text-align:right}
+
+    /* RESULTS */
+    .results{margin-top:16px}
+    .result-item{background:var(--green-pale);border:1px solid rgba(30,77,43,.2);padding:10px 12px;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+    .result-path{font-family:monospace;font-size:12px;color:var(--green);flex:1;word-break:break-all}
+    .copy-btn{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--green);background:transparent;padding:4px 10px;cursor:pointer;color:var(--green);white-space:nowrap}
+    .copy-btn.copied{background:var(--green);color:#fff}
+
+    .upload-all-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:4px}
+    .hint{font-size:11px;color:var(--light);margin-top:6px}
+
+    /* EXISTING FILES */
+    .file-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .file-chip{font-size:10px;font-family:monospace;background:var(--bg);border:1px solid var(--border);padding:4px 8px;color:var(--muted);cursor:pointer}
+    .file-chip:hover{border-color:var(--green);color:var(--green)}
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="../index.html">← Sito</a>
+  <h1>Carica foto</h1>
+  <span class="badge">Admin</span>
+</header>
+
+<div class="main">
+
+  <!-- TOKEN -->
+  <div class="section" id="token-section">
+    <div class="section-title">Token GitHub</div>
+    <div class="token-row">
+      <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off" spellcheck="false"/>
+      <button class="btn btn-sm" onclick="saveToken()">Salva</button>
+    </div>
+    <div id="token-status"></div>
+    <div class="hint" style="margin-top:8px">Token personale GitHub con permesso <strong>Contents: Write</strong> — salvato solo in questo browser.</div>
+  </div>
+
+  <!-- UPLOAD -->
+  <div class="section">
+    <div class="section-title">Seleziona immagini</div>
+    <div class="drop-area" id="drop-area" onclick="document.getElementById('file-input').click()">
+      <input type="file" id="file-input" accept="image/*" multiple onchange="addFiles(this.files)"/>
+      <div class="drop-icon">📷</div>
+      <div class="drop-label"><strong>Tocca per scegliere le foto</strong><br>JPEG · PNG · WebP — compresse automaticamente</div>
+    </div>
+
+    <div class="quality-row">
+      <label>Qualità</label>
+      <input type="range" id="quality" min="50" max="95" value="82" oninput="document.getElementById('qlabel').textContent=this.value+'%'"/>
+      <span id="qlabel">82%</span>
+    </div>
+    <div class="quality-row">
+      <label>Larghezza max</label>
+      <input type="range" id="maxw" min="800" max="2400" step="200" value="1600" oninput="document.getElementById('mwlabel').textContent=this.value+'px'"/>
+      <span id="mwlabel">1600px</span>
+    </div>
+
+    <div class="queue" id="queue"></div>
+
+    <div class="upload-all-row" id="upload-all-row" style="display:none">
+      <button class="btn" onclick="uploadAll()">⬆ Carica tutto</button>
+      <button class="btn btn-sm btn-danger" onclick="clearQueue()">Svuota</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results" id="results"></div>
+
+  <!-- FILE ESISTENTI -->
+  <div class="section" id="existing-section" style="display:none">
+    <div class="section-title">File presenti in img/</div>
+    <div class="file-grid" id="file-grid"></div>
+  </div>
+
+</div>
+
+<script>
+const REPO = 'ascito68/porta-della-liberta';
+const BRANCH = 'main';
+const IMG_PATH = 'img';
+
+/* ---- TOKEN ---- */
+var token = localStorage.getItem('pdl_token') || '';
+(function init(){
+  if(token){ document.getElementById('token-input').value = token; showTokenStatus(true); loadExisting(); }
+})();
+
+function saveToken(){
+  var v = document.getElementById('token-input').value.trim();
+  if(!v){ showTokenStatus(false, 'Inserisci un token'); return; }
+  verifyToken(v);
+}
+
+async function verifyToken(t){
+  setTokenStatus('Verifica…','loading');
+  try{
+    var r = await fetch('https://api.github.com/repos/'+REPO, {headers:{Authorization:'Bearer '+t}});
+    if(r.ok){ token=t; localStorage.setItem('pdl_token',t); showTokenStatus(true); loadExisting(); }
+    else{ showTokenStatus(false,'Token non valido o accesso negato ('+r.status+')'); }
+  }catch(e){ showTokenStatus(false,'Errore di rete: '+e.message); }
+}
+
+function setTokenStatus(msg, type){
+  var el=document.getElementById('token-status');
+  el.className = type==='ok'?'status-ok':type==='loading'?'':'status-err';
+  el.textContent=msg;
+}
+function showTokenStatus(ok, msg){
+  if(ok) setTokenStatus('✓ Token valido — connesso a '+REPO,'ok');
+  else setTokenStatus('✗ '+(msg||'Errore'),'err');
+}
+
+/* ---- QUEUE ---- */
+var queue = [];
+
+function addFiles(files){
+  for(var i=0;i<files.length;i++) addFile(files[i]);
+  document.getElementById('file-input').value='';
+  renderQueue();
+}
+
+function addFile(file){
+  var base = file.name.replace(/\.[^.]+$/,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  queue.push({file:file, name:base, state:'pending', preview:null, size:file.size});
+  var idx=queue.length-1;
+  var reader=new FileReader();
+  reader.onload=function(e){ queue[idx].preview=e.target.result; renderQueue(); };
+  reader.readAsDataURL(file);
+}
+
+function renderQueue(){
+  var c=document.getElementById('queue');
+  if(!queue.length){c.innerHTML='';document.getElementById('upload-all-row').style.display='none';return;}
+  document.getElementById('upload-all-row').style.display='flex';
+  c.innerHTML='';
+  queue.forEach(function(item,i){
+    var ext = item.file.name.match(/\.([^.]+)$/);
+    var extStr = ext ? '.'+ext[1].toLowerCase() : '.jpg';
+    var sizeStr = item.size ? (item.size/1024<1000?(item.size/1024).toFixed(0)+'KB':((item.size/1024)/1024).toFixed(1)+'MB') : '';
+    var stateHtml = '';
+    if(item.state==='ok') stateHtml='<div class="qi-state ok">✓ Caricato — img/'+item.name+extStr+'</div>';
+    else if(item.state==='err') stateHtml='<div class="qi-state err">✗ '+item.error+'</div>';
+    else if(item.state==='loading') stateHtml='<div class="qi-state loading">Caricamento…</div>';
+    var thumbHtml = item.preview
+      ? '<img class="qi-thumb" src="'+item.preview+'" alt=""/>'
+      : '<div class="qi-thumb-placeholder">🖼</div>';
+    var actionsHtml = item.state==='pending'||item.state==='err'
+      ? '<button class="qi-btn primary" onclick="uploadOne('+i+')">Carica</button><button class="qi-btn danger" onclick="removeItem('+i+')">Rimuovi</button>'
+      : '';
+    var nameHtml = item.state!=='ok'
+      ? '<div class="qi-filename"><input type="text" value="'+item.name+'" oninput="queue['+i+'].name=this.value" placeholder="nome-file"/><span class="qi-ext">'+extStr+'</span></div>'
+      : '';
+    c.innerHTML+='<div class="queue-item" id="qi-'+i+'">'
+      +thumbHtml
+      +'<div class="qi-body">'
+      +'<div class="qi-name">'+item.file.name+'</div>'
+      +'<div class="qi-meta">'+sizeStr+'</div>'
+      +nameHtml
+      +stateHtml
+      +'<div class="qi-actions">'+actionsHtml+'</div>'
+      +'</div></div>';
+  });
+}
+
+function removeItem(i){ queue.splice(i,1); renderQueue(); }
+
+function clearQueue(){ queue=[]; renderQueue(); }
+
+/* ---- COMPRESS ---- */
+async function compress(file){
+  var maxW = parseInt(document.getElementById('maxw').value);
+  var q = parseInt(document.getElementById('quality').value)/100;
+  return new Promise(function(resolve,reject){
+    var reader=new FileReader();
+    reader.onerror=function(){reject(new Error('Lettura file fallita'));};
+    reader.onload=function(e){
+      var img=new Image();
+      img.onerror=function(){reject(new Error('Immagine non leggibile'));};
+      img.onload=function(){
+        var scale=Math.min(1, maxW/img.width);
+        var w=Math.round(img.width*scale), h=Math.round(img.height*scale);
+        var canvas=document.createElement('canvas');
+        canvas.width=w; canvas.height=h;
+        var ctx=canvas.getContext('2d');
+        ctx.drawImage(img,0,0,w,h);
+        canvas.toBlob(function(blob){
+          if(!blob){reject(new Error('Compressione fallita'));return;}
+          resolve({blob:blob, w:w, h:h});
+        },'image/jpeg',q);
+      };
+      img.src=e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+/* ---- GITHUB UPLOAD ---- */
+async function getFileSha(path){
+  var r=await fetch('https://api.github.com/repos/'+REPO+'/contents/'+path+'?ref='+BRANCH,
+    {headers:{Authorization:'Bearer '+token}});
+  if(r.ok){ var d=await r.json(); return d.sha; }
+  return null;
+}
+
+async function blobToBase64(blob){
+  return new Promise(function(resolve){
+    var reader=new FileReader();
+    reader.onloadend=function(){ resolve(reader.result.split(',')[1]); };
+    reader.readAsDataURL(blob);
+  });
+}
+
+async function pushFile(path, base64, sha){
+  var body={message:'Upload: '+path, content:base64, branch:BRANCH};
+  if(sha) body.sha=sha;
+  var r=await fetch('https://api.github.com/repos/'+REPO+'/contents/'+path,{
+    method:'PUT',
+    headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},
+    body:JSON.stringify(body)
+  });
+  if(!r.ok){ var d=await r.json(); throw new Error(d.message||('HTTP '+r.status)); }
+  return await r.json();
+}
+
+async function uploadOne(i){
+  if(!token){ alert('Inserisci prima il token GitHub.'); return; }
+  var item=queue[i];
+  var ext = item.file.name.match(/\.([^.]+)$/);
+  var extStr = ext ? '.'+ext[1].toLowerCase() : '.jpg';
+  var name = (item.name||'foto').replace(/[^a-z0-9\-]/g,'-');
+  var fullPath = IMG_PATH+'/'+name+extStr;
+
+  item.state='loading'; renderQueue();
+  try{
+    var compressed = await compress(item.file);
+    var b64 = await blobToBase64(compressed.blob);
+    var sha = await getFileSha(fullPath);
+    await pushFile(fullPath, b64, sha);
+    item.state='ok'; item.name=name;
+    addResult(fullPath, compressed.w, compressed.h);
+    loadExisting();
+  }catch(e){ item.state='err'; item.error=e.message; }
+  renderQueue();
+}
+
+async function uploadAll(){
+  for(var i=0;i<queue.length;i++){
+    if(queue[i].state==='pending'||queue[i].state==='err') await uploadOne(i);
+  }
+}
+
+/* ---- RESULTS ---- */
+function addResult(path, w, h){
+  var c=document.getElementById('results');
+  var id='res-'+Date.now();
+  var html='<div class="result-item" id="'+id+'">'
+    +'<div class="result-path">'+path+(w?'  <span style="color:var(--light);font-size:10px">('+w+'×'+h+'px)</span>':'')+' </div>'
+    +'<button class="copy-btn" onclick="copyPath(this,\''+path+'\')">Copia</button>'
+    +'</div>';
+  c.innerHTML=html+c.innerHTML;
+}
+
+function copyPath(btn, path){
+  navigator.clipboard.writeText(path).then(function(){
+    btn.textContent='✓';btn.classList.add('copied');
+    setTimeout(function(){btn.textContent='Copia';btn.classList.remove('copied');},2000);
+  });
+}
+
+/* ---- EXISTING FILES ---- */
+async function loadExisting(){
+  if(!token) return;
+  try{
+    var r=await fetch('https://api.github.com/repos/'+REPO+'/contents/'+IMG_PATH+'?ref='+BRANCH,
+      {headers:{Authorization:'Bearer '+token}});
+    if(!r.ok) return;
+    var files=await r.json();
+    var imgs=files.filter(function(f){return f.type==='file';}).map(function(f){return f.name;});
+    var grid=document.getElementById('file-grid');
+    grid.innerHTML=imgs.map(function(n){
+      return '<span class="file-chip" onclick="copyPath(this,\'img/'+n+'\')">'+n+'</span>';
+    }).join('');
+    document.getElementById('existing-section').style.display='block';
+  }catch(e){}
+}
+
+/* ---- DRAG & DROP ---- */
+var da=document.getElementById('drop-area');
+da.addEventListener('dragover',function(e){e.preventDefault();da.classList.add('dragover');});
+da.addEventListener('dragleave',function(){da.classList.remove('dragover');});
+da.addEventListener('drop',function(e){e.preventDefault();da.classList.remove('dragover');addFiles(e.dataTransfer.files);});
+</script>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Il Progetto di Restauro — Porta della Libertà</title>
+  <link rel="icon" type="image/jpeg" href="img/troiana.jpg"/>
+  <link rel="apple-touch-icon" href="img/troiana.jpg"/>
+  <link rel="canonical" href="https://www.portadellaliberta.it/restauro.html"/>
+  <meta name="description" content="Il progetto di restauro del portale bronzeo minore della Cattedrale di Troia — Porta della Libertà: stato dei lavori, fasi e documentazione fotografica."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Il Progetto di Restauro — Porta della Libertà"/>
+  <meta property="og:description" content="Il progetto di restauro del portale bronzeo minore della Cattedrale di Troia — Porta della Libertà: stato dei lavori, fasi e documentazione fotografica."/>
+  <meta property="og:url" content="https://www.portadellaliberta.it/restauro.html"/>
+  <meta property="og:image" content="https://www.portadellaliberta.it/img/hero.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --green:#1E4D2B;--green-dark:#163820;--green-pale:#EBF2ED;
+      --orange:#D94F1E;
+      --white:#FFFFFF;--bg:#F2F2F0;--border:#E0E0DC;
+      --text:#1A1A18;--muted:#666660;--light:#999994;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Source Sans 3',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;margin:0}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:linear-gradient(to bottom,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0) 100%);transition:background .4s}
+    nav.scrolled{background:var(--green-dark)}
+    .nav-links{display:flex;list-style:none}
+    .nav-links a{font-size:11px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:#fff;text-decoration:none;padding:0 14px;height:68px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:border-color .2s;opacity:.75}
+    .nav-links a:hover,.nav-links a.cur{border-bottom-color:var(--orange);opacity:1}
+    .nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:4px;width:36px;height:36px}
+    .nav-hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px}
+    .mobile-menu{display:none;position:fixed;inset:0;z-index:300;background:var(--green-dark);flex-direction:column;align-items:center;justify-content:center}
+    .mobile-menu.open{display:flex}
+    .mobile-menu-close{position:absolute;top:24px;right:24px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;padding:4px}
+    .mobile-menu ul{list-style:none;text-align:center}
+    .mobile-menu ul li{border-bottom:1px solid rgba(255,255,255,.1)}
+    .mobile-menu ul li a{display:block;padding:20px 48px;font-size:16px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;text-decoration:none;transition:color .2s}
+    .mobile-menu ul li a:hover{color:var(--orange)}
+    .nav-langs{display:flex;align-items:center}
+    .lb{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;background:transparent;border:none;color:rgba(255,255,255,.55);padding:0 9px;height:36px;cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+    .lb:hover{color:#fff}
+    .lb.active{color:#fff;border-bottom-color:rgba(255,255,255,.7)}
+
+    /* HERO */
+    .page-hero{position:relative;width:100%;height:420px;overflow:hidden}
+    .page-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;filter:brightness(0.28) blur(3px);transform:scale(1.06)}
+    .page-hero-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 40px}
+    .page-hero-label{font-size:10px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;text-shadow:0 1px 8px rgba(0,0,0,1)}
+    .page-hero-title{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,62px);font-weight:700;color:#fff;line-height:1.05;text-shadow:0 2px 20px rgba(0,0,0,.8)}
+    .page-hero-title em{font-style:italic;font-weight:400}
+    .page-hero-sub{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:rgba(255,255,255,.65);margin-top:14px;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+
+    /* CONTENT */
+    .content{max-width:860px;margin:0 auto;padding:72px 40px 88px}
+
+    /* STATO */
+    .status-block{text-align:center;margin-bottom:64px}
+    .status-badge{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:#fff;font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:10px 22px;margin-bottom:32px}
+    .status-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--orange);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+    .status-h2{font-family:'Playfair Display',serif;font-size:clamp(22px,2.8vw,36px);font-weight:700;color:var(--text);margin-bottom:16px}
+    .status-h2 em{font-style:italic;color:var(--green);font-weight:400}
+    .status-rule{width:40px;height:3px;background:var(--orange);margin:0 auto 24px}
+    .status-p{font-size:16px;line-height:1.9;color:var(--muted);max-width:640px;margin:0 auto}
+
+    /* FASI */
+    .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:56px}
+    .phase{background:var(--white);padding:32px 24px;text-align:center}
+    .phase-num{font-family:'Playfair Display',serif;font-size:38px;font-style:italic;color:var(--border);line-height:1;margin-bottom:12px}
+    .phase-title{font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text);margin-bottom:10px}
+    .phase-desc{font-size:13px;line-height:1.75;color:var(--muted)}
+    .phase.done .phase-num{color:var(--green)}
+    .phase.done .phase-title{color:var(--green)}
+    .phase.active .phase-num{color:var(--orange)}
+    .phase.active .phase-title{color:var(--orange)}
+
+    /* PROGETTO */
+    .project-block{background:var(--white);padding:52px 40px;margin:0 -40px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .proj-h3{font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,30px);font-weight:700;color:var(--text);text-align:center;margin-bottom:0}
+    .proj-p{font-size:15px;line-height:1.95;color:var(--muted);margin-top:18px;max-width:760px;margin-left:auto;margin-right:auto}
+
+    /* GALLERY */
+    .gallery-preview{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--text);margin-top:64px}
+    .gp{overflow:hidden;height:220px;background:#111;cursor:pointer}
+    .gp img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+    .gp:hover img{transform:scale(1.05)}
+    .gallery-note{text-align:center;margin-top:20px;font-size:12px;color:var(--light);font-style:italic}
+    .lb-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.92);align-items:center;justify-content:center;touch-action:none}
+    .lb-overlay.open{display:flex}
+    .lb-overlay img{max-width:92vw;max-height:92vh;object-fit:contain}
+    .lb-close{position:fixed;top:20px;right:24px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;z-index:1001;line-height:1}
+
+    /* FOOTER */
+    .page-footer{background:var(--green-dark);padding:24px 40px;text-align:center}
+    .page-footer a{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+    .page-footer a:hover{color:#fff}
+
+    @media(max-width:768px){
+      nav{padding:0 20px}
+      .nav-links{display:none}
+      .nav-hamburger{display:flex}
+      .page-hero{height:300px}
+      .content{padding:52px 20px 64px}
+      .phases{grid-template-columns:1fr}
+      .gallery-preview{grid-template-columns:1fr 1fr}
+      .gp{height:180px}
+      .project-block{padding:40px 20px;margin:0 -20px}
+    }
+    @media(max-width:480px){
+      .gallery-preview{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="rnav">
+  <ul class="nav-links">
+    <li><a href="index.html#opera" data-k="nav_op">L'Opera</a></li>
+    <li><a href="index.html#iscrizione" data-k="nav_is">Iscrizione</a></li>
+    <li><a href="index.html#vescovi" data-k="nav_ve">Vescovi</a></li>
+    <li><a href="restauro.html" data-k="nav_re" class="cur">Il Progetto di Restauro</a></li>
+    <li><a href="scheda.html" data-k="nav_sc">Scheda informativa</a></li>
+    <li><a href="sponsor.html" data-k="nav_sp">Sponsor</a></li>
+    <li><a href="wip.html" data-k="nav_wip">Lavori in Corso</a></li>
+    <li><a href="credits.html" data-k="nav_cr">Credits</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-langs">
+    <button class="lb active" onclick="setLang('it')">IT</button>
+    <button class="lb" onclick="setLang('en')">EN</button>
+    <button class="lb" onclick="setLang('fr')">FR</button>
+    <button class="lb" onclick="setLang('de')">DE</button>
+    <button class="lb" onclick="setLang('es')">ES</button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <img src="img/facade.jpg" alt="Cattedrale di Troia"/>
+  <div class="page-hero-content">
+    <div class="page-hero-label" data-k="label">Restauro · 2024–2025</div>
+    <h1 class="page-hero-title" data-k="hero_title">Il Progetto di <em>Restauro</em></h1>
+    <p class="page-hero-sub" data-k="hero_sub">Porta della Libertà · Cattedrale di Troia</p>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="status-block">
+    <div class="status-badge" data-k="badge">Restauro in corso</div>
+    <h2 class="status-h2" data-k="status_h2">Un patrimonio che <em>rinasce</em></h2>
+    <div class="status-rule"></div>
+    <p class="status-p" data-k="status_p1">Il restauro del portale bronzeo minore della Cattedrale di Troia è attualmente in corso. L'impresa specializzata Loredana La Torre - Restauro archeologico e Conservazione - sta operando con tecniche conservative d'avanguardia per restituire alla Porta della Libertà il suo splendore originale.</p>
+    <p class="status-p" style="margin-top:16px" data-k="status_p2">Questa sezione verrà aggiornata con foto e aggiornamenti sullo stato di avanzamento dei lavori.</p>
+  </div>
+
+  <!-- PROGETTO DI RESTAURO -->
+  <div class="project-block">
+    <h3 class="proj-h3" data-k="proj_title">Il Progetto di Restauro</h3>
+    <div class="status-rule" style="margin:16px auto 0"></div>
+    <p class="proj-p" data-k="proj_p1">La Porta della Libertà presentava uno stato avanzato di degrado, sia superficiale che strutturale. La consunzione dei protettivi e della patina originale, e la presenza stratificata dei diversi prodotti di corrosione hanno determinato, nel tempo, una alterazione e disomogeneità cromatica che rendeva illeggibile gran parte dell'apparato iconografico ed epigrafico. Inoltre, erano presenti numerose fessurazioni e lacune sulla superficie bronzea, con conseguenze anche sull'integrità morfologica del Portale.</p>
+    <p class="proj-p" data-k="proj_p2">Il Progetto di restauro della Porta della Libertà ha la finalità di restituire la lettura e la fruizione di un documento storico-artistico di inestimabile valore, non solo identitario per la comunità locale, ma fondamentale nel panorama culturale medievale.</p>
+    <p class="proj-p" data-k="proj_p3">Nel rispetto sia delle tecniche utilizzate nella realizzazione del Portale, sia delle tracce residue di patina originale, il restauro propone graduali operazioni di pulitura delle superfici degradate, con asportazione dei depositi, delle incrostazioni calcaree e dei prodotti di corrosione per salvaguardare il «racconto» storico inciso.</p>
+    <p class="proj-p" data-k="proj_p4">La struttura in bronzo viene risanata, bloccando la corrosione ciclica in atto e l'alterazione della lega metallica.</p>
+    <p class="proj-p" data-k="proj_p5">Con specifici trattamenti protettivi multistrato, la Porta viene infine protetta dagli agenti esterni e dagli inquinanti aerodispersi, per ridurre l'impatto corrosivo e garantire la conservazione del Monumento.</p>
+  </div>
+
+  <!-- FASI DEL RESTAURO -->
+  <div class="phases">
+    <div class="phase done">
+      <div class="phase-num">I</div>
+      <div class="phase-title" data-k="ph1_t">Diagnosi</div>
+      <div class="phase-desc" data-k="ph1_d">Analisi dello stato di conservazione, mappatura dei degradi e indagini diagnostiche sulla superficie bronzea.</div>
+    </div>
+    <div class="phase active">
+      <div class="phase-num">II</div>
+      <div class="phase-title" data-k="ph2_t">Restauro</div>
+      <div class="phase-desc" data-k="ph2_d">Rimozione delle ossidazioni, consolidamento delle perdite materiche.</div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">III</div>
+      <div class="phase-title" data-k="ph3_t">Restituzione</div>
+      <div class="phase-desc" data-k="ph3_d">Protezione finale, reinstallazione del portale e riapertura al pubblico della Cattedrale.</div>
+    </div>
+  </div>
+
+  <!-- GALLERY PREVIEW -->
+  <div class="gallery-preview">
+    <div class="gp" onclick="openLB('img/g01.jpg')"><img src="img/g01.jpg" loading="lazy" alt="Protomi leonine"/></div>
+    <div class="gp" onclick="openLB('img/troiana.jpg')"><img src="img/troiana.jpg" loading="lazy" alt="Pannello Troiana Civitas"/></div>
+    <div class="gp" onclick="openLB('img/insc1.jpg')"><img src="img/insc1.jpg" loading="lazy" alt="Iscrizione"/></div>
+  </div>
+  <p class="gallery-note" data-k="gallery_note">Immagini della porta prima dell'intervento di restauro · Aggiornamenti in arrivo</p>
+
+</div>
+
+<div class="lb-overlay" id="lb" onclick="closeLB(event)">
+  <button class="lb-close" onclick="closeLBNow()">✕</button>
+  <img id="lb-img" src="" alt=""/>
+</div>
+
+<div class="page-footer">
+  <a href="index.html" data-k="back">← Torna al sito</a>
+</div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
+  <ul>
+    <li><a href="index.html#opera" data-k="nav_op" onclick="toggleMenu()">L'Opera</a></li>
+    <li><a href="index.html#iscrizione" data-k="nav_is" onclick="toggleMenu()">Iscrizione</a></li>
+    <li><a href="index.html#vescovi" data-k="nav_ve" onclick="toggleMenu()">Vescovi</a></li>
+    <li><a href="restauro.html" data-k="nav_re" onclick="toggleMenu()">Il Progetto di Restauro</a></li>
+    <li><a href="scheda.html" data-k="nav_sc" onclick="toggleMenu()">Scheda informativa</a></li>
+    <li><a href="sponsor.html" data-k="nav_sp" onclick="toggleMenu()">Sponsor</a></li>
+    <li><a href="wip.html" data-k="nav_wip" onclick="toggleMenu()">Lavori in Corso</a></li>
+    <li><a href="credits.html" data-k="nav_cr" onclick="toggleMenu()">Credits</a></li>
+  </ul>
+</div>
+
+<script>
+const T = {
+  it:{
+    nav_op:"L'Opera",nav_is:"Iscrizione",nav_ve:"Vescovi",nav_re:"Il Progetto di Restauro",nav_sc:"Scheda informativa",nav_sp:"Sponsor",nav_wip:"Lavori in Corso",nav_cr:"Credits",
+    label:"Restauro · 2024–2025",
+    hero_title:"Il Progetto di <em>Restauro</em>",
+    hero_sub:"Porta della Libertà · Cattedrale di Troia",
+    badge:"Restauro in corso",
+    status_h2:"Un patrimonio che <em>rinasce</em>",
+    status_p1:"Il restauro del portale bronzeo minore della Cattedrale di Troia è attualmente in corso. L'impresa specializzata Loredana La Torre - Restauro archeologico e Conservazione - sta operando con tecniche conservative d'avanguardia per restituire alla Porta della Libertà il suo splendore originale.",
+    status_p2:"Questa sezione verrà aggiornata con foto e aggiornamenti sullo stato di avanzamento dei lavori.",
+    proj_title:"Il Progetto di Restauro",
+    proj_p1:"La Porta della Libertà presentava uno stato avanzato di degrado, sia superficiale che strutturale. La consunzione dei protettivi e della patina originale, e la presenza stratificata dei diversi prodotti di corrosione hanno determinato, nel tempo, una alterazione e disomogeneità cromatica che rendeva illeggibile gran parte dell'apparato iconografico ed epigrafico. Inoltre, erano presenti numerose fessurazioni e lacune sulla superficie bronzea, con conseguenze anche sull'integrità morfologica del Portale.",
+    proj_p2:"Il Progetto di restauro della Porta della Libertà ha la finalità di restituire la lettura e la fruizione di un documento storico-artistico di inestimabile valore, non solo identitario per la comunità locale, ma fondamentale nel panorama culturale medievale.",
+    proj_p3:"Nel rispetto sia delle tecniche utilizzate nella realizzazione del Portale, sia delle tracce residue di patina originale, il restauro propone graduali operazioni di pulitura delle superfici degradate, con asportazione dei depositi, delle incrostazioni calcaree e dei prodotti di corrosione per salvaguardare il «racconto» storico inciso.",
+    proj_p4:"La struttura in bronzo viene risanata, bloccando la corrosione ciclica in atto e l'alterazione della lega metallica.",
+    proj_p5:"Con specifici trattamenti protettivi multistrato, la Porta viene infine protetta dagli agenti esterni e dagli inquinanti aerodispersi, per ridurre l'impatto corrosivo e garantire la conservazione del Monumento.",
+    ph1_t:"Diagnosi",ph1_d:"Analisi dello stato di conservazione, mappatura dei degradi e indagini diagnostiche sulla superficie bronzea.",
+    ph2_t:"Restauro",ph2_d:"Rimozione delle ossidazioni, consolidamento delle perdite materiche.",
+    ph3_t:"Restituzione",ph3_d:"Protezione finale, reinstallazione del portale e riapertura al pubblico della Cattedrale.",
+    gallery_note:"Immagini della porta prima dell'intervento di restauro · Aggiornamenti in arrivo",
+    back:"← Torna al sito"
+  },
+  en:{
+    nav_op:"The Work",nav_is:"Inscription",nav_ve:"Bishops",nav_re:"The Restoration Project",nav_sc:"Information Sheet",nav_sp:"Sponsors",nav_wip:"Work in Progress",nav_cr:"Credits",
+    label:"Restoration · 2024–2025",
+    hero_title:"The Restoration <em>Project</em>",
+    hero_sub:"Gate of Freedom · Cathedral of Troia",
+    badge:"Restoration underway",
+    status_h2:"A heritage that <em>is reborn</em>",
+    status_p1:"The restoration of the minor bronze portal of the Cathedral of Troia is currently underway. The specialist firm Loredana La Torre - Archaeological Restoration and Conservation - is working with cutting-edge conservation techniques to restore the Gate of Freedom to its original splendour.",
+    status_p2:"This section will be updated with photos and progress reports on the restoration work.",
+    proj_title:"The Restoration Project",
+    proj_p1:"The Gate of Freedom showed an advanced state of deterioration, both surface and structural. The wearing away of protective coatings and the original patina, together with the stratified presence of various corrosion products, led over time to chromatic alteration and unevenness that rendered much of the iconographic and epigraphic apparatus illegible. In addition, numerous cracks and lacunae were present on the bronze surface, affecting also the morphological integrity of the Portal.",
+    proj_p2:"The restoration project for the Gate of Freedom aims to restore the legibility and enjoyment of a historical and artistic document of inestimable value — one that is not only central to the identity of the local community, but fundamental within the medieval cultural landscape.",
+    proj_p3:"In keeping with both the techniques used in the creation of the Portal and the surviving traces of original patina, the restoration involves gradual cleaning operations on deteriorated surfaces, removing deposits, calcareous encrustations and corrosion products, in order to safeguard the engraved historical 'narrative'.",
+    proj_p4:"The bronze structure is being treated to stop the ongoing cyclic corrosion and alteration of the metal alloy.",
+    proj_p5:"Through specific multi-layer protective treatments, the Gate is finally protected against external agents and airborne pollutants, reducing the corrosive impact and ensuring the long-term conservation of the Monument.",
+    ph1_t:"Diagnosis",ph1_d:"Assessment of conservation status, damage mapping and diagnostic investigations on the bronze surface.",
+    ph2_t:"Restoration",ph2_d:"Removal of oxidation, consolidation of material losses.",
+    ph3_t:"Return",ph3_d:"Final protection, reinstallation of the portal and reopening of the Cathedral to the public.",
+    gallery_note:"Images of the door before the restoration · Updates coming soon",
+    back:"← Back to site"
+  },
+  fr:{
+    nav_op:"L'Œuvre",nav_is:"Inscription",nav_ve:"Évêques",nav_re:"Le Projet de Restauration",nav_sc:"Fiche informative",nav_sp:"Sponsors",nav_wip:"Travaux en Cours",nav_cr:"Crédits",
+    label:"Restauration · 2024–2025",
+    hero_title:"Le Projet de <em>Restauration</em>",
+    hero_sub:"Porte de la Liberté · Cathédrale de Troie",
+    badge:"Restauration en cours",
+    status_h2:"Un patrimoine qui <em>renaît</em>",
+    status_p1:"La restauration du portail de bronze mineur de la Cathédrale de Troie est actuellement en cours. L'entreprise spécialisée Loredana La Torre - Restauration archéologique et Conservation - travaille avec des techniques de conservation de pointe pour restituer à la Porte de la Liberté sa splendeur originelle.",
+    status_p2:"Cette section sera mise à jour avec des photos et des rapports sur l'avancement des travaux.",
+    proj_title:"Le Projet de Restauration",
+    proj_p1:"La Porte de la Liberté présentait un état avancé de dégradation, tant superficielle que structurelle. L'usure des revêtements protecteurs et de la patine originelle, ainsi que la présence stratifiée des différents produits de corrosion, ont entraîné au fil du temps une altération et une hétérogénéité chromatique rendant illisible une grande partie du programme iconographique et épigraphique. De plus, de nombreuses fissures et lacunes étaient présentes sur la surface de bronze, affectant également l'intégrité morphologique du Portail.",
+    proj_p2:"Le projet de restauration de la Porte de la Liberté a pour finalité de restituer la lecture et la jouissance d'un document historique et artistique d'une valeur inestimable, non seulement identitaire pour la communauté locale, mais fondamental dans le panorama culturel médiéval.",
+    proj_p3:"Dans le respect des techniques utilisées lors de la réalisation du Portail et des traces résiduelles de la patine originelle, la restauration propose des opérations progressives de nettoyage des surfaces dégradées, avec l'élimination des dépôts, des incrustations calcaires et des produits de corrosion, afin de préserver le 'récit' historique gravé.",
+    proj_p4:"La structure en bronze est assainie, en bloquant la corrosion cyclique en cours et l'altération de l'alliage métallique.",
+    proj_p5:"Grâce à des traitements protecteurs multicouches spécifiques, la Porte est enfin protégée des agents extérieurs et des polluants en suspension dans l'air, afin de réduire l'impact corrosif et de garantir la conservation du Monument.",
+    ph1_t:"Diagnostic",ph1_d:"Évaluation de l'état de conservation, cartographie des dégradations et investigations diagnostiques sur la surface de bronze.",
+    ph2_t:"Restauration",ph2_d:"Élimination des oxydations, consolidation des pertes matérielles.",
+    ph3_t:"Restitution",ph3_d:"Protection finale, réinstallation du portail et réouverture de la Cathédrale au public.",
+    gallery_note:"Images de la porte avant l'intervention de restauration · Mises à jour à venir",
+    back:"← Retour au site"
+  },
+  de:{
+    nav_op:"Das Werk",nav_is:"Inschrift",nav_ve:"Bischöfe",nav_re:"Das Restaurierungsprojekt",nav_sc:"Informationsblatt",nav_sp:"Sponsoren",nav_wip:"Laufende Arbeiten",nav_cr:"Mitwirkende",
+    label:"Restaurierung · 2024–2025",
+    hero_title:"Das <em>Restaurierungsprojekt</em>",
+    hero_sub:"Tor der Freiheit · Kathedrale von Troia",
+    badge:"Restaurierung im Gange",
+    status_h2:"Ein Erbe, das <em>wiedergeboren</em> wird",
+    status_p1:"Die Restaurierung des kleinen Bronzeportals der Kathedrale von Troia ist derzeit im Gange. Das spezialisierte Unternehmen Loredana La Torre - Archäologische Restaurierung und Konservierung - arbeitet mit modernsten Konservierungstechniken, um dem Tor der Freiheit seinen ursprünglichen Glanz zurückzugeben.",
+    status_p2:"Dieser Abschnitt wird mit Fotos und Fortschrittsberichten zur Restaurierungsarbeit aktualisiert.",
+    proj_title:"Das Restaurierungsprojekt",
+    proj_p1:"Das Tor der Freiheit wies einen fortgeschrittenen Verfallszustand auf, sowohl oberflächlich als auch strukturell. Die Abnutzung der Schutzbeschichtungen und der originalen Patina sowie die mehrschichtige Ablagerung verschiedener Korrosionsprodukte führten im Laufe der Zeit zu einer chromatischen Veränderung und Uneinheitlichkeit, die weite Teile des ikonografischen und epigrafischen Programms unleserlich machte. Zudem wiesen zahlreiche Risse und Fehlstellen auf der Bronzeoberfläche auch Auswirkungen auf die morphologische Unversehrtheit des Portals auf.",
+    proj_p2:"Das Restaurierungsprojekt des Tores der Freiheit hat zum Ziel, die Lesbarkeit und Zugänglichkeit eines historisch-künstlerischen Dokuments von unschätzbarem Wert wiederherzustellen — eines Dokuments, das nicht nur identitätsstiftend für die lokale Gemeinschaft ist, sondern im mittelalterlichen Kulturerbe eine grundlegende Bedeutung besitzt.",
+    proj_p3:"Unter Berücksichtigung sowohl der bei der Herstellung des Portals verwendeten Techniken als auch der verbliebenen Spuren der originalen Patina sieht die Restaurierung schrittweise Reinigungsmaßnahmen der degradierten Oberflächen vor, mit der Entfernung von Ablagerungen, Kalkinkrustationen und Korrosionsprodukten, um die eingeschriebene historische 'Erzählung' zu bewahren.",
+    proj_p4:"Die Bronzestruktur wird saniert, indem die laufende zyklische Korrosion und die Veränderung der Metalllegierung gestoppt werden.",
+    proj_p5:"Mit spezifischen mehrschichtigen Schutzbehandlungen wird das Tor schließlich vor äußeren Einwirkungen und luftgetragenen Schadstoffen geschützt, um die korrosive Wirkung zu verringern und die Erhaltung des Monuments zu gewährleisten.",
+    ph1_t:"Diagnose",ph1_d:"Bewertung des Erhaltungszustands, Kartierung der Schäden und diagnostische Untersuchungen der Bronzeoberfläche.",
+    ph2_t:"Restaurierung",ph2_d:"Entfernung von Oxidationen, Konsolidierung von Materialverlusten.",
+    ph3_t:"Rückgabe",ph3_d:"Abschließender Schutz, Wiedereinbau des Portals und Wiedereröffnung der Kathedrale für die Öffentlichkeit.",
+    gallery_note:"Bilder des Tores vor der Restaurierung · Aktualisierungen folgen",
+    back:"← Zurück zur Website"
+  },
+  es:{
+    nav_op:"La Obra",nav_is:"Inscripción",nav_ve:"Obispos",nav_re:"El Proyecto de Restauración",nav_sc:"Ficha informativa",nav_sp:"Patrocinadores",nav_wip:"Trabajos en Curso",nav_cr:"Créditos",
+    label:"Restauración · 2024–2025",
+    hero_title:"El Proyecto de <em>Restauración</em>",
+    hero_sub:"Puerta de la Libertad · Catedral de Troia",
+    badge:"Restauración en curso",
+    status_h2:"Un patrimonio que <em>renace</em>",
+    status_p1:"La restauración del portal de bronce menor de la Catedral de Troia está actualmente en curso. La empresa especializada Loredana La Torre - Restauración arqueológica y Conservación - trabaja con técnicas de conservación de vanguardia para devolver a la Puerta de la Libertad su esplendor original.",
+    status_p2:"Esta sección se actualizará con fotos e informes sobre el avance de los trabajos de restauración.",
+    proj_title:"El Proyecto de Restauración",
+    proj_p1:"La Puerta de la Libertad presentaba un avanzado estado de deterioro, tanto superficial como estructural. El desgaste de los recubrimientos protectores y de la pátina original, junto con la presencia estratificada de los diferentes productos de corrosión, determinaron con el tiempo una alteración y heterogeneidad cromática que hacía ilegible gran parte del aparato iconográfico y epigráfico. Además, existían numerosas fisuras y lagunas en la superficie de bronce, con consecuencias también sobre la integridad morfológica del Portal.",
+    proj_p2:"El Proyecto de restauración de la Puerta de la Libertad tiene como finalidad restituir la lectura y el disfrute de un documento histórico-artístico de valor inestimable, no solo identitario para la comunidad local, sino fundamental en el panorama cultural medieval.",
+    proj_p3:"En el respeto tanto de las técnicas utilizadas en la realización del Portal como de los vestigios residuales de la pátina original, la restauración propone operaciones graduales de limpieza de las superficies deterioradas, con la extracción de depósitos, incrustaciones calcáreas y productos de corrosión, para salvaguardar el 'relato' histórico inciso.",
+    proj_p4:"La estructura de bronce es saneada, deteniendo la corrosión cíclica en curso y la alteración de la aleación metálica.",
+    proj_p5:"Con tratamientos protectores multicapa específicos, la Puerta queda finalmente protegida de los agentes externos y los contaminantes aerodispersos, para reducir el impacto corrosivo y garantizar la conservación del Monumento.",
+    ph1_t:"Diagnóstico",ph1_d:"Evaluación del estado de conservación, mapeo de daños e investigaciones diagnósticas sobre la superficie de bronce.",
+    ph2_t:"Restauración",ph2_d:"Eliminación de oxidaciones, consolidación de pérdidas materiales.",
+    ph3_t:"Restitución",ph3_d:"Protección final, reinstalación del portal y reapertura de la Catedral al público.",
+    gallery_note:"Imágenes de la puerta antes de la intervención de restauración · Actualizaciones próximamente",
+    back:"← Volver al sitio"
+  }
+};
+
+function toggleMenu(){
+  var m=document.getElementById('mobile-menu');
+  m.classList.toggle('open');
+  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+}
+
+function setLang(l){
+  const t=T[l]; if(!t) return;
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-k]').forEach(function(el){
+    var v=t[el.dataset.k]; if(v!==undefined) el.innerHTML=v;
+  });
+  document.querySelectorAll('.lb').forEach(function(b){
+    b.classList.toggle('active', b.textContent.toLowerCase()===l);
+  });
+}
+
+window.addEventListener('scroll',function(){
+  document.getElementById('rnav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+function openLB(src){
+  document.getElementById('lb-img').src=src;
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLB(e){ if(e.target===document.getElementById('lb')) closeLBNow(); }
+function closeLBNow(){
+  document.getElementById('lb').classList.remove('open');
+  document.getElementById('lb-img').src='';
+  document.body.style.overflow='';
+}
+
+(function(){
+  var btn=document.getElementById('hamburger');
+  var lastT=0;
+  btn.addEventListener('touchend',function(e){
+    e.preventDefault(); lastT=Date.now(); toggleMenu();
+  });
+  btn.addEventListener('click',function(){
+    if(Date.now()-lastT<600) return; toggleMenu();
+  });
+})();
+</script>
+</body>
+</html>

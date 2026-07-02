@@ -95,10 +95,6 @@
     .upload-all-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:4px}
     .hint{font-size:11px;color:var(--light);margin-top:6px}
 
-    /* EXISTING FILES */
-    .file-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-    .file-chip{font-size:10px;font-family:monospace;background:var(--bg);border:1px solid var(--border);padding:4px 8px;color:var(--muted);cursor:pointer}
-    .file-chip:hover{border-color:var(--green);color:var(--green)}
   </style>
 </head>
 <body>
@@ -187,11 +183,6 @@
   <!-- RESULTS -->
   <div class="results" id="results"></div>
 
-  <!-- FILE ESISTENTI -->
-  <div class="section" id="existing-section" style="display:none">
-    <div class="section-title">File presenti in img/</div>
-    <div class="file-grid" id="file-grid"></div>
-  </div>
 
 </div>
 
@@ -203,7 +194,7 @@ const IMG_PATH = 'img';
 /* ---- TOKEN ---- */
 var token = localStorage.getItem('pdl_token') || '';
 (function init(){
-  if(token){ document.getElementById('token-input').value = token; showTokenStatus(true); loadExisting(); }
+  if(token){ document.getElementById('token-input').value = token; showTokenStatus(true); }
 })();
 
 function saveToken(){
@@ -216,7 +207,7 @@ async function verifyToken(t){
   setTokenStatus('Verifica…','loading');
   try{
     var r = await fetch('https://api.github.com/repos/'+REPO, {headers:{Authorization:'Bearer '+t}});
-    if(r.ok){ token=t; localStorage.setItem('pdl_token',t); showTokenStatus(true); loadExisting(); }
+    if(r.ok){ token=t; localStorage.setItem('pdl_token',t); showTokenStatus(true); }
     else{ showTokenStatus(false,'Token non valido o accesso negato ('+r.status+')'); }
   }catch(e){ showTokenStatus(false,'Errore di rete: '+e.message); }
 }
@@ -357,7 +348,6 @@ async function uploadOne(i){
     await pushFile(fullPath, b64, sha);
     item.state='ok'; item.name=name;
     addResult(fullPath, compressed.w, compressed.h);
-    loadExisting();
   }catch(e){ item.state='err'; item.error=e.message; }
   renderQueue();
 }
@@ -386,22 +376,6 @@ function copyPath(btn, path){
   });
 }
 
-/* ---- EXISTING FILES ---- */
-async function loadExisting(){
-  if(!token) return;
-  try{
-    var r=await fetch('https://api.github.com/repos/'+REPO+'/contents/'+IMG_PATH+'?ref='+BRANCH,
-      {headers:{Authorization:'Bearer '+token}});
-    if(!r.ok) return;
-    var files=await r.json();
-    var imgs=files.filter(function(f){return f.type==='file';}).map(function(f){return f.name;});
-    var grid=document.getElementById('file-grid');
-    grid.innerHTML=imgs.map(function(n){
-      return '<span class="file-chip" onclick="copyPath(this,\'img/'+n+'\')">'+n+'</span>';
-    }).join('');
-    document.getElementById('existing-section').style.display='block';
-  }catch(e){}
-}
 
 /* ---- BATCH RENAME ---- */
 function showTab(t){

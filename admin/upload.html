@@ -65,6 +65,20 @@
     .qi-btn.primary{background:var(--green);color:#fff;border-color:var(--green)}
     .qi-btn.danger{border-color:#c0392b;color:#c0392b}
 
+    /* BATCH RENAME */
+    .rename-block{margin-top:16px;border-top:1px solid var(--border);padding-top:14px}
+    .rename-tabs{display:flex;gap:6px;margin-bottom:12px}
+    .rename-tab{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--border);background:var(--bg);padding:5px 12px;cursor:pointer;color:var(--muted);transition:background .15s,color .15s}
+    .rename-tab.active{background:var(--green);color:#fff;border-color:var(--green)}
+    .rename-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .rename-row input[type=text],.rename-row input[type=number]{border:1px solid var(--border);padding:8px 10px;font-size:13px;font-family:monospace;background:var(--bg);color:var(--text);outline:none}
+    .rename-row input[type=text]:focus,.rename-row input[type=number]:focus{border-color:var(--green)}
+    .rename-row input[type=number]{width:60px}
+    .rename-row select{border:1px solid var(--border);padding:8px 8px;font-size:12px;background:var(--bg);color:var(--text);outline:none}
+    .rename-ta{width:100%;border:1px solid var(--border);padding:8px 10px;font-size:12px;font-family:monospace;background:var(--bg);color:var(--text);outline:none;resize:vertical;min-height:90px}
+    .rename-ta:focus{border-color:var(--green)}
+    .rename-preview{font-size:10px;color:var(--light);margin-top:4px;font-family:monospace}
+
     /* QUALITY SLIDER */
     .quality-row{display:flex;align-items:center;gap:10px;margin-top:8px}
     .quality-row label{font-size:11px;color:var(--muted);white-space:nowrap}
@@ -129,6 +143,40 @@
     </div>
 
     <div class="queue" id="queue"></div>
+
+    <!-- BATCH RENAME -->
+    <div class="rename-block" id="rename-block" style="display:none">
+      <div class="section-title">Rinomina batch</div>
+      <div class="rename-tabs">
+        <button class="rename-tab active" id="tab-a" onclick="showTab('a')">Prefisso + numero</button>
+        <button class="rename-tab" id="tab-b" onclick="showTab('b')">Lista nomi</button>
+      </div>
+
+      <!-- Pannello A: prefisso + numerazione -->
+      <div id="panel-a">
+        <div class="rename-row">
+          <input type="text" id="rename-prefix" placeholder="es. convegno-" style="flex:1;min-width:120px" oninput="previewRename()"/>
+          <input type="number" id="rename-start" value="1" min="1" oninput="previewRename()"/>
+          <select id="rename-pad" onchange="previewRename()">
+            <option value="1">1, 2, 3</option>
+            <option value="2" selected>01, 02, 03</option>
+            <option value="3">001, 002, 003</option>
+          </select>
+          <button class="btn btn-sm" onclick="applyPrefix()">Applica</button>
+        </div>
+        <div class="rename-preview" id="preview-a"></div>
+      </div>
+
+      <!-- Pannello B: lista nomi -->
+      <div id="panel-b" style="display:none">
+        <textarea class="rename-ta" id="rename-list" placeholder="nome-foto-1&#10;nome-foto-2&#10;nome-foto-3" oninput="previewList()"></textarea>
+        <div class="rename-row" style="margin-top:8px">
+          <button class="btn btn-sm" onclick="applyList()">Applica lista</button>
+        </div>
+        <div class="rename-preview" id="preview-b"></div>
+        <div class="hint">Un nome per riga, senza estensione — assegnati in ordine ai file in coda.</div>
+      </div>
+    </div>
 
     <div class="upload-all-row" id="upload-all-row" style="display:none">
       <button class="btn" onclick="uploadAll()">⬆ Carica tutto</button>
@@ -203,8 +251,9 @@ function addFile(file){
 
 function renderQueue(){
   var c=document.getElementById('queue');
-  if(!queue.length){c.innerHTML='';document.getElementById('upload-all-row').style.display='none';return;}
+  if(!queue.length){c.innerHTML='';document.getElementById('upload-all-row').style.display='none';document.getElementById('rename-block').style.display='none';return;}
   document.getElementById('upload-all-row').style.display='flex';
+  document.getElementById('rename-block').style.display='';
   c.innerHTML='';
   queue.forEach(function(item,i){
     var extStr = '.jpg';
@@ -352,6 +401,67 @@ async function loadExisting(){
     }).join('');
     document.getElementById('existing-section').style.display='block';
   }catch(e){}
+}
+
+/* ---- BATCH RENAME ---- */
+function showTab(t){
+  document.getElementById('panel-a').style.display = t==='a' ? '' : 'none';
+  document.getElementById('panel-b').style.display = t==='b' ? '' : 'none';
+  document.getElementById('tab-a').classList.toggle('active', t==='a');
+  document.getElementById('tab-b').classList.toggle('active', t==='b');
+}
+
+function previewRename(){
+  var prefix = document.getElementById('rename-prefix').value.trim();
+  var start = parseInt(document.getElementById('rename-start').value)||1;
+  var pad = parseInt(document.getElementById('rename-pad').value)||2;
+  var pending = queue.filter(function(i){ return i.state!=='ok'; });
+  if(!prefix||!pending.length){ document.getElementById('preview-a').textContent=''; return; }
+  var samples = pending.slice(0,3).map(function(_,i){
+    var n=String(start+i); while(n.length<pad) n='0'+n;
+    return prefix+n+'.jpg';
+  });
+  if(pending.length>3) samples.push('…');
+  document.getElementById('preview-a').textContent = samples.join('  ');
+}
+
+function applyPrefix(){
+  var prefix = document.getElementById('rename-prefix').value.trim().replace(/[^a-z0-9\-]/g,'-');
+  var start = parseInt(document.getElementById('rename-start').value)||1;
+  var pad = parseInt(document.getElementById('rename-pad').value)||2;
+  if(!prefix){ alert('Inserisci un prefisso'); return; }
+  var j=0;
+  queue.forEach(function(item){
+    if(item.state!=='ok'){
+      var n=String(start+j); while(n.length<pad) n='0'+n;
+      item.name=prefix+n; j++;
+    }
+  });
+  renderQueue();
+}
+
+function previewList(){
+  var lines = document.getElementById('rename-list').value.split('\n')
+    .map(function(l){ return l.trim().toLowerCase().replace(/[^a-z0-9\-]/g,'-').replace(/^-+|-+$/g,''); })
+    .filter(function(l){ return l; });
+  var pending = queue.filter(function(i){ return i.state!=='ok'; });
+  if(!lines.length||!pending.length){ document.getElementById('preview-b').textContent=''; return; }
+  var count = Math.min(lines.length, pending.length);
+  var samples = lines.slice(0, Math.min(3,count)).map(function(n){ return n+'.jpg'; });
+  if(count>3) samples.push('…');
+  var extra = lines.length<pending.length ? ' ('+lines.length+'/'+pending.length+' file coperti)' : '';
+  document.getElementById('preview-b').textContent = samples.join('  ')+extra;
+}
+
+function applyList(){
+  var lines = document.getElementById('rename-list').value.split('\n')
+    .map(function(l){ return l.trim().toLowerCase().replace(/[^a-z0-9\-]/g,'-').replace(/^-+|-+$/g,''); })
+    .filter(function(l){ return l; });
+  var j=0;
+  queue.forEach(function(item){
+    if(item.state!=='ok' && j<lines.length){ item.name=lines[j++]; }
+  });
+  renderQueue();
 }
 
 /* ---- DRAG & DROP ---- */
